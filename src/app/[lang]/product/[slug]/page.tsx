@@ -97,7 +97,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 
         <div className="mt-4 grid gap-8 lg:grid-cols-2 lg:gap-14">
           <Reveal y={16}>
-            <div className="lg:sticky lg:top-28">
+            <div className="transition-[top] duration-300 ease-out lg:sticky lg:top-[calc(var(--header-offset,80px)+2rem)]">
               <ProductGallery
                 images={product.images}
                 alt={`${product.name} — ${product.latinName}`}

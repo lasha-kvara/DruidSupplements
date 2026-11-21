@@ -40,6 +40,12 @@ export function Header() {
 
   useEffect(() => setMenuOpen(false), [pathname, lang]);
 
+  // Publish how much of the viewport the header currently covers, so sticky page elements
+  // (catalog filters, product gallery) sit right under it — and move up when it hides.
+  useEffect(() => {
+    document.documentElement.style.setProperty("--header-offset", hidden ? "0px" : "80px");
+  }, [hidden]);
+
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {

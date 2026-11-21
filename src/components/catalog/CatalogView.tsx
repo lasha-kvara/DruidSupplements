@@ -77,7 +77,7 @@ export function CatalogView({ products }: { products: Product[] }) {
     <div>
       {/* Sticky filter bar */}
       {/* Sticky only from tablet up: on phones the stacked filters would cover a third of the screen */}
-      <div className="relative z-30 -mx-5 border-b border-forest/10 bg-parchment/90 px-5 py-4 backdrop-blur-lg md:sticky md:top-20">
+      <div className="relative z-30 -mx-5 border-b border-forest/10 bg-parchment/90 px-5 py-4 backdrop-blur-lg transition-[top] duration-300 ease-out md:sticky md:top-[var(--header-offset,80px)]">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <LayoutGroup id="category-tabs">
