@@ -11,8 +11,8 @@ import { collection, config, fields, singleton } from "@keystatic/core";
  * Set NEXT_PUBLIC_KEYSTATIC_CLOUD=1 to use Cloud mode while running locally.
  */
 
-/** Keystatic Cloud "team/project" (not a secret). Empty until the Cloud project exists → admin stays off in production. */
-const CLOUD_PROJECT = process.env.NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT || "";
+/** Keystatic Cloud "team/project" (not a secret; editors are managed in this Cloud team). */
+const CLOUD_PROJECT = process.env.NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT || "druids/druidsupplements";
 
 const useCloud =
   Boolean(CLOUD_PROJECT) &&
