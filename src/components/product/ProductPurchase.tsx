@@ -78,7 +78,7 @@ export function ProductPurchase({ product }: { product: Product }) {
                     />
                   )}
                   <span className="relative text-base font-bold">{v.label}</span>
-                  <span className={cn("relative text-xs", active ? "text-cream/70" : "text-charcoal-muted")}>
+                  <span className={cn("relative text-xs", active ? "text-cream/85" : "text-charcoal-muted")}>
                     {formatAmount(v.price)} {siteConfig.currency}
                   </span>
                   {v.oldPrice && (
