@@ -34,7 +34,7 @@ export function Accordion({ items, defaultOpen = null, className, variant = "car
             key={item.id}
             className={cn(
               variant === "card" &&
-                "overflow-hidden rounded-2xl border bg-white transition-colors duration-300",
+                "overflow-hidden rounded-2xl border bg-surface transition-colors duration-300",
               variant === "card" && (isOpen ? "border-forest/20 shadow-soft" : "border-forest/10"),
             )}
           >

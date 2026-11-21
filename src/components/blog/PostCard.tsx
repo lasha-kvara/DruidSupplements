@@ -13,7 +13,7 @@ export function PostCard({ post, featured = false }: { post: BlogPost; featured?
     <article className="group h-full">
       <Link
         href={path(`/blog/${post.slug}`)}
-        className={`flex h-full flex-col overflow-hidden rounded-3xl border border-forest/10 bg-white transition-shadow duration-300 hover:shadow-lift ${featured ? "md:grid md:grid-cols-2" : ""}`}
+        className={`flex h-full flex-col overflow-hidden rounded-3xl border border-forest/10 bg-surface transition-shadow duration-300 hover:shadow-lift ${featured ? "md:grid md:grid-cols-2" : ""}`}
       >
         <div className={`relative overflow-hidden ${featured ? "aspect-[16/10] md:aspect-auto md:min-h-[360px]" : "aspect-[16/10]"}`}>
           <Image

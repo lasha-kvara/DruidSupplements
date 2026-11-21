@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { generalChatUrl } from "@/lib/whatsapp";
 import { Logo } from "./Logo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
 export function Header() {
@@ -58,11 +59,11 @@ export function Header() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,color] duration-300",
           overHero
-            ? "bg-transparent text-parchment"
+            ? "bg-transparent text-cream"
             : "border-b border-forest/5 bg-parchment/85 text-forest shadow-[0_1px_20px_-12px_rgba(27,48,34,0.3)] backdrop-blur-lg",
         )}
       >
-        <div className="container flex h-[68px] items-center justify-between gap-3 md:h-20">
+        <div className="container flex h-[68px] items-center justify-between gap-2 md:h-20">
           <Link href={path("/")} aria-label={`${t.site.name} — ${t.header.homeAria}`} className="relative z-10">
             <Logo light={overHero} />
           </Link>
@@ -101,6 +102,7 @@ export function Header() {
             >
               <Phone className="h-4 w-4" /> {siteConfig.phoneDisplay}
             </a>
+            <ThemeToggle light={overHero} className="relative z-10 shrink-0" />
             <LanguageSwitcher light={overHero} className="relative z-10" />
             <a
               href={generalChatUrl(lang)}

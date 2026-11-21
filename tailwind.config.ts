@@ -1,7 +1,11 @@
 import type { Config } from "tailwindcss";
 
+const v = (name: string) => `rgb(var(--c-${name}) / <alpha-value>)`;
+
 const config: Config = {
   content: ["./src/**/*.{ts,tsx}"],
+  // `dark:` variants follow the data-theme attribute set by the theme toggle (src/components/layout/ThemeToggle.tsx)
+  darkMode: ["selector", '[data-theme="dark"]'],
   theme: {
     container: {
       center: true,
@@ -9,34 +13,46 @@ const config: Config = {
       screens: { "2xl": "1280px" },
     },
     extend: {
+      /**
+       * Theme-aware colors are CSS variables (src/app/globals.css: light on :root, dark on [data-theme="dark"]),
+       * written as "R G B" so opacity modifiers like bg-forest/10 keep working.
+       * - forest / parchment / charcoal / surface / terracotta-50|dark  → switch with the theme
+       * - pine / cream / forest-600..800                                 → fixed brand colors (dark sections, text on them)
+       */
       colors: {
         forest: {
-          DEFAULT: "#1B3022",
-          50: "#EEF3EF",
-          100: "#D5E2D8",
-          200: "#A9C3AF",
-          300: "#7A9F83",
-          400: "#4E7559",
-          500: "#2E4D38",
+          DEFAULT: v("forest"),
+          50: v("forest-50"),
+          100: v("forest-100"),
+          200: v("forest-200"),
+          300: v("forest-300"),
+          400: v("forest-400"),
+          500: v("forest-500"),
           600: "#1B3022",
           700: "#14241A",
           800: "#0E1912",
         },
+        /** Fixed dark green for sections, buttons and active pills — dark in both themes */
+        pine: { DEFAULT: "#1B3022", light: "#2E4D38" },
+        /** Fixed light text used on pine / photos — light in both themes */
+        cream: "#F7F5F0",
         parchment: {
-          DEFAULT: "#F7F5F0",
-          dark: "#EDE8DD",
-          deeper: "#E2DACB",
+          DEFAULT: v("parchment"),
+          dark: v("parchment-dark"),
+          deeper: v("parchment-deeper"),
         },
+        /** Cards, inputs, popovers (white in light mode) */
+        surface: v("surface"),
         terracotta: {
           DEFAULT: "#C86D51",
           light: "#E09A82",
-          dark: "#A85540",
-          50: "#FBEFEA",
+          dark: v("terracotta-dark"),
+          50: v("terracotta-50"),
         },
         charcoal: {
-          DEFAULT: "#1F2421",
-          soft: "#4A524D",
-          muted: "#6F7772",
+          DEFAULT: v("charcoal"),
+          soft: v("charcoal-soft"),
+          muted: v("charcoal-muted"),
         },
       },
       fontFamily: {
@@ -48,8 +64,8 @@ const config: Config = {
         "4xl": "2rem",
       },
       boxShadow: {
-        soft: "0 10px 40px -12px rgba(27, 48, 34, 0.18)",
-        lift: "0 24px 60px -20px rgba(27, 48, 34, 0.35)",
+        soft: "0 10px 40px -12px rgb(var(--c-shadow) / 0.18)",
+        lift: "0 24px 60px -20px rgb(var(--c-shadow) / 0.35)",
       },
       keyframes: {
         "pulse-ring": {

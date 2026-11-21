@@ -115,7 +115,7 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
               type="button"
               onClick={onClose}
               aria-label={dict.common.close}
-              className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-forest shadow-sm transition hover:rotate-90"
+              className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-surface text-forest shadow-sm transition hover:rotate-90"
             >
               <X className="h-5 w-5" />
             </button>
@@ -133,7 +133,7 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", stiffness: 260, damping: 15, delay: 0.1 }}
-                      className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-forest text-parchment"
+                      className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-pine text-cream"
                     >
                       <CheckCircle2 className="h-10 w-10" />
                     </motion.div>
@@ -188,7 +188,7 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
                     </p>
 
                     {hasProduct && (
-                      <div className="mt-5 flex items-center gap-3 rounded-2xl border border-forest/10 bg-white p-3">
+                      <div className="mt-5 flex items-center gap-3 rounded-2xl border border-forest/10 bg-surface p-3">
                         {order.image && (
                           <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl">
                             <Image src={order.image} alt="" fill sizes="56px" className="object-cover" />

@@ -67,18 +67,18 @@ export function ProductPurchase({ product }: { product: Product }) {
                   onClick={() => setVariantId(v.id)}
                   className={cn(
                     "relative flex min-h-[64px] flex-col items-center justify-center rounded-2xl border-2 px-2 py-2 transition-colors",
-                    active ? "border-forest text-parchment" : "border-forest/15 bg-white text-forest hover:border-forest/40",
+                    active ? "border-forest text-cream" : "border-forest/15 bg-surface text-forest hover:border-forest/40",
                   )}
                 >
                   {active && (
                     <motion.span
                       layoutId="variant-bg"
-                      className="absolute inset-0 rounded-[14px] bg-forest"
+                      className="absolute inset-0 rounded-[14px] bg-pine dark:bg-forest-200"
                       transition={{ type: "spring", stiffness: 420, damping: 34 }}
                     />
                   )}
                   <span className="relative text-base font-bold">{v.label}</span>
-                  <span className={cn("relative text-xs", active ? "text-parchment/70" : "text-charcoal-muted")}>
+                  <span className={cn("relative text-xs", active ? "text-cream/70" : "text-charcoal-muted")}>
                     {formatAmount(v.price)} {siteConfig.currency}
                   </span>
                   {v.oldPrice && (
@@ -94,14 +94,14 @@ export function ProductPurchase({ product }: { product: Product }) {
       </fieldset>
 
       {/* Quantity + price */}
-      <div className="mt-6 flex items-center justify-between gap-4 rounded-3xl bg-white p-4 ring-1 ring-forest/10">
+      <div className="mt-6 flex items-center justify-between gap-4 rounded-3xl bg-surface p-4 ring-1 ring-forest/10">
         <div className="flex items-center rounded-full bg-parchment p-1">
           <button
             type="button"
             onClick={() => setQty((q) => Math.max(1, q - 1))}
             disabled={qty <= 1}
             aria-label={t.decrease}
-            className="flex h-11 w-11 items-center justify-center rounded-full text-forest transition hover:bg-white disabled:opacity-30"
+            className="flex h-11 w-11 items-center justify-center rounded-full text-forest transition hover:bg-surface disabled:opacity-30"
           >
             <Minus className="h-4 w-4" />
           </button>
@@ -113,7 +113,7 @@ export function ProductPurchase({ product }: { product: Product }) {
             onClick={() => setQty((q) => Math.min(MAX_QTY, q + 1))}
             disabled={qty >= MAX_QTY}
             aria-label={t.increase}
-            className="flex h-11 w-11 items-center justify-center rounded-full text-forest transition hover:bg-white disabled:opacity-30"
+            className="flex h-11 w-11 items-center justify-center rounded-full text-forest transition hover:bg-surface disabled:opacity-30"
           >
             <Plus className="h-4 w-4" />
           </button>

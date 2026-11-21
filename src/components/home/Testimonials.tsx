@@ -70,7 +70,7 @@ export function Testimonials() {
                 <figure
                   key={item.id}
                   className={cn(
-                    "relative flex flex-col rounded-3xl border border-forest/10 bg-white p-6 shadow-soft md:p-7",
+                    "relative flex flex-col rounded-3xl border border-forest/10 bg-surface p-6 shadow-soft md:p-7",
                     i > 0 && "hidden md:flex",
                   )}
                 >
@@ -85,7 +85,7 @@ export function Testimonials() {
                   </div>
                   <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-charcoal-soft">{lang === "en" ? `“${item.text}”` : `„${item.text}“`}</blockquote>
                   <figcaption className="mt-6 flex items-center gap-3 border-t border-forest/10 pt-5">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-forest font-serif text-lg text-parchment">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-pine font-serif text-lg text-cream">
                       {item.name.charAt(0)}
                     </span>
                     <span>
@@ -106,7 +106,7 @@ export function Testimonials() {
             type="button"
             onClick={() => go(-1)}
             aria-label={t.prev}
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-forest/15 bg-white text-forest transition hover:bg-forest hover:text-parchment"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-forest/15 bg-surface text-forest transition hover:bg-pine hover:text-cream"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -135,7 +135,7 @@ export function Testimonials() {
             type="button"
             onClick={() => go(1)}
             aria-label={t.next}
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-forest/15 bg-white text-forest transition hover:bg-forest hover:text-parchment"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-forest/15 bg-surface text-forest transition hover:bg-pine hover:text-cream"
           >
             <ChevronRight className="h-5 w-5" />
           </button>

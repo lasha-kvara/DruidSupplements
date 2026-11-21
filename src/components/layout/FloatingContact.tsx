@@ -50,7 +50,7 @@ export function FloatingContact() {
       label: t.fab.call,
       href: `tel:${siteConfig.phoneNumber}`,
       external: false,
-      className: "bg-forest text-parchment",
+      className: "bg-pine text-cream",
       icon: <Phone className="h-5 w-5" />,
     },
   ];
@@ -88,7 +88,7 @@ export function FloatingContact() {
                       onClick={() => setOpen(false)}
                       className="flex items-center gap-3"
                     >
-                      <span className="rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-forest shadow-soft">
+                      <span className="rounded-full bg-surface px-3 py-1.5 text-sm font-semibold text-forest shadow-soft">
                         {a.label}
                       </span>
                       <span className={`flex h-12 w-12 items-center justify-center rounded-full shadow-lift ${a.className}`}>
@@ -106,7 +106,7 @@ export function FloatingContact() {
                     }}
                     className="flex items-center gap-3"
                   >
-                    <span className="rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-forest shadow-soft">
+                    <span className="rounded-full bg-surface px-3 py-1.5 text-sm font-semibold text-forest shadow-soft">
                       {t.fab.callback}
                     </span>
                     <span className="flex h-12 w-12 items-center justify-center rounded-full bg-terracotta text-white shadow-lift">

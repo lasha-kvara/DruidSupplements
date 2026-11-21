@@ -53,7 +53,7 @@ export function LanguageSwitcher({ light = false, className }: { light?: boolean
             onClick={() => switchTo(o.lang)}
             className={cn(
               "relative z-10 flex h-8 min-w-[42px] items-center justify-center rounded-full px-2.5 transition-colors",
-              active ? (light ? "text-forest" : "text-parchment") : light ? "text-parchment/80 hover:text-parchment" : "text-forest/70 hover:text-forest",
+              active ? (light ? "text-forest" : "text-cream") : light ? "text-cream/80 hover:text-cream" : "text-forest/70 hover:text-forest",
             )}
           >
             {/* Plain element, no layoutId: switching language is a full navigation anyway, and a
@@ -62,7 +62,7 @@ export function LanguageSwitcher({ light = false, className }: { light?: boolean
               <span
                 className={cn(
                   "absolute inset-0 -z-10 rounded-full transition-colors duration-300",
-                  light ? "bg-parchment" : "bg-forest",
+                  light ? "bg-parchment" : "bg-pine dark:bg-forest-200",
                 )}
               />
             )}

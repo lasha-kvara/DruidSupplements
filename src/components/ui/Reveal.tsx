@@ -51,11 +51,11 @@ export function SectionHeading({ eyebrow, title, description, align = "center", 
   return (
     <Reveal className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
       {eyebrow && <p className={`eyebrow ${light ? "text-terracotta-light" : ""}`}>{eyebrow}</p>}
-      <h2 className={`mt-3 text-3xl font-semibold leading-tight md:text-[42px] ${light ? "text-parchment" : ""}`}>
+      <h2 className={`mt-3 text-3xl font-semibold leading-tight md:text-[42px] ${light ? "text-cream" : ""}`}>
         {title}
       </h2>
       {description && (
-        <p className={`mt-4 text-base leading-relaxed md:text-lg ${light ? "text-parchment/75" : "text-charcoal-soft"}`}>
+        <p className={`mt-4 text-base leading-relaxed md:text-lg ${light ? "text-cream/75" : "text-charcoal-soft"}`}>
           {description}
         </p>
       )}

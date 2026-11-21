@@ -13,7 +13,7 @@ import { SectionHeading, fadeUpItem, staggerContainer } from "@/components/ui/Re
 export function ShopByBenefit({ products }: { products: Product[] }) {
   const { lang, t, path } = useI18n();
   return (
-    <section className="relative overflow-hidden bg-forest py-20 text-parchment md:py-28">
+    <section className="relative overflow-hidden bg-pine py-20 text-cream md:py-28">
       <div className="grain pointer-events-none absolute inset-0" />
       <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-terracotta/20 blur-3xl" />
       <div className="container relative">
@@ -48,13 +48,13 @@ export function ShopByBenefit({ products }: { products: Product[] }) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-800 via-forest-800/50 to-forest-800/10 transition-colors duration-500 group-hover:via-forest-800/60" />
                   <div className="absolute inset-0 flex flex-col p-6">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-parchment backdrop-blur transition-all duration-300 group-hover:bg-terracotta">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-cream backdrop-blur transition-all duration-300 group-hover:bg-terracotta">
                       <BenefitIcon icon={b.icon} className="h-6 w-6" />
                     </span>
                     <div className="mt-auto">
-                      <p className="text-xs font-medium text-parchment/60">{t.common.productsCount(count)}</p>
-                      <h3 className="mt-1 text-2xl font-semibold text-parchment">{b.name}</h3>
-                      <p className="mt-2 max-h-0 overflow-hidden text-sm leading-relaxed text-parchment/75 opacity-0 transition-all duration-500 group-hover:max-h-24 group-hover:opacity-100 max-md:max-h-24 max-md:opacity-100">
+                      <p className="text-xs font-medium text-cream/60">{t.common.productsCount(count)}</p>
+                      <h3 className="mt-1 text-2xl font-semibold text-cream">{b.name}</h3>
+                      <p className="mt-2 max-h-0 overflow-hidden text-sm leading-relaxed text-cream/75 opacity-0 transition-all duration-500 group-hover:max-h-24 group-hover:opacity-100 max-md:max-h-24 max-md:opacity-100">
                         {b.description}
                       </p>
                       <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-terracotta-light">

@@ -61,7 +61,7 @@ export function ProductGallery({ images, alt, badges }: Props) {
         <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2">{badges}</div>
         <span
           className={cn(
-            "pointer-events-none absolute bottom-4 right-4 hidden items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-medium text-forest shadow-soft transition-opacity md:flex",
+            "pointer-events-none absolute bottom-4 right-4 hidden items-center gap-1.5 rounded-full bg-surface/90 px-3 py-1.5 text-xs font-medium text-forest shadow-soft transition-opacity md:flex",
             zoom && "opacity-0",
           )}
         >

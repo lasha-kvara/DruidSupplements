@@ -26,7 +26,7 @@ export function TrustBar() {
               key={title}
               variants={fadeUpItem}
               whileHover={{ y: -4 }}
-              className="group rounded-3xl border border-forest/10 bg-white p-4 shadow-soft md:p-6"
+              className="group rounded-3xl border border-forest/10 bg-surface p-4 shadow-soft md:p-6"
             >
               <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-forest-50 text-forest transition-colors duration-300 group-hover:bg-terracotta group-hover:text-white">
                 <Icon className="h-6 w-6 transition-transform duration-500 group-hover:rotate-[-8deg] group-hover:scale-110" />

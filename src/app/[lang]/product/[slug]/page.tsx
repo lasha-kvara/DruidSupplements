@@ -127,7 +127,7 @@ export default async function ProductPage({ params }: { params: Params }) {
                   <Link
                     key={id}
                     href={path(`/catalog?benefit=${id}`)}
-                    className="chip border-forest/15 bg-white text-forest hover:border-terracotta hover:text-terracotta"
+                    className="chip border-forest/15 bg-surface text-forest hover:border-terracotta hover:text-terracotta"
                   >
                     <BenefitIcon icon={b.icon} className="h-4 w-4" />
                     {b.name}

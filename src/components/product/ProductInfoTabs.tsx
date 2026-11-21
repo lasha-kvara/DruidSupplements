@@ -112,7 +112,7 @@ export function ProductInfoTabs({ details }: { details: ProductDetails }) {
 
       <div className="hidden md:block">
         <LayoutGroup id="info-tabs">
-          <div role="tablist" className="flex gap-1 rounded-full bg-white p-1.5 ring-1 ring-forest/10">
+          <div role="tablist" className="flex gap-1 rounded-full bg-surface p-1.5 ring-1 ring-forest/10">
             {sections.map((s) => {
               const isActive = s.id === active;
               return (
@@ -125,13 +125,13 @@ export function ProductInfoTabs({ details }: { details: ProductDetails }) {
                   onClick={() => setActive(s.id)}
                   className={cn(
                     "relative flex flex-1 items-center justify-center gap-2 rounded-full px-3 py-3 text-sm font-semibold transition-colors",
-                    isActive ? "text-parchment" : "text-forest hover:bg-forest/5",
+                    isActive ? "text-cream" : "text-forest hover:bg-forest/5",
                   )}
                 >
                   {isActive && (
                     <motion.span
                       layoutId="info-tab-bg"
-                      className="absolute inset-0 rounded-full bg-forest"
+                      className="absolute inset-0 rounded-full bg-pine dark:bg-forest-200"
                       transition={{ type: "spring", stiffness: 400, damping: 34 }}
                     />
                   )}
@@ -143,7 +143,7 @@ export function ProductInfoTabs({ details }: { details: ProductDetails }) {
           </div>
         </LayoutGroup>
 
-        <div className="mt-6 min-h-[220px] rounded-3xl bg-white p-8 ring-1 ring-forest/10">
+        <div className="mt-6 min-h-[220px] rounded-3xl bg-surface p-8 ring-1 ring-forest/10">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id}

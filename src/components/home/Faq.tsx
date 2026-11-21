@@ -19,7 +19,7 @@ export function Faq() {
           <SectionHeading align="left" eyebrow={t.faq.eyebrow} title={t.faq.title} description={t.faq.description} />
           <Reveal delay={0.1} className="relative mt-8 hidden aspect-[4/3] overflow-hidden rounded-3xl lg:block">
             <Image src="/images/hands-sapling.jpg" alt="" fill sizes="40vw" className="object-cover" />
-            <div className="absolute inset-x-4 bottom-4 flex gap-2 rounded-2xl bg-white/90 p-3 backdrop-blur">
+            <div className="absolute inset-x-4 bottom-4 flex gap-2 rounded-2xl bg-surface/90 p-3 backdrop-blur">
               <a
                 href={generalChatUrl(lang)}
                 target="_blank"

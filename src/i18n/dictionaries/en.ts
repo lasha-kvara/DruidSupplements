@@ -19,6 +19,7 @@ export const en: Dictionary = {
     whatsappMobile: "Message on WhatsApp",
   },
   langSwitch: { label: "Change language", current: "English" },
+  theme: { toggle: "Light / dark theme" },
   common: {
     inStock: "In stock",
     outOfStock: "Sold out",

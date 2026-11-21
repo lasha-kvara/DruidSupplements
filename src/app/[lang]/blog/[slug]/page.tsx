@@ -102,7 +102,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         <div className="container mt-12 max-w-3xl">
           <p className="mb-8 font-serif text-xl leading-relaxed text-forest md:text-2xl">{post.excerpt}</p>
           <div className="prose-ka">{article}</div>
-          <p className="mt-10 rounded-2xl border border-forest/10 bg-white p-5 text-sm text-charcoal-muted">
+          <p className="mt-10 rounded-2xl border border-forest/10 bg-surface p-5 text-sm text-charcoal-muted">
             {t.blog.disclaimer}
           </p>
         </div>

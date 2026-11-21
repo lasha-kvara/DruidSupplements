@@ -18,6 +18,7 @@ export const ka = {
     whatsappMobile: "WhatsApp-ით მოწერა",
   },
   langSwitch: { label: "ენის შეცვლა", current: "ქართული" },
+  theme: { toggle: "ღია / მუქი თემა" },
   common: {
     inStock: "მარაგშია",
     outOfStock: "ამოიწურა",

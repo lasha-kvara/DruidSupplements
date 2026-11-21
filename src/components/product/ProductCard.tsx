@@ -25,7 +25,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
     <motion.article
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 300, damping: 24 }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-forest/10 bg-white shadow-[0_2px_10px_-6px_rgba(27,48,34,0.15)] transition-shadow duration-300 hover:shadow-lift"
+      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-forest/10 bg-surface shadow-[0_2px_10px_-6px_rgba(27,48,34,0.15)] transition-shadow duration-300 hover:shadow-lift"
     >
       <Link
         href={href}
@@ -54,7 +54,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
           <StockBadge inStock={product.inStock} />
           {product.isNew && <NewBadge />}
         </div>
-        <span className="absolute right-3 top-3 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-white/90 text-forest opacity-0 shadow-soft transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        <span className="absolute right-3 top-3 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-surface/90 text-forest opacity-0 shadow-soft transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
           <ArrowUpRight className="h-5 w-5" />
         </span>
       </Link>
@@ -101,7 +101,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
                 }
                 aria-label={t.card.quickOrderAria(product.name)}
                 title={t.card.quickOrderTitle}
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-forest text-parchment transition hover:scale-105 hover:bg-forest-500 active:scale-95"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-pine text-cream transition hover:scale-105 hover:bg-pine-light active:scale-95"
               >
                 <PhoneCall className="h-[18px] w-[18px]" />
               </button>

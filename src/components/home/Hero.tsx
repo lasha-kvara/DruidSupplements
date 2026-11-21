@@ -68,7 +68,7 @@ export function Hero() {
           className="object-cover"
         />
       </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-b from-forest-800/80 via-forest/70 to-forest-800/95" />
+      <div className="absolute inset-0 bg-gradient-to-b from-forest-800/80 via-pine/70 to-forest-800/95" />
       <div className="grain pointer-events-none absolute inset-0" />
 
       {/* Floating spores */}
@@ -76,7 +76,7 @@ export function Hero() {
         {SPORES.map((s, i) => (
           <motion.span
             key={i}
-            className="absolute rounded-full bg-parchment/40 blur-[1px]"
+            className="absolute rounded-full bg-cream/40 blur-[1px]"
             style={{ left: `${s.left}%`, top: `${s.top}%`, width: s.size, height: s.size }}
             animate={{ y: [0, -40, 0], x: [0, 12, 0], opacity: [0.15, 0.7, 0.15] }}
             transition={{ duration: s.duration, delay: s.delay, repeat: Infinity, ease: "easeInOut" }}
@@ -122,7 +122,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
-            className="inline-flex items-center gap-2 rounded-full border border-parchment/20 bg-white/10 px-4 py-2 text-xs font-medium text-parchment backdrop-blur md:text-sm"
+            className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-white/10 px-4 py-2 text-xs font-medium text-cream backdrop-blur md:text-sm"
           >
             <span className="flex gap-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
@@ -132,7 +132,7 @@ export function Hero() {
             {t.badge}
           </motion.p>
 
-          <h1 className="mt-6 font-serif text-[38px] font-bold leading-[1.12] text-parchment sm:text-6xl lg:text-7xl">
+          <h1 className="mt-6 font-serif text-[38px] font-bold leading-[1.12] text-cream sm:text-6xl lg:text-7xl">
             {t.lines.map((line, i) => (
               <span key={line} className="block overflow-hidden pb-1">
                 <motion.span
@@ -151,7 +151,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-parchment/80 md:text-xl"
+            className="mt-6 max-w-xl text-base leading-relaxed text-cream/80 md:text-xl"
           >
             {t.sub}
           </motion.p>
@@ -180,13 +180,13 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            className="mt-12 grid max-w-lg grid-cols-3 gap-4 border-t border-parchment/15 pt-6"
+            className="mt-12 grid max-w-lg grid-cols-3 gap-4 border-t border-cream/15 pt-6"
           >
             {t.stats.map(([value, label]) => (
               <div key={label}>
                 <dt className="sr-only">{label}</dt>
-                <dd className="font-serif text-2xl font-semibold text-parchment md:text-3xl">{value}</dd>
-                <dd className="mt-1 text-xs text-parchment/60 md:text-sm">{label}</dd>
+                <dd className="font-serif text-2xl font-semibold text-cream md:text-3xl">{value}</dd>
+                <dd className="mt-1 text-xs text-cream/60 md:text-sm">{label}</dd>
               </div>
             ))}
           </motion.dl>
@@ -196,7 +196,7 @@ export function Hero() {
       <motion.a
         href="#trust"
         aria-label={t.scrollDown}
-        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 text-parchment/60 md:block"
+        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 text-cream/60 md:block"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >

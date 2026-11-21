@@ -27,21 +27,21 @@ export function Footer({ lang }: { lang: Locale }) {
   ];
 
   return (
-    <footer className="relative mt-24 overflow-hidden bg-forest text-parchment/80">
+    <footer className="relative mt-24 overflow-hidden bg-pine text-cream/80">
       <div className="grain pointer-events-none absolute inset-0 opacity-60" />
       <div className="container relative pb-28 pt-16 md:pb-12">
         {/* Medical disclaimer — mandatory */}
         <div className="mb-12 flex gap-4 rounded-3xl border border-terracotta/40 bg-terracotta/10 p-5 md:p-6">
           <AlertTriangle className="mt-0.5 h-6 w-6 shrink-0 text-terracotta-light" aria-hidden />
-          <p className="text-sm leading-relaxed text-parchment/90 md:text-[15px]">
-            <strong className="text-parchment">{t.footer.disclaimerTitle}</strong> {t.footer.disclaimer}
+          <p className="text-sm leading-relaxed text-cream/90 md:text-[15px]">
+            <strong className="text-cream">{t.footer.disclaimerTitle}</strong> {t.footer.disclaimer}
           </p>
         </div>
 
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Logo light />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-parchment/70">{t.site.description}</p>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-cream/70">{t.site.description}</p>
             <div className="mt-6 flex gap-2">
               {[
                 { href: siteConfig.socials.facebook, label: "Facebook", icon: <Facebook className="h-5 w-5" /> },
@@ -54,7 +54,7 @@ export function Footer({ lang }: { lang: Locale }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-parchment/20 transition hover:-translate-y-0.5 hover:border-terracotta hover:bg-terracotta hover:text-white"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 transition hover:-translate-y-0.5 hover:border-terracotta hover:bg-terracotta hover:text-white"
                 >
                   {s.icon}
                 </a>
@@ -63,7 +63,7 @@ export function Footer({ lang }: { lang: Locale }) {
           </div>
 
           <div>
-            <h3 className="font-sans text-sm font-semibold tracking-wide text-parchment">{t.footer.navigation}</h3>
+            <h3 className="font-sans text-sm font-semibold tracking-wide text-cream">{t.footer.navigation}</h3>
             <ul className="mt-4 space-y-1">
               {navLinks.map((l) => (
                 <li key={l.href}>
@@ -76,7 +76,7 @@ export function Footer({ lang }: { lang: Locale }) {
           </div>
 
           <div>
-            <h3 className="font-sans text-sm font-semibold tracking-wide text-parchment">{t.footer.categories}</h3>
+            <h3 className="font-sans text-sm font-semibold tracking-wide text-cream">{t.footer.categories}</h3>
             <ul className="mt-4 space-y-1">
               {getCategories(lang).map((c) => (
                 <li key={c.id}>
@@ -92,7 +92,7 @@ export function Footer({ lang }: { lang: Locale }) {
           </div>
 
           <div>
-            <h3 className="font-sans text-sm font-semibold tracking-wide text-parchment">{t.footer.contact}</h3>
+            <h3 className="font-sans text-sm font-semibold tracking-wide text-cream">{t.footer.contact}</h3>
             <ul className="mt-4 space-y-3 text-sm">
               <li>
                 <a href={`tel:${siteConfig.phoneNumber}`} className="flex items-center gap-3 transition hover:text-terracotta-light">
@@ -124,7 +124,7 @@ export function Footer({ lang }: { lang: Locale }) {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-parchment/10 pt-6 text-xs text-parchment/50 sm:flex-row sm:justify-between">
+        <div className="mt-12 flex flex-col gap-2 border-t border-cream/10 pt-6 text-xs text-cream/50 sm:flex-row sm:justify-between">
           <p>
             © {year} {t.site.name}. {t.footer.rights}
           </p>

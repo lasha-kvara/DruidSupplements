@@ -92,13 +92,13 @@ export function CatalogView({ products }: { products: Product[] }) {
                       onClick={() => setCategory(tab.id)}
                       className={cn(
                         "relative min-h-[44px] shrink-0 whitespace-nowrap rounded-full px-4 text-sm font-semibold transition-colors",
-                        active ? "text-parchment" : "text-forest hover:bg-forest/5",
+                        active ? "text-cream" : "text-forest hover:bg-forest/5",
                       )}
                     >
                       {active && (
                         <motion.span
                           layoutId="category-pill"
-                          className="absolute inset-0 rounded-full bg-forest"
+                          className="absolute inset-0 rounded-full bg-pine dark:bg-forest-200"
                           transition={{ type: "spring", stiffness: 400, damping: 32 }}
                         />
                       )}
@@ -151,7 +151,7 @@ export function CatalogView({ products }: { products: Product[] }) {
                     "chip shrink-0",
                     active
                       ? "border-terracotta bg-terracotta text-white"
-                      : "border-forest/15 bg-white text-forest hover:border-forest/30",
+                      : "border-forest/15 bg-surface text-forest hover:border-forest/30",
                   )}
                 >
                   <BenefitIcon icon={b.icon} className="h-4 w-4" />
@@ -165,7 +165,7 @@ export function CatalogView({ products }: { products: Product[] }) {
               onClick={() => setInStockOnly((v) => !v)}
               className={cn(
                 "chip shrink-0",
-                inStockOnly ? "border-forest bg-forest text-parchment" : "border-forest/15 bg-white text-forest hover:border-forest/30",
+                inStockOnly ? "border-forest bg-pine text-cream dark:bg-forest-200" : "border-forest/15 bg-surface text-forest hover:border-forest/30",
               )}
             >
               <span className={cn("h-2 w-2 rounded-full", inStockOnly ? "bg-emerald-300" : "bg-emerald-500")} />
@@ -211,7 +211,7 @@ export function CatalogView({ products }: { products: Product[] }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="mx-auto mt-6 max-w-md rounded-3xl border border-dashed border-forest/20 bg-white/60 px-6 py-14 text-center"
+            className="mx-auto mt-6 max-w-md rounded-3xl border border-dashed border-forest/20 bg-surface/60 px-6 py-14 text-center"
           >
             <PackageX className="mx-auto h-12 w-12 text-forest/30" />
             <h2 className="mt-4 text-xl font-semibold">{t.emptyTitle}</h2>

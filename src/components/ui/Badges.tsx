@@ -11,7 +11,7 @@ export function StockBadge({ inStock, className }: { inStock: boolean; className
     <span
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold backdrop-blur",
-        inStock ? "bg-forest-50/95 text-forest-500" : "bg-charcoal/75 text-white",
+        inStock ? "bg-forest-50/95 text-forest-500" : "bg-black/70 text-white",
         className,
       )}
     >

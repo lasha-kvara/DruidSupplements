@@ -9,6 +9,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingContact } from "@/components/layout/FloatingContact";
 import { Providers } from "@/components/layout/Providers";
+import { themeInitScript } from "@/lib/theme";
 import { siteConfig } from "@/config/site";
 
 /** FiraGO — modern Georgian + Latin sans (SIL OFL), self-hosted subset, see src/fonts/LICENSE.txt */
@@ -54,7 +55,10 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 }
 
 export const viewport: Viewport = {
-  themeColor: "#1B3022",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#1B3022" },
+    { media: "(prefers-color-scheme: dark)", color: "#0E1511" },
+  ],
   width: "device-width",
   initialScale: 1,
 };
@@ -64,7 +68,11 @@ export default async function RootLayout({ children, params }: { children: React
   if (!isLocale(lang)) notFound();
 
   return (
-    <html lang={htmlLang[lang]} className={firago.variable}>
+    // data-theme is set by themeInitScript before hydration, hence suppressHydrationWarning on <html> only.
+    <html lang={htmlLang[lang]} className={firago.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         <I18nProvider lang={lang}>
           <Providers>
