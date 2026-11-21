@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <!-- ენერგია და ფოკუსი — rising sun, cordyceps clubs reaching up like flames, a focused spark -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E9A24A"/>
+      <stop offset=".45" stop-color="#C86D51"/>
+      <stop offset="1" stop-color="#3A2418"/>
+    </linearGradient>
+    <radialGradient id="sun" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#FFF3D6"/>
+      <stop offset=".6" stop-color="#F6CF7A"/>
+      <stop offset="1" stop-color="#F6CF7A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <g transform="translate(0 -90)">
+  <!-- sun + rays -->
+  <circle cx="400" cy="300" r="190" fill="url(#sun)"/>
+  <circle cx="400" cy="300" r="96" fill="#FBE3A6" stroke="#1B3022" stroke-width="7"/>
+  <g stroke="#FFF3D6" stroke-width="9" stroke-linecap="round" opacity=".9">
+    <path d="M400 150 v-46"/><path d="M400 450 v46"/><path d="M250 300 h-46"/><path d="M550 300 h46"/>
+    <path d="M294 194 l-32 -32"/><path d="M506 194 l32 -32"/><path d="M294 406 l-32 32"/><path d="M506 406 l32 32"/>
+  </g>
+  <!-- cordyceps clubs -->
+  <g stroke="#1B3022" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M320 560 Q316 470 330 430 Q338 404 352 420 Q362 438 352 470 Q344 520 350 560 Z" fill="#E8742E"/>
+    <path d="M388 560 Q384 440 398 392 Q408 362 424 380 Q436 402 424 444 Q414 500 418 560 Z" fill="#F08A3A"/>
+    <path d="M454 560 Q452 488 466 456 Q474 436 488 450 Q496 466 488 492 Q480 530 484 560 Z" fill="#E8742E"/>
+  </g>
+  <g fill="#FFF3D6" opacity=".8"><circle cx="340" cy="440" r="4"/><circle cx="410" cy="400" r="5"/><circle cx="476" cy="466" r="4"/></g>
+  <!-- ground -->
+  <path d="M230 566 Q400 540 570 566" fill="none" stroke="#1B3022" stroke-width="7" stroke-linecap="round"/>
+  <!-- spark of focus -->
+  <path d="M600 170 l14 34 l34 14 l-34 14 l-14 34 l-14 -34 l-34 -14 l34 -14 Z" fill="#FFF3D6" stroke="#1B3022" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M190 400 l9 22 l22 9 l-22 9 l-9 22 l-9 -22 l-22 -9 l22 -9 Z" fill="#FFF3D6" opacity=".85"/>
+  </g>
+</svg>

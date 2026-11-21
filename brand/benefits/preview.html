@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>„რა გჭირდებათ დღეს?“ — ილუსტრაციების პრევიუ</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#1B3022;color:#F7F5F0;font-family:"FiraGO","Segoe UI","Sylfaen",system-ui,sans-serif;padding:40px 24px}
+  h1{font-size:28px;margin:0 0 6px;text-align:center}
+  p.lead{margin:0 0 32px;text-align:center;opacity:.75}
+  h2{font-size:14px;letter-spacing:.04em;opacity:.6;margin:36px 0 14px;font-weight:600}
+  .row{display:grid;grid-template-columns:repeat(4,300px);gap:16px;justify-content:center}
+  .row.mobile{grid-template-columns:repeat(2,343px)}
+  .card{position:relative;height:384px;border-radius:24px;overflow:hidden}
+  .row.mobile .card{height:288px}
+  .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .card .shade{position:absolute;inset:0;background:linear-gradient(to top,#0E1912 0%,rgba(14,25,18,.5) 50%,rgba(14,25,18,.1) 100%)}
+  .card .in{position:absolute;inset:0;padding:24px;display:flex;flex-direction:column}
+  .ico{width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);display:grid;place-items:center}
+  .ico svg{width:24px;height:24px;stroke:#F7F5F0;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .bottom{margin-top:auto}
+  .count{font-size:12px;opacity:.6}
+  .t{font-size:24px;font-weight:600;margin:4px 0 0}
+  .d{font-size:14px;opacity:.75;margin:8px 0 0;line-height:1.5}
+  .v{display:inline-block;margin-top:14px;font-size:14px;font-weight:600;color:#E09A82}
+  .label{position:absolute;top:12px;right:12px;font-size:11px;background:rgba(0,0,0,.45);padding:4px 8px;border-radius:99px}
+</style>
+</head>
+<body>
+<h1>რა გჭირდებათ დღეს?</h1>
+<p class="lead">ახალი სიმბოლური ილუსტრაციები — ისე, როგორც საიტზე გამოჩნდება</p>
+
+<h2>დესკტოპი (300 × 384)</h2>
+<div class="row" id="desk"></div>
+<h2>ტელეფონი (343 × 288)</h2>
+<div class="row mobile" id="mob"></div>
+
+<script>
+const icons = {
+  Shield: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>',
+  Zap: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
+  Moon: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+  Leaf: '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>',
+};
+const cards = [
+  ["immunity.svg","Shield","იმუნიტეტი","ორგანიზმის ბუნებრივი თავდაცვის მხარდაჭერა სეზონურ პერიოდში",4],
+  ["energy.svg","Zap","ენერგია და ფოკუსი","გონებრივი სიცხადე, კონცენტრაცია და ფიზიკური გამძლეობა",2],
+  ["sleep.svg","Moon","ძილი და სტრესის მოხსნა","დამამშვიდებელი რიტუალი საღამოსთვის და ღრმა, აღმდგენი ძილი",2],
+  ["digestion.svg","Leaf","საჭმლის მონელება","კუჭ-ნაწლავის კომფორტი და ჯანსაღი მიკროფლორა",4],
+];
+const html = ([src, ic, t, d, n]) => `<div class="card"><img src="${src}" alt=""><div class="shade"></div><span class="label">${src}</span>
+  <div class="in"><div class="ico"><svg viewBox="0 0 24 24">${icons[ic]}</svg></div>
+  <div class="bottom"><div class="count">${n} პროდუქტი</div><div class="t">${t}</div><div class="d">${d}</div><span class="v">ნახვა ↗</span></div></div></div>`;
+document.getElementById('desk').innerHTML = cards.map(html).join('');
+document.getElementById('mob').innerHTML = cards.map(html).join('');
+</script>
+</body>
+</html>

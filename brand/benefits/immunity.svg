@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <!-- იმუნიტეტი — shield of rings around a chaga-style mushroom, rosehips as vitamin C accents -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2F6E70"/>
+      <stop offset=".55" stop-color="#1F4A3A"/>
+      <stop offset="1" stop-color="#14241A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".38" r=".42">
+      <stop offset="0" stop-color="#F7F5F0" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#F7F5F0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <rect width="800" height="800" fill="url(#glow)"/>
+  <g transform="translate(0 -40)">
+  <!-- protective rings -->
+  <g fill="none" stroke="#F7F5F0" stroke-linecap="round">
+    <circle cx="400" cy="320" r="250" stroke-width="2" opacity=".12"/>
+    <circle cx="400" cy="320" r="205" stroke-width="3" opacity=".2" stroke-dasharray="2 14"/>
+  </g>
+  <!-- shield -->
+  <path d="M400 150 L545 205 Q548 360 400 470 Q252 360 255 205 Z" fill="#F7F5F0" stroke="#1B3022" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M400 182 L515 226 Q516 345 400 434 Q284 345 285 226 Z" fill="#E7EEE6"/>
+  <!-- mushroom inside the shield -->
+  <path d="M326 318 C326 268 360 240 400 240 C440 240 474 268 474 318 Q400 306 326 318 Z" fill="#C86D51" stroke="#1B3022" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M384 316 L380 384 Q380 394 392 394 L408 394 Q420 394 420 384 L416 316 Z" fill="#F7F5F0" stroke="#1B3022" stroke-width="7" stroke-linejoin="round"/>
+  <g fill="#F7F5F0"><circle cx="372" cy="280" r="9"/><circle cx="414" cy="268" r="7"/><circle cx="442" cy="292" r="6"/></g>
+  <!-- small plus/cross marks = defence -->
+  <g stroke="#D6A23E" stroke-width="7" stroke-linecap="round">
+    <path d="M190 210 v34 M173 227 h34"/>
+    <path d="M612 400 v28 M598 414 h28"/>
+  </g>
+  <!-- rosehips -->
+  <g stroke="#1B3022" stroke-width="5">
+    <ellipse cx="580" cy="218" rx="22" ry="28" fill="#C0453A"/>
+    <ellipse cx="616" cy="250" rx="18" ry="23" fill="#D0553F"/>
+    <ellipse cx="206" cy="420" rx="20" ry="25" fill="#C0453A"/>
+  </g>
+  <g stroke="#4E7559" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M580 190 q4 -18 18 -24"/><path d="M616 227 q6 -14 18 -16"/><path d="M206 395 q-6 -16 -20 -20"/>
+  </g>
+  <!-- floating spores -->
+  <g fill="#F7F5F0" opacity=".55"><circle cx="150" cy="140" r="4"/><circle cx="660" cy="130" r="5"/><circle cx="690" cy="330" r="3"/><circle cx="120" cy="320" r="3"/></g>
+  </g>
+</svg>
