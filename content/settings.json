@@ -1,8 +1,8 @@
 {
-  "phoneDisplay": "+995 555 12 34 56",
-  "phoneNumber": "+995555123456",
-  "whatsappNumber": "995555123456",
-  "email": "info@druid.ge",
+  "phoneDisplay": "+995 577 017 797",
+  "phoneNumber": "+995577017797",
+  "whatsappNumber": "995577017797",
+  "email": "druidsupplements@gmail.com",
   "address": {
     "ka": "თბილისი, საქართველო",
     "en": "Tbilisi, Georgia"
@@ -14,7 +14,7 @@
   "facebook": "https://facebook.com/",
   "instagram": "https://instagram.com/",
   "tiktok": "https://tiktok.com/",
-  "tbilisiPrice": 5,
-  "regionsPrice": 8,
+  "tbilisiPrice": 7,
+  "regionsPrice": 10,
   "freeFrom": 100
 }
