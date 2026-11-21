@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 4 104 142">
+  <!-- Hero floater B — same silhouette, cap dotted with the logo flask's coloured "remedy" rings -->
+  <path d="M80 84 L76 128 Q75 138 86 138 L98 138 Q109 138 108 128 L104 84 Z" fill="#F7F5F0" stroke="#1B3022" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M49 86 C48 46 72 12 92 12 C112 12 136 46 135 86 Q92 77 50 86 Z" fill="#F7F5F0" stroke="#1B3022" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M58 86.5 Q92 81 126 86.5" fill="none" stroke="#1B3022" stroke-width="2" stroke-linecap="round" opacity=".35"/>
+  <circle cx="74" cy="58" r="10" fill="#F7F5F0" stroke="#C86D51" stroke-width="4"/><circle cx="74" cy="58" r="3.6" fill="#C86D51"/>
+  <circle cx="98" cy="34" r="7.5" fill="#F7F5F0" stroke="#D6A23E" stroke-width="3.4"/><circle cx="98" cy="34" r="2.8" fill="#D6A23E"/>
+  <circle cx="111" cy="63" r="8" fill="#F7F5F0" stroke="#3E8A8F" stroke-width="3.4"/><circle cx="111" cy="63" r="3" fill="#3E8A8F"/>
+</svg>

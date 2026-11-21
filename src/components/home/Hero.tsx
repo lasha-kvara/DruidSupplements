@@ -21,27 +21,53 @@ const SPORES = Array.from({ length: 18 }, (_, i) => ({
   delay: (i * 0.6) % 5,
 }));
 
-function Leaf({ className }: { className?: string }) {
+/* Floaters drawn in the logo's style — sources: brand/hero/*.svg */
+const INK = "#1B3022";
+const CREAM = "#F7F5F0";
+const CAP = "M49 86 C48 46 72 12 92 12 C112 12 136 46 135 86 Q92 77 50 86 Z";
+const STEM = "M80 84 L76 128 Q75 138 86 138 L98 138 Q109 138 108 128 L104 84 Z";
+
+function Leaf({ className, flip }: { className?: string; flip?: boolean }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} aria-hidden>
-      <path
-        d="M8 56C8 28 28 8 56 8c0 28-20 48-48 48Z"
-        fill="currentColor"
-        opacity=".9"
-      />
-      <path d="M8 56 44 20" stroke="rgba(0,0,0,.25)" strokeWidth="1.5" fill="none" />
+    <svg viewBox="0 0 64 64" className={className} style={flip ? { transform: "scaleX(-1)" } : undefined} aria-hidden>
+      <path d="M10 54C10 30 28 10 54 10c0 26-18 44-44 44Z" fill="#6F9A6B" stroke={INK} strokeWidth="3.4" strokeLinejoin="round" />
+      <path d="M12 52 40 24" fill="none" stroke={INK} strokeWidth="2" strokeLinecap="round" opacity=".55" />
     </svg>
   );
 }
 
-function Mushroom({ className }: { className?: string }) {
+function Ring({ cx, cy, r, color, w }: { cx: number; cy: number; r: number; color: string; w: number }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} aria-hidden>
-      <path d="M6 32C6 18 17.6 8 32 8s26 10 26 24c0 2-1.6 3.4-3.6 3.4H9.6C7.6 35.4 6 34 6 32Z" fill="#C86D51" />
-      <path d="M26 35h12l-1.6 18a4.4 4.4 0 0 1-8.8 0L26 35Z" fill="#F7F5F0" />
-      <circle cx="22" cy="22" r="3" fill="#F7F5F0" opacity=".85" />
-      <circle cx="37" cy="18" r="2.4" fill="#F7F5F0" opacity=".85" />
-      <circle cx="45" cy="27" r="2" fill="#F7F5F0" opacity=".85" />
+    <>
+      <circle cx={cx} cy={cy} r={r} fill={CREAM} stroke={color} strokeWidth={w} />
+      <circle cx={cx} cy={cy} r={r * 0.37} fill={color} />
+    </>
+  );
+}
+
+/** "friend" = the logo's face; otherwise the cap carries the flask's coloured remedy rings. */
+function Mushroom({ className, friend }: { className?: string; friend?: boolean }) {
+  return (
+    <svg viewBox="40 4 104 142" className={className} aria-hidden>
+      <path d={STEM} fill={CREAM} stroke={INK} strokeWidth="6" strokeLinejoin="round" />
+      {friend && <Ring cx={92} cy={116} r={6} color="#C86D51" w={3} />}
+      <path d={CAP} fill={CREAM} stroke={INK} strokeWidth="6" strokeLinejoin="round" strokeLinecap="round" />
+      <path d="M58 86.5 Q92 81 126 86.5" fill="none" stroke={INK} strokeWidth="2" strokeLinecap="round" opacity=".35" />
+      {friend ? (
+        <>
+          <circle cx="78" cy="60" r="6.5" fill={INK} />
+          <circle cx="78" cy="60" r="3" fill="#6F9A6B" />
+          <circle cx="106" cy="60" r="6.5" fill={INK} />
+          <circle cx="106" cy="60" r="3" fill="#6F9A6B" />
+          <path d="M87 72 Q92 76 97 72" fill="none" stroke={INK} strokeWidth="2.6" strokeLinecap="round" />
+        </>
+      ) : (
+        <>
+          <Ring cx={74} cy={58} r={10} color="#C86D51" w={4} />
+          <Ring cx={98} cy={34} r={7.5} color="#D6A23E" w={3.4} />
+          <Ring cx={111} cy={63} r={8} color="#3E8A8F" w={3.4} />
+        </>
+      )}
     </svg>
   );
 }
@@ -92,28 +118,28 @@ export function Hero() {
       {/* Floating organic elements (parallax) — kept in the empty right half; each shows only at widths where it cannot overlap the text */}
       <motion.div style={{ y: floatY }} className="pointer-events-none absolute inset-0" aria-hidden>
         <motion.div
-          className="absolute right-[20%] top-[14%] hidden w-28 text-[#4E7559]/60 xl:block"
+          className="absolute right-[21%] top-[13%] hidden w-24 opacity-90 drop-shadow-[0_10px_18px_rgba(0,0,0,0.35)] xl:block"
           animate={{ rotate: [0, 8, 0], y: [0, -14, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         >
           <Leaf />
         </motion.div>
         <motion.div
-          className="absolute right-[4%] top-[22%] hidden w-24 lg:block"
+          className="absolute right-[4%] top-[19%] hidden w-[104px] drop-shadow-[0_10px_18px_rgba(0,0,0,0.35)] lg:block"
           animate={{ rotate: [-6, 6, -6], y: [0, -18, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Mushroom />
+          <Mushroom friend />
         </motion.div>
         <motion.div
-          className="absolute bottom-[14%] right-[10%] hidden w-20 text-terracotta/50 md:block"
+          className="absolute bottom-[14%] right-[11%] hidden w-[70px] opacity-85 drop-shadow-[0_10px_18px_rgba(0,0,0,0.35)] md:block"
           animate={{ rotate: [10, -10, 10], y: [0, 12, 0] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Leaf />
+          <Leaf flip />
         </motion.div>
         <motion.div
-          className="absolute bottom-[20%] right-[34%] hidden w-12 opacity-70 xl:block"
+          className="absolute bottom-[18%] right-[34%] hidden w-[58px] opacity-85 drop-shadow-[0_10px_18px_rgba(0,0,0,0.35)] xl:block"
           animate={{ rotate: [4, -8, 4], y: [0, -10, 0] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         >
