@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FlaskConical, Leaf, Mountain, Truck } from "lucide-react";
+import { Leaf, MessageCircleHeart, Mountain, Truck } from "lucide-react";
 import { fadeUpItem, staggerContainer } from "@/components/ui/Reveal";
 import { useI18n } from "@/i18n/I18nProvider";
 
-const ICONS = [Leaf, Mountain, FlaskConical, Truck];
+const ICONS = [Leaf, Mountain, MessageCircleHeart, Truck];
 
 export function TrustBar() {
   const { t } = useI18n();

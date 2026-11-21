@@ -6,7 +6,7 @@ export const en: Dictionary = {
     slogan: "The forest apothecary",
     tagline: "Medicinal mushrooms & herbs",
     description:
-      "Medicinal mushrooms, herbs and extracts from the forests of Georgia and trusted growers. Lab-tested quality, fast delivery across Georgia.",
+      "Medicinal mushrooms and herbs from the forests of Georgia and trusted growers. Fast delivery across Georgia.",
   },
   nav: { home: "Home", catalog: "Shop", blog: "Journal", faq: "FAQ" },
   header: {
@@ -43,25 +43,25 @@ export const en: Dictionary = {
     imageAlt: "Forest where medicinal mushrooms grow",
     badge: "1,200+ happy customers across Georgia",
     lines: ["Forest wisdom", "for your everyday", "ritual"],
-    sub: "Medicinal mushrooms and herbs — Lion's Mane, Reishi, Chaga, Cordyceps. Wild-harvested, lab-tested and delivered quickly to your door.",
+    sub: "Medicinal mushrooms and herbs — Lion's Mane, Reishi, Chaga, Cordyceps. Most of our mushrooms and herbs are gathered in the wild and delivered quickly to your door.",
     consult: "Free consultation",
     stats: [
       ["100%", "Natural"],
       ["24h", "Delivery in Tbilisi"],
-      ["10+", "Species"],
+      ["8", "Species"],
     ],
     scrollDown: "Scroll down",
   },
   trust: [
     { title: "100% Organic", text: "No chemical fertilisers, fillers or preservatives" },
-    { title: "Wild-harvested", text: "From clean mountain and forest areas of the Caucasus" },
-    { title: "Lab-tested", text: "Every batch is tested for heavy metals and microbiology" },
+    { title: "From nature", text: "Most of our mushrooms and herbs are gathered in the wild" },
+    { title: "Free consultation", text: "We'll help you choose the right product and how to take it" },
     { title: "Fast delivery", text: "Within 24 hours in Tbilisi, 1–3 business days to the regions" },
   ],
   bestsellers: {
     eyebrow: "Bestsellers",
     title: "Customer favourites",
-    description: "Our most-loved mushrooms and extracts — order in one tap via WhatsApp or a quick call.",
+    description: "Our most-loved mushrooms and herbs — order in one tap via WhatsApp or a quick call.",
   },
   benefitsSection: {
     eyebrow: "Shop by benefit",
@@ -136,10 +136,10 @@ export const en: Dictionary = {
   catalog: {
     metaTitle: "Shop",
     metaDescription:
-      "Medicinal mushrooms, herbs and extracts: Lion's Mane, Reishi, Chaga, Cordyceps, rosehip and more. Filter by health benefit.",
+      "Medicinal mushrooms and herbs: Lion's Mane, Reishi, Chaga, Cordyceps, rosehip and more. Filter by health benefit.",
     eyebrow: "Shop",
     title: "Nature's apothecary",
-    description: "Pick a category or a benefit — every product is lab-tested and ready to ship.",
+    description: "Pick a category or a benefit — every product is ready for fast delivery.",
     all: "All",
     categoriesAria: "Categories",
     searchLabel: "Search",
@@ -167,7 +167,7 @@ export const en: Dictionary = {
     quickOrder: "Quick order by phone",
     outOfStockNote: "This product is temporarily sold out. Leave your number and we'll let you know as soon as it's back.",
     notifyMe: "Notify me when available",
-    perks: ["24h delivery in Tbilisi", "Pay on delivery", "Lab-tested"],
+    perks: ["24h delivery in Tbilisi", "Pay on delivery", "Expiry date on the pack"],
     relatedEyebrow: "You may also like",
     relatedTitle: "Related products",
     infoAria: "Product information",

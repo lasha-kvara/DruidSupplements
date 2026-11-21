@@ -107,7 +107,6 @@ export default config({
           options: [
             { label: "სამკურნალო სოკოები", value: "mushrooms" },
             { label: "სამკურნალო მცენარეები", value: "herbs" },
-            { label: "ექსტრაქტები და ნაყენები", value: "extracts" },
           ],
           defaultValue: "mushrooms",
         }),

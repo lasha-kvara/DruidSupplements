@@ -9,12 +9,7 @@ export const categories: Category[] = [
   {
     id: "herbs",
     name: "სამკურნალო მცენარეები",
-    description: "კავკასიის მთებში შეგროვებული ბალახები და ნაყოფები ჩაისა და ნაყენისთვის.",
-  },
-  {
-    id: "extracts",
-    name: "ექსტრაქტები და ნაყენები",
-    description: "კონცენტრირებული ორმაგი ექსტრაქტები მარტივი ყოველდღიური მიღებისთვის.",
+    description: "კავკასიის მთებში შეგროვებული ბალახები და ნაყოფები ჩაისთვის.",
   },
 ];
 
@@ -60,11 +55,7 @@ export const categoriesEn = {
   },
   herbs: {
     name: "Medicinal herbs",
-    description: "Herbs and fruits gathered in the Caucasus mountains for teas and infusions.",
-  },
-  extracts: {
-    name: "Extracts & tinctures",
-    description: "Concentrated dual extracts for easy everyday use.",
+    description: "Herbs and fruits gathered in the Caucasus mountains for herbal teas.",
   },
 } as const;
 

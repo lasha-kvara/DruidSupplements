@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
-import { Banknote, Minus, PhoneCall, Plus, ShieldCheck, Truck } from "lucide-react";
+import { Banknote, CalendarCheck, Minus, PhoneCall, Plus, Truck } from "lucide-react";
 import type { Product } from "@/data/types";
 import { siteConfig } from "@/config/site";
 import { cn, formatAmount } from "@/lib/utils";
@@ -196,7 +196,7 @@ export function ProductPurchase({ product }: { product: Product }) {
           <Banknote className="h-5 w-5 shrink-0 text-terracotta-dark" /> {t.perks[1]}
         </li>
         <li className="flex items-center gap-2">
-          <ShieldCheck className="h-5 w-5 shrink-0 text-terracotta-dark" /> {t.perks[2]}
+          <CalendarCheck className="h-5 w-5 shrink-0 text-terracotta-dark" /> {t.perks[2]}
         </li>
       </ul>
     </div>

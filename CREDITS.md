@@ -22,8 +22,6 @@ Wikimedia Commons images marked CC BY / CC BY-SA require attribution if they sta
 | lemon-balm-2.jpg | Gideon Pisanty | CC BY 3.0 | Wikimedia Commons |
 | mint-1.jpg | Alex Abair | CC BY 4.0 | Wikimedia Commons |
 | mint-2.jpg | Alex Abair | CC BY 4.0 | Wikimedia Commons |
-| dried-mushrooms.jpg | Goose Green Photography | CC BY 4.0 | Wikimedia Commons |
-| tinctures.jpg | BogTar201213 | CC BY-SA 4.0 | Wikimedia Commons |
 | forest.jpg | Unsplash | Unsplash License | Unsplash |
 | forest-dark.jpg | Unsplash | Unsplash License | Unsplash |
 | hands-sapling.jpg | Unsplash | Unsplash License | Unsplash |

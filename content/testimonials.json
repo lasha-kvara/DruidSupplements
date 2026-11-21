@@ -94,25 +94,6 @@
         "ka": "ასეთი ასკილი ბავშვობის მერე არ მქონია — ტკბილი, სუფთა და დიდი ნაყოფით. კურიერმა ზუსტად დათქმულ დროს მოიტანა.",
         "en": "I haven't had rosehip like this since childhood — sweet, clean and large hips. The courier arrived exactly on time."
       }
-    },
-    {
-      "name": {
-        "ka": "დავით მ.",
-        "en": "Davit M."
-      },
-      "city": {
-        "ka": "ზუგდიდი",
-        "en": "Zugdidi"
-      },
-      "product": {
-        "ka": "ლომის ფაფრის ექსტრაქტი",
-        "en": "Lion's Mane Extract"
-      },
-      "rating": 5,
-      "text": {
-        "ka": "ექსტრაქტი ძალიან მოსახერხებელია, ჩანთაში ვატარებ. კონსულტაციაც დამეხმარა სწორი დოზის შერჩევაში. გირჩევთ!",
-        "en": "The extract is very convenient — I carry it in my bag. The consultation helped me choose the right dose. Highly recommend!"
-      }
     }
   ]
 }

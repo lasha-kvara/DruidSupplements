@@ -1,4 +1,4 @@
-export type CategoryId = "mushrooms" | "herbs" | "extracts";
+export type CategoryId = "mushrooms" | "herbs";
 
 export type BenefitId = "immunity" | "energy" | "sleep" | "digestion";
 

@@ -10,6 +10,9 @@ const nextConfig = {
     return [
       { source: "/admin", destination: "/keystatic", permanent: false },
       { source: "/en/admin", destination: "/keystatic", permanent: false },
+      // Extracts & tinctures were discontinued — send old product links to the catalog instead of a 404.
+      { source: "/product/:slug(lomis-fafris-eqstrakti|chagas-nayeni)", destination: "/catalog", permanent: false },
+      { source: "/en/product/:slug(lomis-fafris-eqstrakti|chagas-nayeni)", destination: "/en/catalog", permanent: false },
     ];
   },
 };

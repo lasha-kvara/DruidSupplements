@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 import { BenefitIcon } from "@/components/ui/Badges";
 import { ProductCard } from "@/components/product/ProductCard";
 
-const CATEGORY_IDS: CategoryId[] = ["mushrooms", "herbs", "extracts"];
+const CATEGORY_IDS: CategoryId[] = ["mushrooms", "herbs"];
 const BENEFIT_IDS: BenefitId[] = ["immunity", "energy", "sleep", "digestion"];
 
 const isCategory = (v: string | null): v is CategoryId => CATEGORY_IDS.includes(v as CategoryId);
