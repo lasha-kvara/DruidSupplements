@@ -41,50 +41,14 @@ export const en: Dictionary = {
   },
   hero: {
     imageAlt: "Forest where medicinal mushrooms grow",
-    badge: "1,200+ happy customers across Georgia",
-    lines: ["Forest wisdom", "for your everyday", "ritual"],
-    sub: "Medicinal mushrooms and herbs — Lion's Mane, Reishi, Chaga, Cordyceps. Most of our mushrooms and herbs are gathered in the wild and delivered quickly to your door.",
-    consult: "Free consultation",
-    stats: [
-      ["100%", "Natural"],
-      ["24h", "Delivery in Tbilisi"],
-      ["8", "Species"],
-    ],
     scrollDown: "Scroll down",
   },
-  trust: [
-    { title: "100% Organic", text: "No chemical fertilisers, fillers or preservatives" },
-    { title: "From nature", text: "Most of our mushrooms and herbs are gathered in the wild" },
-    { title: "Free consultation", text: "We'll help you choose the right product and how to take it" },
-    { title: "Fast delivery", text: "Within 24 hours in Tbilisi, 1–3 business days to the regions" },
-  ],
-  bestsellers: {
-    eyebrow: "Bestsellers",
-    title: "Customer favourites",
-    description: "Our most-loved mushrooms and herbs — order in one tap via WhatsApp or a quick call.",
-  },
-  benefitsSection: {
-    eyebrow: "Shop by benefit",
-    title: "What do you need today?",
-    description: "Choose your goal and we'll suggest the right mushrooms and herbs.",
-  },
   testimonials: {
-    eyebrow: "Reviews",
-    title: "What our customers say",
-    description: "4.9 average rating from more than 800 reviews",
     prev: "Previous",
     next: "Next",
     item: (n: number) => `Review ${n}`,
   },
-  blogSection: {
-    eyebrow: "Journal",
-    title: "Learn the language of nature",
-    description: "Articles about medicinal mushrooms and herbs — how to take them, recipes and research.",
-  },
   faq: {
-    eyebrow: "Frequently asked questions",
-    title: "Delivery, payment and quality",
-    description: "Can't find an answer? Message us — a consultant will help you choose.",
     call: "Call",
   },
   footer: {

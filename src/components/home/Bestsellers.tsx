@@ -8,9 +8,11 @@ import type { Product } from "@/data/types";
 import { ProductCard } from "@/components/product/ProductCard";
 import { SectionHeading, fadeUpItem, staggerContainer } from "@/components/ui/Reveal";
 import { useI18n } from "@/i18n/I18nProvider";
+import { getHomepage } from "@/data";
 
 export function Bestsellers({ products }: { products: Product[] }) {
-  const { t, path } = useI18n();
+  const { lang, t, path } = useI18n();
+  const heading = getHomepage(lang).bestsellers;
   const items = getBestsellers(products, 6);
   return (
     <section className="py-20 md:py-28">
@@ -18,9 +20,9 @@ export function Bestsellers({ products }: { products: Product[] }) {
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading
             align="left"
-            eyebrow={t.bestsellers.eyebrow}
-            title={t.bestsellers.title}
-            description={t.bestsellers.description}
+            eyebrow={heading.eyebrow}
+            title={heading.title}
+            description={heading.description}
           />
           <Link href={path("/catalog")} className="btn-outline group shrink-0">
             {t.common.fullCatalog}

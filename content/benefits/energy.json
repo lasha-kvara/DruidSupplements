@@ -1,0 +1,11 @@
+{
+  "name": "ენერგია და ფოკუსი",
+  "nameEn": "Energy & focus",
+  "description": {
+    "ka": "გონებრივი სიცხადე, კონცენტრაცია და ფიზიკური გამძლეობა",
+    "en": "Mental clarity, concentration and physical stamina"
+  },
+  "icon": "Zap",
+  "image": "/images/benefits/energy/image.jpg",
+  "order": 20
+}

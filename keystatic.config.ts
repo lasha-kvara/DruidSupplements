@@ -1,4 +1,5 @@
 import { createElement } from "react";
+import { pickableIcons } from "./src/lib/icons";
 import { collection, config, fields, singleton } from "@keystatic/core";
 
 /**
@@ -57,12 +58,40 @@ const productDetails = (lang: string) =>
   );
 
 /** Images are stored per entry: public/images/<kind>/<slug>/<file> → "/images/<kind>/<slug>/<file>" */
-const imageField = (label: string, kind: "products" | "posts") =>
+const imageField = (label: string, kind: "products" | "posts" | "benefits") =>
   fields.image({
     label,
     directory: `public/images/${kind}`,
     publicPath: `/images/${kind}/`,
     validation: { isRequired: true },
+  });
+
+const iconField = (label = "იკონა") =>
+  fields.select({
+    label,
+    options: pickableIcons.map((i) => ({ label: i.label, value: i.value })),
+    defaultValue: "Leaf",
+  });
+
+/** Eyebrow + heading + description of a home page section */
+const sectionHeading = (label: string) =>
+  fields.object(
+    {
+      eyebrow: bi("პატარა წარწერა სათაურის თავზე", { required: false }),
+      title: bi("სათაური"),
+      description: bi("აღწერა", { multiline: true, required: false }),
+    },
+    { label },
+  );
+
+/** id used in URLs (?category=…, ?benefit=…) — Latin, never change after publishing */
+const listSlug = (nameLabel: string) =>
+  fields.slug({
+    name: { label: `${nameLabel} (ქართ.)`, validation: { isRequired: true } },
+    slug: {
+      label: "ID (ლათინურად)",
+      description: "გამოიყენება ბმულებში, მაგ. mushrooms ან sleep. გამოქვეყნების შემდეგ ნუ შეცვლით.",
+    },
   });
 
 export default config({
@@ -76,8 +105,8 @@ export default config({
       mark: () => createElement("img", { src: "/brand/druid-mark.svg", alt: "", height: 28, style: { height: 28, width: "auto" } }),
     },
     navigation: {
-      "მაღაზია": ["products"],
-      "კონტენტი": ["posts", "testimonials", "faq"],
+      "მაღაზია": ["products", "categories", "benefits"],
+      "კონტენტი": ["homepage", "posts", "testimonials", "faq"],
       "პარამეტრები": ["settings"],
     },
   },
@@ -102,22 +131,16 @@ export default config({
         latinName: fields.text({ label: "ლათინური სახელი", description: "მაგ. Hericium erinaceus" }),
         order: fields.integer({ label: "რიგითობა", description: "პატარა რიცხვი = უფრო წინ კატალოგში", defaultValue: 100 }),
 
-        category: fields.select({
+        category: fields.relationship({
           label: "კატეგორია",
-          options: [
-            { label: "სამკურნალო სოკოები", value: "mushrooms" },
-            { label: "სამკურნალო მცენარეები", value: "herbs" },
-          ],
-          defaultValue: "mushrooms",
+          description: "კატეგორიების სია იმართება „კატეგორიები“-ში",
+          collection: "categories",
+          validation: { isRequired: true },
         }),
-        benefits: fields.multiselect({
+        benefits: fields.multiRelationship({
           label: "დანიშნულება",
-          options: [
-            { label: "იმუნიტეტი", value: "immunity" },
-            { label: "ენერგია და ფოკუსი", value: "energy" },
-            { label: "ძილი და სტრესის მოხსნა", value: "sleep" },
-            { label: "საჭმლის მონელება", value: "digestion" },
-          ],
+          description: "სია იმართება „დანიშნულებები“-ში",
+          collection: "benefits",
         }),
 
         inStock: fields.checkbox({ label: "მარაგშია", defaultValue: true }),
@@ -169,6 +192,41 @@ export default config({
       },
     }),
 
+    categories: collection({
+      label: "კატეგორიები",
+      path: "content/categories/*",
+      format: { data: "json" },
+      slugField: "name",
+      columns: ["name", "order"],
+      schema: {
+        name: listSlug("სახელი"),
+        nameEn: fields.text({ label: "სახელი (English)" }),
+        description: bi("აღწერა", { multiline: true, required: false }),
+        order: fields.integer({ label: "რიგითობა", description: "პატარა რიცხვი = უფრო წინ", defaultValue: 100 }),
+      },
+    }),
+
+    benefits: collection({
+      label: "დანიშნულებები",
+      path: "content/benefits/*",
+      format: { data: "json" },
+      slugField: "name",
+      columns: ["name", "order"],
+      schema: {
+        name: listSlug("სახელი"),
+        nameEn: fields.text({ label: "სახელი (English)" }),
+        description: bi("მოკლე აღწერა ბარათზე", { multiline: true, required: false }),
+        icon: iconField(),
+        image: fields.image({
+          label: "ბარათის ფოტო",
+          description: "მთავარი გვერდის „დანიშნულების მიხედვით“ სექციაში",
+          directory: "public/images/benefits",
+          publicPath: "/images/benefits/",
+        }),
+        order: fields.integer({ label: "რიგითობა", description: "პატარა რიცხვი = უფრო წინ", defaultValue: 100 }),
+      },
+    }),
+
     posts: collection({
       label: "ბლოგის სტატიები",
       path: "content/posts/*/",
@@ -200,6 +258,53 @@ export default config({
   },
 
   singletons: {
+    homepage: singleton({
+      label: "მთავარი გვერდი",
+      path: "content/homepage",
+      format: { data: "json" },
+      schema: {
+        hero: fields.object(
+          {
+            badge: bi("ზედა წარწერა (ვარსკვლავებთან)", { required: false }),
+            line1: bi("სათაური — 1-ლი ხაზი"),
+            line2: bi("სათაური — მე-2 ხაზი", { required: false }),
+            line3: bi("სათაური — მე-3 ხაზი (ფერადი)", { required: false }),
+            sub: bi("ქვესათაური", { multiline: true }),
+            ctaPrimary: bi("მთავარი ღილაკი (კატალოგზე გადასვლა)"),
+            ctaSecondary: bi("მეორე ღილაკი (WhatsApp)"),
+            image: fields.image({
+              label: "ფონის ფოტო",
+              description: "ფართო, ჰორიზონტალური ფოტო (მინ. 1600px სიგანე)",
+              directory: "public/images/home",
+              publicPath: "/images/home/",
+            }),
+          },
+          { label: "ჰერო (გვერდის თავი)" },
+        ),
+        stats: fields.array(
+          fields.object({ value: bi("მნიშვნელობა (მაგ. 24სთ)"), label: bi("წარწერა") }, { layout: [12, 12] }),
+          {
+            label: "სტატისტიკა ჰეროში",
+            description: "რეკომენდებულია 3",
+            itemLabel: (p) => `${p.fields.value.fields.ka.value} — ${p.fields.label.fields.ka.value}`,
+          },
+        ),
+        trust: fields.array(
+          fields.object({ icon: iconField(), title: bi("სათაური"), text: bi("ტექსტი", { multiline: true }) }),
+          {
+            label: "უპირატესობების ბარათები",
+            description: "რეკომენდებულია 4",
+            itemLabel: (p) => p.fields.title.fields.ka.value || "ბარათი",
+          },
+        ),
+        bestsellers: sectionHeading("სექცია: ბესტსელერები"),
+        benefits: sectionHeading("სექცია: დანიშნულების მიხედვით"),
+        testimonials: sectionHeading("სექცია: შეფასებები"),
+        blog: sectionHeading("სექცია: ბლოგი"),
+        faq: sectionHeading("სექცია: ხშირად დასმული კითხვები"),
+      },
+    }),
+
     settings: singleton({
       label: "საკონტაქტო და მიწოდება",
       path: "content/settings",

@@ -8,6 +8,7 @@ import { ArrowRight, ChevronDown, Star } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { generalChatUrl } from "@/lib/whatsapp";
 import { useI18n } from "@/i18n/I18nProvider";
+import { getHomepage } from "@/data";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -49,6 +50,10 @@ export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { lang, t: dict, path } = useI18n();
   const t = dict.hero;
+  // Editable texts and photo: admin → „მთავარი გვერდი“
+  const home = getHomepage(lang);
+  const hero = home.hero;
+  const accentLine = hero.lines.length > 1 ? hero.lines.length - 1 : -1;
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
   const bgScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.15]);
@@ -60,7 +65,7 @@ export function Hero() {
     <section ref={ref} className="relative flex min-h-[100svh] items-center overflow-hidden bg-forest-800">
       <motion.div style={{ y: bgY, scale: bgScale }} className="absolute inset-0 will-change-transform">
         <Image
-          src="/images/forest.jpg"
+          src={hero.image}
           alt={t.imageAlt}
           fill
           priority
@@ -118,6 +123,7 @@ export function Hero() {
 
       <motion.div style={{ y: contentY, opacity: contentOpacity }} className="container relative z-10 pb-20 pt-28 md:pb-28">
         <div className="max-w-3xl">
+          {hero.badge && (
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -129,14 +135,15 @@ export function Hero() {
                 <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
               ))}
             </span>
-            {t.badge}
+            {hero.badge}
           </motion.p>
+          )}
 
           <h1 className="mt-6 font-serif text-[38px] font-bold leading-[1.12] text-cream sm:text-6xl lg:text-7xl">
-            {t.lines.map((line, i) => (
-              <span key={line} className="block overflow-hidden pb-1">
+            {hero.lines.map((line, i) => (
+              <span key={`${i}-${line}`} className="block overflow-hidden pb-1">
                 <motion.span
-                  className={`block ${i === 2 ? "text-terracotta-light" : ""}`}
+                  className={`block ${i === accentLine ? "text-terracotta-light" : ""}`}
                   initial={{ y: "110%" }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.9, delay: 0.15 + i * 0.12, ease: EASE }}
@@ -153,7 +160,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
             className="mt-6 max-w-xl text-base leading-relaxed text-cream/80 md:text-xl"
           >
-            {t.sub}
+            {hero.sub}
           </motion.p>
 
           <motion.div
@@ -163,7 +170,7 @@ export function Hero() {
             className="mt-9 flex flex-col gap-3 sm:flex-row"
           >
             <Link href={path("/catalog")} className="btn-primary group text-base">
-              {dict.common.viewCatalog}
+              {hero.ctaPrimary}
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
             <a
@@ -172,7 +179,7 @@ export function Hero() {
               rel="noopener noreferrer"
               className="btn-ghost-light text-base"
             >
-              <WhatsAppIcon /> {t.consult}
+              <WhatsAppIcon /> {hero.ctaSecondary}
             </a>
           </motion.div>
 
@@ -180,10 +187,12 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            className="mt-12 grid max-w-lg grid-cols-3 gap-4 border-t border-cream/15 pt-6"
+            className="mt-12 grid max-w-lg gap-4 border-t border-cream/15 pt-6"
+            // column count follows however many stats the editor added
+            style={{ gridTemplateColumns: `repeat(${Math.max(1, Math.min(home.stats.length, 4))}, minmax(0, 1fr))` }}
           >
-            {t.stats.map(([value, label]) => (
-              <div key={label}>
+            {home.stats.map(({ value, label }, i) => (
+              <div key={i}>
                 <dt className="sr-only">{label}</dt>
                 <dd className="font-serif text-2xl font-semibold text-cream md:text-3xl">{value}</dd>
                 <dd className="mt-1 text-xs text-cream/60 md:text-sm">{label}</dd>

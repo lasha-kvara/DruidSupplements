@@ -1,7 +1,6 @@
 "use client";
 
-import { Leaf, Moon, Shield, Star, Zap, type LucideProps } from "lucide-react";
-import type { Benefit } from "@/data/types";
+import { Star } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { cn } from "@/lib/utils";
 
@@ -36,11 +35,4 @@ export function Rating({ value, count, className }: { value: number; count?: num
       <span className="sr-only">{t.common.ratingSr(value)}</span>
     </span>
   );
-}
-
-const ICONS = { Shield, Zap, Moon, Leaf } as const;
-
-export function BenefitIcon({ icon, ...props }: { icon: Benefit["icon"] } & LucideProps) {
-  const Icon = ICONS[icon];
-  return <Icon {...props} />;
 }

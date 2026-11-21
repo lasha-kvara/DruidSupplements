@@ -1,0 +1,11 @@
+{
+  "name": "ძილი და სტრესის მოხსნა",
+  "nameEn": "Sleep & stress relief",
+  "description": {
+    "ka": "დამამშვიდებელი რიტუალი საღამოსთვის და ღრმა, აღმდგენი ძილი",
+    "en": "A calming evening ritual and deep, restorative sleep"
+  },
+  "icon": "Moon",
+  "image": "/images/benefits/sleep/image.jpg",
+  "order": 30
+}

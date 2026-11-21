@@ -1,0 +1,11 @@
+{
+  "name": "იმუნიტეტი",
+  "nameEn": "Immunity",
+  "description": {
+    "ka": "ორგანიზმის ბუნებრივი თავდაცვის მხარდაჭერა სეზონურ პერიოდში",
+    "en": "Support for your body's natural defences through the seasons"
+  },
+  "icon": "Shield",
+  "image": "/images/benefits/immunity/image.jpg",
+  "order": 10
+}

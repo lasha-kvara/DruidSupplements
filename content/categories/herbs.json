@@ -1,0 +1,9 @@
+{
+  "name": "სამკურნალო მცენარეები",
+  "nameEn": "Medicinal herbs",
+  "description": {
+    "ka": "კავკასიის მთებში შეგროვებული ბალახები და ნაყოფები ჩაისთვის.",
+    "en": "Herbs and fruits gathered in the Caucasus mountains for herbal teas."
+  },
+  "order": 20
+}

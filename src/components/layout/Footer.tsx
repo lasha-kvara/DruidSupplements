@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { AlertTriangle, Clock, Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { getCategories } from "@/data";
+import { getCategories } from "@/data/server";
 import { getDictionary, localizePath, type Locale } from "@/i18n";
 import { generalChatUrl } from "@/lib/whatsapp";
 import { Logo } from "./Logo";
@@ -15,7 +15,8 @@ function TikTokIcon({ className }: { className?: string }) {
   );
 }
 
-export function Footer({ lang }: { lang: Locale }) {
+export async function Footer({ lang }: { lang: Locale }) {
+  const categories = await getCategories(lang);
   const t = getDictionary(lang);
   const path = (href: string) => localizePath(lang, href);
   const year = new Date().getFullYear();
@@ -78,7 +79,7 @@ export function Footer({ lang }: { lang: Locale }) {
           <div>
             <h3 className="font-sans text-sm font-semibold tracking-wide text-cream">{t.footer.categories}</h3>
             <ul className="mt-3">
-              {getCategories(lang).map((c) => (
+              {categories.map((c) => (
                 <li key={c.id}>
                   <Link
                     href={path(`/catalog?category=${c.id}`)}

@@ -1,0 +1,11 @@
+{
+  "name": "საჭმლის მონელება",
+  "nameEn": "Digestion",
+  "description": {
+    "ka": "კუჭ-ნაწლავის კომფორტი და ჯანსაღი მიკროფლორა",
+    "en": "Gut comfort and a healthy microbiome"
+  },
+  "icon": "Leaf",
+  "image": "/images/benefits/digestion/image.jpg",
+  "order": 40
+}

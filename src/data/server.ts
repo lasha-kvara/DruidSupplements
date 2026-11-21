@@ -7,7 +7,7 @@ import { cache } from "react";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "../../keystatic.config";
 import type { Locale } from "@/i18n/config";
-import type { BlogPost, Product, ProductDetails } from "./types";
+import type { Benefit, BlogPost, Category, Product, ProductDetails } from "./types";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -120,3 +120,35 @@ export async function getPostBody(lang: Locale, slug: string) {
   const en = post.entry.bodyEn.node;
   return lang === "en" && en.children.length > 0 ? en : ka;
 }
+
+const allCategoryEntries = cache(async () =>
+  (await reader.collections.categories.all()).sort(
+    (a, b) => (a.entry.order ?? 100) - (b.entry.order ?? 100) || a.slug.localeCompare(b.slug),
+  ),
+);
+
+/** Product categories (admin → „კატეგორიები“), in their configured order. */
+export const getCategories = cache(async (lang: Locale): Promise<Category[]> =>
+  (await allCategoryEntries()).map(({ slug, entry: e }) => ({
+    id: slug,
+    name: lang === "en" ? e.nameEn.trim() || e.name : e.name,
+    description: pick(lang, e.description),
+  })),
+);
+
+const allBenefitEntries = cache(async () =>
+  (await reader.collections.benefits.all()).sort(
+    (a, b) => (a.entry.order ?? 100) - (b.entry.order ?? 100) || a.slug.localeCompare(b.slug),
+  ),
+);
+
+/** "Shop by benefit" entries (admin → „დანიშნულებები“), in their configured order. */
+export const getBenefits = cache(async (lang: Locale): Promise<Benefit[]> =>
+  (await allBenefitEntries()).map(({ slug, entry: e }) => ({
+    id: slug,
+    name: lang === "en" ? e.nameEn.trim() || e.name : e.name,
+    description: pick(lang, e.description),
+    icon: e.icon,
+    image: e.image ?? null,
+  })),
+);

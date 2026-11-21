@@ -1,0 +1,181 @@
+{
+  "hero": {
+    "badge": {
+      "ka": "1 200+ კმაყოფილი მომხმარებელი საქართველოში",
+      "en": "1,200+ happy customers across Georgia"
+    },
+    "line1": {
+      "ka": "ტყის სიბრძნე",
+      "en": "Forest wisdom"
+    },
+    "line2": {
+      "ka": "თქვენს ყოველდღიურ",
+      "en": "for your everyday"
+    },
+    "line3": {
+      "ka": "რიტუალში",
+      "en": "ritual"
+    },
+    "sub": {
+      "ka": "სამკურნალო სოკოები და მცენარეები — ლომის ფაფარი, რეიში, ჩაგა, კორდიცეფსი. ჩვენი სოკოებისა და მცენარეების უმეტესობა ბუნებაშია შეგროვებული და სწრაფად მიგიტანთ კარამდე.",
+      "en": "Medicinal mushrooms and herbs — Lion's Mane, Reishi, Chaga, Cordyceps. Most of our mushrooms and herbs are gathered in the wild and delivered quickly to your door."
+    },
+    "ctaPrimary": {
+      "ka": "კატალოგის ნახვა",
+      "en": "Browse the shop"
+    },
+    "ctaSecondary": {
+      "ka": "უფასო კონსულტაცია",
+      "en": "Free consultation"
+    },
+    "image": "/images/home/hero/image.jpg"
+  },
+  "stats": [
+    {
+      "value": {
+        "ka": "100%",
+        "en": "100%"
+      },
+      "label": {
+        "ka": "ნატურალური",
+        "en": "Natural"
+      }
+    },
+    {
+      "value": {
+        "ka": "24სთ",
+        "en": "24h"
+      },
+      "label": {
+        "ka": "მიწოდება თბილისში",
+        "en": "Delivery in Tbilisi"
+      }
+    },
+    {
+      "value": {
+        "ka": "8",
+        "en": "8"
+      },
+      "label": {
+        "ka": "სახეობა",
+        "en": "Species"
+      }
+    }
+  ],
+  "trust": [
+    {
+      "icon": "Leaf",
+      "title": {
+        "ka": "100% ორგანული",
+        "en": "100% Organic"
+      },
+      "text": {
+        "ka": "ქიმიური სასუქების, შემავსებლებისა და კონსერვანტების გარეშე",
+        "en": "No chemical fertilisers, fillers or preservatives"
+      }
+    },
+    {
+      "icon": "Mountain",
+      "title": {
+        "ka": "ბუნებიდან",
+        "en": "From nature"
+      },
+      "text": {
+        "ka": "სოკოებისა და მცენარეების უმეტესობა ბუნებაშია შეგროვებული",
+        "en": "Most of our mushrooms and herbs are gathered in the wild"
+      }
+    },
+    {
+      "icon": "MessageCircleHeart",
+      "title": {
+        "ka": "უფასო კონსულტაცია",
+        "en": "Free consultation"
+      },
+      "text": {
+        "ka": "დაგეხმარებით სწორი პროდუქტისა და მიღების წესის შერჩევაში",
+        "en": "We'll help you choose the right product and how to take it"
+      }
+    },
+    {
+      "icon": "Truck",
+      "title": {
+        "ka": "სწრაფი მიწოდება",
+        "en": "Fast delivery"
+      },
+      "text": {
+        "ka": "თბილისში 24 საათში, რეგიონებში 1–3 სამუშაო დღეში",
+        "en": "Within 24 hours in Tbilisi, 1–3 business days to the regions"
+      }
+    }
+  ],
+  "bestsellers": {
+    "eyebrow": {
+      "ka": "ბესტსელერები",
+      "en": "Bestsellers"
+    },
+    "title": {
+      "ka": "მომხმარებლების ფავორიტები",
+      "en": "Customer favourites"
+    },
+    "description": {
+      "ka": "ჩვენი ყველაზე მოთხოვნადი სოკოები და მცენარეები — შეუკვეთეთ ერთი შეხებით WhatsApp-ით ან ზარით.",
+      "en": "Our most-loved mushrooms and herbs — order in one tap via WhatsApp or a quick call."
+    }
+  },
+  "benefits": {
+    "eyebrow": {
+      "ka": "დანიშნულების მიხედვით",
+      "en": "Shop by benefit"
+    },
+    "title": {
+      "ka": "რა გჭირდებათ დღეს?",
+      "en": "What do you need today?"
+    },
+    "description": {
+      "ka": "აირჩიეთ თქვენი მიზანი და ჩვენ შემოგთავაზებთ შესაბამის სოკოებსა და მცენარეებს.",
+      "en": "Choose your goal and we'll suggest the right mushrooms and herbs."
+    }
+  },
+  "testimonials": {
+    "eyebrow": {
+      "ka": "შეფასებები",
+      "en": "Reviews"
+    },
+    "title": {
+      "ka": "რას ამბობენ ჩვენი მომხმარებლები",
+      "en": "What our customers say"
+    },
+    "description": {
+      "ka": "4.9 საშუალო შეფასება 800-ზე მეტი მიმოხილვიდან",
+      "en": "4.9 average rating from more than 800 reviews"
+    }
+  },
+  "blog": {
+    "eyebrow": {
+      "ka": "ბლოგი",
+      "en": "Journal"
+    },
+    "title": {
+      "ka": "ისწავლეთ ბუნების ენა",
+      "en": "Learn the language of nature"
+    },
+    "description": {
+      "ka": "სტატიები სამკურნალო სოკოებისა და მცენარეების შესახებ — სწორი მიღება, რეცეპტები და კვლევები.",
+      "en": "Articles about medicinal mushrooms and herbs — how to take them, recipes and research."
+    }
+  },
+  "faq": {
+    "eyebrow": {
+      "ka": "ხშირად დასმული კითხვები",
+      "en": "Frequently asked questions"
+    },
+    "title": {
+      "ka": "მიწოდება, გადახდა და ხარისხი",
+      "en": "Delivery, payment and quality"
+    },
+    "description": {
+      "ka": "ვერ იპოვეთ პასუხი? მოგვწერეთ — კონსულტანტი დაგეხმარებათ პროდუქტის შერჩევაში.",
+      "en": "Can't find an answer? Message us — a consultant will help you choose."
+    }
+  }
+}

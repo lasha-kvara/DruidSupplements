@@ -1,6 +1,7 @@
-export type CategoryId = "mushrooms" | "herbs";
+/** Category / benefit ids are slugs of entries edited in the admin panel (content/categories, content/benefits). */
+export type CategoryId = string;
 
-export type BenefitId = "immunity" | "energy" | "sleep" | "digestion";
+export type BenefitId = string;
 
 export interface Category {
   id: CategoryId;
@@ -12,9 +13,10 @@ export interface Benefit {
   id: BenefitId;
   name: string;
   description: string;
-  /** Name of a lucide-react icon, resolved in components/ui/BenefitIcon */
-  icon: "Shield" | "Zap" | "Moon" | "Leaf";
-  image: string;
+  /** Icon name picked in the admin panel — see src/lib/icons.ts */
+  icon: string;
+  /** Card photo, or null when none was uploaded */
+  image: string | null;
 }
 
 export interface ProductVariant {

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Phone } from "lucide-react";
-import { getFaqs } from "@/data";
+import { getFaqs, getHomepage } from "@/data";
 import { siteConfig } from "@/config/site";
 import { useI18n } from "@/i18n/I18nProvider";
 import { generalChatUrl } from "@/lib/whatsapp";
@@ -12,11 +12,12 @@ import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
 export function Faq() {
   const { lang, t } = useI18n();
+  const heading = getHomepage(lang).faq;
   return (
     <section id="faq" className="scroll-mt-24 bg-parchment-dark/60 py-20 md:py-28">
       <div className="container grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
         <div>
-          <SectionHeading align="left" eyebrow={t.faq.eyebrow} title={t.faq.title} description={t.faq.description} />
+          <SectionHeading align="left" eyebrow={heading.eyebrow} title={heading.title} description={heading.description} />
           <Reveal delay={0.1} className="relative mt-8 hidden aspect-[4/3] overflow-hidden rounded-3xl lg:block">
             <Image src="/images/hands-sapling.jpg" alt="" fill sizes="40vw" className="object-cover" />
             <div className="absolute inset-x-4 bottom-4 flex gap-2 rounded-2xl bg-surface/90 p-3 backdrop-blur">

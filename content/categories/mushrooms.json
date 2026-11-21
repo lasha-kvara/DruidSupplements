@@ -1,0 +1,9 @@
+{
+  "name": "სამკურნალო სოკოები",
+  "nameEn": "Medicinal mushrooms",
+  "description": {
+    "ka": "გამხმარი და დაფქვილი ფუნქციური სოკოები — ლომის ფაფარი, რეიში, ჩაგა და სხვა.",
+    "en": "Dried and milled functional mushrooms — Lion's Mane, Reishi, Chaga and more."
+  },
+  "order": 10
+}

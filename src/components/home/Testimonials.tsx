@@ -3,14 +3,15 @@
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
-import { getTestimonials } from "@/data";
 import { useI18n } from "@/i18n/I18nProvider";
+import { getHomepage, getTestimonials } from "@/data";
 import { SectionHeading } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
 /** Shows 1 card on mobile, 3 on desktop; auto-advances, pauses on hover, swipeable. */
 export function Testimonials() {
   const { lang, t: dict } = useI18n();
+  const heading = getHomepage(lang).testimonials;
   const t = dict.testimonials;
   const testimonials = getTestimonials(lang);
   const [index, setIndex] = useState(0);
@@ -38,9 +39,9 @@ export function Testimonials() {
     <section className="py-20 md:py-28" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <div className="container">
         <SectionHeading
-          eyebrow={t.eyebrow}
-          title={t.title}
-          description={t.description}
+          eyebrow={heading.eyebrow}
+          title={heading.title}
+          description={heading.description}
         />
 
         <div className="relative mt-12">

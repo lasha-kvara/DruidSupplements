@@ -52,7 +52,8 @@ Until a project is set, `/keystatic` on the live site shows "not configured" and
 | Categories & "shop by benefit" | `src/data/categories.ts` |
 | Blog articles | Admin → „ბლოგის სტატიები“ (`content/posts/<slug>/`) |
 | Testimonials & FAQ | Admin → „შეფასებები“ / „კითხვები“ (`content/*.json`) |
-| Categories & benefits (fixed) | `src/data/categories.ts` |
+| Home page texts, hero photo, stats, trust cards, section headings | Admin → „მთავარი გვერდი“ (`content/homepage.json`) |
+| Categories and „shop by benefit“ cards (name, icon, photo, order) | Admin → „კატეგორიები“ / „დანიშნულებები“ (`content/categories`, `content/benefits`) |
 
 
 ## Ordering

@@ -8,8 +8,8 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { Faq } from "@/components/home/Faq";
 import { PostCard } from "@/components/blog/PostCard";
 import { Reveal, SectionHeading } from "@/components/ui/Reveal";
-import { getFaqs } from "@/data";
-import { getPosts, getProducts } from "@/data/server";
+import { getFaqs, getHomepage } from "@/data";
+import { getBenefits, getPosts, getProducts } from "@/data/server";
 import { getDictionary, isLocale, localizePath } from "@/i18n";
 
 type Params = Promise<{ lang: string }>;
@@ -18,7 +18,8 @@ export default async function HomePage({ params }: { params: Params }) {
   const { lang: raw } = await params;
   const lang = isLocale(raw) ? raw : "ka";
   const t = getDictionary(lang);
-  const [products, posts] = await Promise.all([getProducts(lang), getPosts(lang)]);
+  const [products, posts, benefits] = await Promise.all([getProducts(lang), getPosts(lang), getBenefits(lang)]);
+  const blogHeading = getHomepage(lang).blog;
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -37,7 +38,7 @@ export default async function HomePage({ params }: { params: Params }) {
       <Hero />
       <TrustBar />
       <Bestsellers products={products} />
-      <ShopByBenefit products={products} />
+      <ShopByBenefit products={products} benefits={benefits} />
       <Testimonials />
 
       <section className="pb-20 md:pb-28">
@@ -45,9 +46,9 @@ export default async function HomePage({ params }: { params: Params }) {
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <SectionHeading
               align="left"
-              eyebrow={t.blogSection.eyebrow}
-              title={t.blogSection.title}
-              description={t.blogSection.description}
+              eyebrow={blogHeading.eyebrow}
+              title={blogHeading.title}
+              description={blogHeading.description}
             />
             <Link href={localizePath(lang, "/blog")} className="btn-outline group shrink-0">
               {t.common.allArticles} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

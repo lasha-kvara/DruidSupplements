@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
-import { getBenefits, getCategories } from "@/data";
-import { getProductSlugs, getProducts } from "@/data/server";
+import { getBenefits, getCategories, getProductSlugs, getProducts } from "@/data/server";
 import { getRelatedProducts, getStartingPrice } from "@/lib/catalog";
 import { getDictionary, isLocale, localizePath, type Locale } from "@/i18n";
 import { absoluteUrl } from "@/lib/utils";
@@ -12,7 +11,8 @@ import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductPurchase } from "@/components/product/ProductPurchase";
 import { ProductInfoTabs } from "@/components/product/ProductInfoTabs";
 import { ProductCard } from "@/components/product/ProductCard";
-import { BenefitIcon, NewBadge, Rating, StockBadge } from "@/components/ui/Badges";
+import { NewBadge, Rating, StockBadge } from "@/components/ui/Badges";
+import { PickableIcon } from "@/components/ui/PickableIcon";
 import { Reveal, SectionHeading } from "@/components/ui/Reveal";
 
 export const dynamicParams = false;
@@ -47,8 +47,8 @@ export default async function ProductPage({ params }: { params: Params }) {
 
   const t = getDictionary(lang);
   const path = (href: string) => localizePath(lang, href);
-  const category = getCategories(lang).find((c) => c.id === product.category);
-  const benefits = getBenefits(lang);
+  const [categories, benefits] = await Promise.all([getCategories(lang), getBenefits(lang)]);
+  const category = categories.find((c) => c.id === product.category);
   const related = getRelatedProducts(products, product, 4);
 
   const jsonLd = {
@@ -129,7 +129,7 @@ export default async function ProductPage({ params }: { params: Params }) {
                     href={path(`/catalog?benefit=${id}`)}
                     className="chip border-forest/15 bg-surface text-forest hover:border-terracotta hover:text-terracotta-dark"
                   >
-                    <BenefitIcon icon={b.icon} className="h-4 w-4" />
+                    <PickableIcon name={b.icon} className="h-4 w-4" />
                     {b.name}
                   </Link>
                 );
