@@ -23,5 +23,5 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Skip API routes, the Keystatic admin, Next internals and files with an extension (images, icon.svg, sitemap.xml...).
-  matcher: ["/((?!api|_next|keystatic|.*\\..*).*)"],
+  matcher: ["/((?!api|_next|keystatic|apple-icon|.*\\..*).*)"],
 };

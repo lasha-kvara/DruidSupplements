@@ -108,7 +108,8 @@ export function Header() {
             >
               <Phone className="h-4 w-4" /> {siteConfig.phoneDisplay}
             </a>
-            <ThemeToggle light={overHero} className="relative z-10 shrink-0" />
+            {/* Below 360px there's no room next to the language switch + menu; the toggle moves into the menu */}
+            <ThemeToggle light={overHero} className="relative z-10 hidden shrink-0 min-[360px]:flex" />
             <LanguageSwitcher light={overHero} className="relative z-10" />
             <a
               href={generalChatUrl(lang)}
@@ -177,6 +178,10 @@ export function Header() {
               transition={{ delay: 0.4 }}
               className="mt-auto grid gap-3"
             >
+              <div className="flex items-center justify-between rounded-2xl bg-forest/5 px-4 py-2 min-[360px]:hidden">
+                <span className="text-sm font-medium text-forest">{t.theme.toggle}</span>
+                <ThemeToggle />
+              </div>
               <a href={generalChatUrl(lang)} target="_blank" rel="noopener noreferrer" className="btn-whatsapp w-full">
                 <WhatsAppIcon /> {t.header.whatsappMobile}
               </a>

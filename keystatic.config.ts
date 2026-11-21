@@ -1,3 +1,4 @@
+import { createElement } from "react";
 import { collection, config, fields, singleton } from "@keystatic/core";
 
 /**
@@ -69,7 +70,11 @@ export default config({
   ...(CLOUD_PROJECT ? { cloud: { project: CLOUD_PROJECT } } : {}),
 
   ui: {
-    brand: { name: "დრუიდი · ადმინი" },
+    brand: {
+      name: "დრუიდი · ადმინი",
+      // Brand mark (brand/logo, variant A) — readable in Keystatic's light and dark themes.
+      mark: () => createElement("img", { src: "/brand/druid-mark.svg", alt: "", height: 28, style: { height: 28, width: "auto" } }),
+    },
     navigation: {
       "მაღაზია": ["products"],
       "კონტენტი": ["posts", "testimonials", "faq"],
