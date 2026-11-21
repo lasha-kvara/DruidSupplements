@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { localizePath, stripLocale, type Locale } from "@/i18n";
 import { useI18n } from "@/i18n/I18nProvider";
 import { cn } from "@/lib/utils";
@@ -57,11 +56,14 @@ export function LanguageSwitcher({ light = false, className }: { light?: boolean
               active ? (light ? "text-forest" : "text-parchment") : light ? "text-parchment/80 hover:text-parchment" : "text-forest/70 hover:text-forest",
             )}
           >
+            {/* Plain element, no layoutId: switching language is a full navigation anyway, and a
+                shared-layout animation inside the fixed header jumped from the old scroll position. */}
             {active && (
-              <motion.span
-                layoutId="lang-pill"
-                className={cn("absolute inset-0 -z-10 rounded-full", light ? "bg-parchment" : "bg-forest")}
-                transition={{ type: "spring", stiffness: 450, damping: 34 }}
+              <span
+                className={cn(
+                  "absolute inset-0 -z-10 rounded-full transition-colors duration-300",
+                  light ? "bg-parchment" : "bg-forest",
+                )}
               />
             )}
             {o.label}

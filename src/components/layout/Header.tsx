@@ -78,12 +78,15 @@ export function Header() {
                 )}
               >
                 {link.label}
-                {isActive(link.href) && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-terracotta"
-                  />
-                )}
+                {/* No layoutId here: in a fixed header a shared-layout animation flew in from the old
+                    scroll position after navigation. The underline just grows in place instead. */}
+                <span
+                  aria-hidden
+                  className={cn(
+                    "absolute inset-x-4 -bottom-0.5 h-0.5 origin-left rounded-full bg-terracotta transition-transform duration-300 ease-out",
+                    isActive(link.href) ? "scale-x-100" : "scale-x-0",
+                  )}
+                />
               </Link>
             ))}
           </nav>
