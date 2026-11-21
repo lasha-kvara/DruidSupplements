@@ -23,7 +23,7 @@ export default async function BlogPage({ params }: { params: Params }) {
   return (
     <>
       <PageHeader eyebrow={t.eyebrow} title={t.title} description={t.description} image="/images/misty.jpg" />
-      <div className="container py-12 md:py-16">
+      <div className="container pt-12 md:pt-16">
         <Reveal>
           <PostCard post={featured} featured />
         </Reveal>

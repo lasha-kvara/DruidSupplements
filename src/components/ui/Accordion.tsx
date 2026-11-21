@@ -50,7 +50,7 @@ export function Accordion({ items, defaultOpen = null, className, variant = "car
                   variant === "card" ? "min-h-[60px] px-5 py-4" : "min-h-[56px] py-4",
                 )}
               >
-                {item.icon && <span className="shrink-0 text-terracotta">{item.icon}</span>}
+                {item.icon && <span className="shrink-0 text-terracotta-dark">{item.icon}</span>}
                 <span className="flex-1 leading-snug">{item.title}</span>
                 <motion.span
                   animate={{ rotate: isOpen ? 45 : 0 }}

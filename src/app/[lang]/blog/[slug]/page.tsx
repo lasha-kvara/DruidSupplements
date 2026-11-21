@@ -68,9 +68,12 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     <>
       <ReadingProgress />
       <article>
-        <header className="container max-w-4xl pt-28 md:pt-36">
+        <header className="container max-w-3xl pt-28 md:pt-36">
           <Reveal>
-            <Link href={localizePath(lang, "/blog")} className="inline-flex items-center gap-2 text-sm font-semibold text-terracotta hover:underline">
+            <Link
+              href={localizePath(lang, "/blog")}
+              className="inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-terracotta-dark hover:underline"
+            >
               <ArrowLeft className="h-4 w-4" /> {t.blog.back}
             </Link>
             <div className="mt-6 flex flex-wrap gap-2">

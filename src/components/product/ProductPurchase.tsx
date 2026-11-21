@@ -82,7 +82,7 @@ export function ProductPurchase({ product }: { product: Product }) {
                     {formatAmount(v.price)} {siteConfig.currency}
                   </span>
                   {v.oldPrice && (
-                    <span className="absolute -right-1.5 -top-2 rounded-full bg-terracotta px-1.5 py-0.5 text-[10px] font-bold text-white">
+                    <span className="absolute -right-1.5 -top-2.5 rounded-full bg-terracotta-deep px-1.5 py-0.5 text-[11px] font-bold leading-tight text-white">
                       -{Math.round((1 - v.price / v.oldPrice) * 100)}%
                     </span>
                   )}
@@ -126,7 +126,7 @@ export function ProductPurchase({ product }: { product: Product }) {
                 {formatAmount(oldTotal)} {siteConfig.currency}
               </span>
             )}
-            <AnimatedPrice value={total} className="text-3xl font-bold text-terracotta" />
+            <AnimatedPrice value={total} className="text-3xl font-bold text-terracotta-dark" />
           </div>
         </div>
       </div>
@@ -190,13 +190,13 @@ export function ProductPurchase({ product }: { product: Product }) {
 
       <ul className="mt-6 grid gap-3 text-sm text-charcoal-soft sm:grid-cols-3">
         <li className="flex items-center gap-2">
-          <Truck className="h-5 w-5 shrink-0 text-terracotta" /> {t.perks[0]}
+          <Truck className="h-5 w-5 shrink-0 text-terracotta-dark" /> {t.perks[0]}
         </li>
         <li className="flex items-center gap-2">
-          <Banknote className="h-5 w-5 shrink-0 text-terracotta" /> {t.perks[1]}
+          <Banknote className="h-5 w-5 shrink-0 text-terracotta-dark" /> {t.perks[1]}
         </li>
         <li className="flex items-center gap-2">
-          <ShieldCheck className="h-5 w-5 shrink-0 text-terracotta" /> {t.perks[2]}
+          <ShieldCheck className="h-5 w-5 shrink-0 text-terracotta-dark" /> {t.perks[2]}
         </li>
       </ul>
     </div>

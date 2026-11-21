@@ -33,7 +33,7 @@ export function PostCard({ post, featured = false }: { post: BlogPost; featured?
             </span>
           </div>
           <h3
-            className={`mt-3 font-semibold leading-snug transition-colors group-hover:text-terracotta ${featured ? "text-2xl md:text-3xl" : "text-xl"}`}
+            className={`mt-3 font-semibold leading-snug transition-colors group-hover:text-terracotta-dark ${featured ? "text-2xl md:text-3xl" : "text-xl"}`}
           >
             {post.title}
           </h3>
@@ -45,7 +45,7 @@ export function PostCard({ post, featured = false }: { post: BlogPost; featured?
               </span>
             ))}
           </div>
-          <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-terracotta">
+          <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-terracotta-dark">
             {t.common.readMore} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </span>
         </div>

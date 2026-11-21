@@ -64,7 +64,7 @@ export function Header() {
         )}
       >
         <div className="container flex h-[68px] items-center justify-between gap-2 md:h-20">
-          <Link href={path("/")} aria-label={`${t.site.name} — ${t.header.homeAria}`} className="relative z-10">
+          <Link href={path("/")} aria-label={`${t.site.name} — ${t.header.homeAria}`} className="relative z-10 flex min-h-[44px] items-center">
             <Logo light={overHero} />
           </Link>
 
@@ -108,7 +108,7 @@ export function Header() {
               href={generalChatUrl(lang)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary hidden !min-h-[42px] !px-5 !py-2 text-sm lg:inline-flex"
+              className="btn-primary hidden !min-h-[44px] !px-5 !py-2 text-sm lg:inline-flex"
             >
               <WhatsAppIcon className="h-4 w-4" /> {t.header.messageUs}
             </a>

@@ -74,19 +74,19 @@ export default async function ProductPage({ params }: { params: Params }) {
       <div className="container pt-24 md:pt-28">
         <nav
           aria-label="breadcrumb"
-          className="no-scrollbar flex items-center gap-1.5 overflow-x-auto whitespace-nowrap py-3 text-sm text-charcoal-muted"
+          className="no-scrollbar flex items-center gap-1.5 overflow-x-auto whitespace-nowrap text-sm text-charcoal-muted"
         >
-          <Link href={path("/")} className="hover:text-forest">
+          <Link href={path("/")} className="inline-flex min-h-[44px] items-center hover:text-forest">
             {t.nav.home}
           </Link>
           <ChevronRight className="h-3.5 w-3.5 shrink-0" />
-          <Link href={path("/catalog")} className="hover:text-forest">
+          <Link href={path("/catalog")} className="inline-flex min-h-[44px] items-center hover:text-forest">
             {t.nav.catalog}
           </Link>
           {category && (
             <>
               <ChevronRight className="h-3.5 w-3.5 shrink-0" />
-              <Link href={path(`/catalog?category=${category.id}`)} className="hover:text-forest">
+              <Link href={path(`/catalog?category=${category.id}`)} className="inline-flex min-h-[44px] items-center hover:text-forest">
                 {category.name}
               </Link>
             </>
@@ -127,7 +127,7 @@ export default async function ProductPage({ params }: { params: Params }) {
                   <Link
                     key={id}
                     href={path(`/catalog?benefit=${id}`)}
-                    className="chip border-forest/15 bg-surface text-forest hover:border-terracotta hover:text-terracotta"
+                    className="chip border-forest/15 bg-surface text-forest hover:border-terracotta hover:text-terracotta-dark"
                   >
                     <BenefitIcon icon={b.icon} className="h-4 w-4" />
                     {b.name}

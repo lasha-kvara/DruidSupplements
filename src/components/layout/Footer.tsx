@@ -27,7 +27,7 @@ export function Footer({ lang }: { lang: Locale }) {
   ];
 
   return (
-    <footer className="relative mt-24 overflow-hidden bg-pine text-cream/80">
+    <footer className="relative overflow-hidden bg-pine text-cream/80">
       <div className="grain pointer-events-none absolute inset-0 opacity-60" />
       <div className="container relative pb-28 pt-16 md:pb-12">
         {/* Medical disclaimer — mandatory */}
@@ -64,10 +64,10 @@ export function Footer({ lang }: { lang: Locale }) {
 
           <div>
             <h3 className="font-sans text-sm font-semibold tracking-wide text-cream">{t.footer.navigation}</h3>
-            <ul className="mt-4 space-y-1">
+            <ul className="mt-3">
               {navLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={path(l.href)} className="inline-flex min-h-[36px] items-center text-sm transition hover:text-terracotta-light">
+                  <Link href={path(l.href)} className="inline-flex min-h-[44px] items-center md:min-h-[36px] text-sm transition hover:text-terracotta-light">
                     {l.label}
                   </Link>
                 </li>
@@ -77,12 +77,12 @@ export function Footer({ lang }: { lang: Locale }) {
 
           <div>
             <h3 className="font-sans text-sm font-semibold tracking-wide text-cream">{t.footer.categories}</h3>
-            <ul className="mt-4 space-y-1">
+            <ul className="mt-3">
               {getCategories(lang).map((c) => (
                 <li key={c.id}>
                   <Link
                     href={path(`/catalog?category=${c.id}`)}
-                    className="inline-flex min-h-[36px] items-center text-sm transition hover:text-terracotta-light"
+                    className="inline-flex min-h-[44px] items-center md:min-h-[36px] text-sm transition hover:text-terracotta-light"
                   >
                     {c.name}
                   </Link>
@@ -93,9 +93,9 @@ export function Footer({ lang }: { lang: Locale }) {
 
           <div>
             <h3 className="font-sans text-sm font-semibold tracking-wide text-cream">{t.footer.contact}</h3>
-            <ul className="mt-4 space-y-3 text-sm">
+            <ul className="mt-3 text-sm">
               <li>
-                <a href={`tel:${siteConfig.phoneNumber}`} className="flex items-center gap-3 transition hover:text-terracotta-light">
+                <a href={`tel:${siteConfig.phoneNumber}`} className="flex min-h-[44px] items-center gap-3 transition hover:text-terracotta-light md:min-h-[36px]">
                   <Phone className="h-4 w-4 text-terracotta-light" /> {siteConfig.phoneDisplay}
                 </a>
               </li>
@@ -104,27 +104,27 @@ export function Footer({ lang }: { lang: Locale }) {
                   href={generalChatUrl(lang)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 transition hover:text-terracotta-light"
+                  className="flex min-h-[44px] items-center gap-3 transition hover:text-terracotta-light md:min-h-[36px]"
                 >
                   <WhatsAppIcon className="h-4 w-4 text-terracotta-light" /> WhatsApp
                 </a>
               </li>
               <li>
-                <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-3 transition hover:text-terracotta-light">
+                <a href={`mailto:${siteConfig.email}`} className="flex min-h-[44px] items-center gap-3 transition hover:text-terracotta-light md:min-h-[36px]">
                   <Mail className="h-4 w-4 text-terracotta-light" /> {siteConfig.email}
                 </a>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex min-h-[44px] items-center gap-3 md:min-h-[36px]">
                 <MapPin className="h-4 w-4 text-terracotta-light" /> {siteConfig.address[lang] || siteConfig.address.ka}
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex min-h-[44px] items-center gap-3 md:min-h-[36px]">
                 <Clock className="h-4 w-4 text-terracotta-light" /> {siteConfig.workingHours[lang] || siteConfig.workingHours.ka}
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-cream/10 pt-6 text-xs text-cream/50 sm:flex-row sm:justify-between">
+        <div className="mt-12 flex flex-col gap-2 border-t border-cream/10 pt-6 text-xs text-cream/65 sm:flex-row sm:justify-between">
           <p>
             © {year} {t.site.name}. {t.footer.rights}
           </p>

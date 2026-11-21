@@ -23,7 +23,7 @@ export function StockBadge({ inStock, className }: { inStock: boolean; className
 
 export function NewBadge() {
   const { t } = useI18n();
-  return <span className="rounded-full bg-terracotta px-2.5 py-1 text-xs font-semibold text-white">{t.common.isNew}</span>;
+  return <span className="rounded-full bg-terracotta-deep px-2.5 py-1 text-xs font-semibold text-white">{t.common.isNew}</span>;
 }
 
 export function Rating({ value, count, className }: { value: number; count?: number; className?: string }) {

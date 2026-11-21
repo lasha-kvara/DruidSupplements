@@ -57,7 +57,7 @@ export function ThemeToggle({ light = false, className }: { light?: boolean; cla
       aria-label={t.theme.toggle}
       title={t.theme.toggle}
       className={cn(
-        "relative flex h-10 w-10 items-center justify-center rounded-full transition-colors",
+        "relative flex h-11 w-11 items-center justify-center rounded-full transition-colors",
         light ? "bg-white/10 text-cream ring-1 ring-white/20 hover:bg-white/20" : "bg-forest/5 text-forest ring-1 ring-forest/10 hover:bg-forest/10",
         className,
       )}

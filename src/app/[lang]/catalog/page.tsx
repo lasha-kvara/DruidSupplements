@@ -23,7 +23,7 @@ export default async function CatalogPage({ params }: { params: Params }) {
   return (
     <>
       <PageHeader eyebrow={t.eyebrow} title={t.title} description={t.description} image="/images/leaves.jpg" />
-      <div className="container pb-8">
+      <div className="container">
         <Suspense fallback={<div className="h-40" />}>
           <CatalogView products={products} />
         </Suspense>

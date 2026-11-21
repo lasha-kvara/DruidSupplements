@@ -110,17 +110,19 @@ export function Testimonials() {
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
-          <div className="flex gap-2">
+          {/* Each dot sits in a 44px-tall hit area; visual spacing stays ~16px */}
+          <div className="flex">
             {testimonials.map((item, i) => (
               <button
                 key={item.id}
                 type="button"
                 aria-label={t.item(i + 1)}
+                aria-current={i === index}
                 onClick={() => {
                   setDirection(i > index ? 1 : -1);
                   setIndex(i);
                 }}
-                className="flex h-6 items-center"
+                className="flex h-11 min-w-[24px] items-center justify-center px-2"
               >
                 <span
                   className={cn(

@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: { DEFAULT: "1.25rem", md: "2rem" },
+      padding: "1.25rem",
       screens: { "2xl": "1280px" },
     },
     extend: {
@@ -46,6 +46,8 @@ const config: Config = {
         terracotta: {
           DEFAULT: "#C86D51",
           light: "#E09A82",
+          /** Same hue, darker: white text on it passes WCAG AA (4.8:1) — buttons and badges */
+          deep: "#AE5B42",
           dark: v("terracotta-dark"),
           50: v("terracotta-50"),
         },

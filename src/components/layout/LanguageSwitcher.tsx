@@ -35,7 +35,7 @@ export function LanguageSwitcher({ light = false, className }: { light?: boolean
       role="group"
       aria-label={t.langSwitch.label}
       className={cn(
-        "relative flex h-10 items-center rounded-full p-1 text-[13px] font-semibold",
+        "relative flex h-11 items-center rounded-full p-1 text-[13px] font-semibold",
         light ? "bg-white/10 ring-1 ring-white/20" : "bg-forest/5 ring-1 ring-forest/10",
         className,
       )}
@@ -52,7 +52,7 @@ export function LanguageSwitcher({ light = false, className }: { light?: boolean
             title={o.full}
             onClick={() => switchTo(o.lang)}
             className={cn(
-              "relative z-10 flex h-8 min-w-[42px] items-center justify-center rounded-full px-2.5 transition-colors",
+              "relative z-10 flex h-9 min-w-[44px] items-center justify-center rounded-full px-2.5 transition-colors",
               active ? (light ? "text-forest" : "text-cream") : light ? "text-cream/80 hover:text-cream" : "text-forest/70 hover:text-forest",
             )}
           >

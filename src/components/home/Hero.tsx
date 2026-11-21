@@ -84,31 +84,31 @@ export function Hero() {
         ))}
       </div>
 
-      {/* Floating organic elements (parallax) */}
+      {/* Floating organic elements (parallax) — kept in the empty right half; each shows only at widths where it cannot overlap the text */}
       <motion.div style={{ y: floatY }} className="pointer-events-none absolute inset-0" aria-hidden>
         <motion.div
-          className="absolute -left-6 top-[18%] w-20 text-forest-400/60 md:left-[6%] md:w-28"
+          className="absolute right-[20%] top-[14%] hidden w-28 text-[#4E7559]/60 xl:block"
           animate={{ rotate: [0, 8, 0], y: [0, -14, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         >
           <Leaf />
         </motion.div>
         <motion.div
-          className="absolute right-[4%] top-[22%] hidden w-24 md:block"
+          className="absolute right-[4%] top-[22%] hidden w-24 lg:block"
           animate={{ rotate: [-6, 6, -6], y: [0, -18, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         >
           <Mushroom />
         </motion.div>
         <motion.div
-          className="absolute bottom-[14%] right-[10%] w-14 text-terracotta/50 md:w-20"
+          className="absolute bottom-[14%] right-[10%] hidden w-20 text-terracotta/50 md:block"
           animate={{ rotate: [10, -10, 10], y: [0, 12, 0] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         >
           <Leaf />
         </motion.div>
         <motion.div
-          className="absolute bottom-[22%] left-[8%] hidden w-12 opacity-70 lg:block"
+          className="absolute bottom-[20%] right-[34%] hidden w-12 opacity-70 xl:block"
           animate={{ rotate: [4, -8, 4], y: [0, -10, 0] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -116,7 +116,7 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="container relative z-10 pb-16 pt-28">
+      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="container relative z-10 pb-20 pt-28 md:pb-28">
         <div className="max-w-3xl">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -196,7 +196,7 @@ export function Hero() {
       <motion.a
         href="#trust"
         aria-label={t.scrollDown}
-        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 text-cream/60 md:block"
+        className="absolute bottom-24 left-1/2 z-10 hidden -translate-x-1/2 text-cream/60 xl:block"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >

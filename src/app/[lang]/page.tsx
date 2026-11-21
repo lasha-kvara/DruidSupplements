@@ -32,7 +32,8 @@ export default async function HomePage({ params }: { params: Params }) {
   };
 
   return (
-    <>
+    // Ends with the full-bleed FAQ section → cancel <main>'s bottom gap so it meets the footer.
+    <div className="-mb-24">
       <Hero />
       <TrustBar />
       <Bestsellers products={products} />
@@ -65,6 +66,6 @@ export default async function HomePage({ params }: { params: Params }) {
       <Faq />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-    </>
+    </div>
   );
 }

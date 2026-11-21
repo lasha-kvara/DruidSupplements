@@ -15,7 +15,7 @@
     --c-surface: 255 255 255;
     --c-charcoal: 31 36 33;
     --c-charcoal-soft: 74 82 77;
-    --c-charcoal-muted: 111 119 114;
+    --c-charcoal-muted: 100 107 103;
     --c-forest: 27 48 34;
     --c-forest-50: 238 243 239;
     --c-forest-100: 213 226 216;
@@ -87,7 +87,7 @@
     @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold transition-[transform,background-color,box-shadow,color] duration-200 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50;
   }
   .btn-primary {
-    @apply btn bg-terracotta text-white shadow-soft hover:bg-[#A85540] hover:shadow-lift;
+    @apply btn bg-terracotta-deep text-white shadow-soft hover:bg-[#97503A] hover:shadow-lift;
   }
   .btn-forest {
     @apply btn bg-pine text-cream hover:bg-pine-light dark:ring-1 dark:ring-forest/15;
@@ -107,7 +107,7 @@
   }
 
   .eyebrow {
-    @apply text-sm font-semibold tracking-wide text-terracotta;
+    @apply text-sm font-semibold tracking-wide text-terracotta-dark;
   }
 
   .input {
@@ -154,7 +154,7 @@
     @apply font-semibold text-charcoal;
   }
   .prose-ka a {
-    @apply font-medium text-terracotta underline decoration-terracotta/40 underline-offset-2 hover:decoration-terracotta;
+    @apply font-medium text-terracotta-dark underline decoration-terracotta/40 underline-offset-2 hover:decoration-terracotta;
   }
   .prose-ka img {
     @apply my-8 w-full rounded-3xl;

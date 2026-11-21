@@ -76,7 +76,8 @@ export function CatalogView({ products }: { products: Product[] }) {
   return (
     <div>
       {/* Sticky filter bar */}
-      <div className="sticky top-[68px] z-30 -mx-5 border-b border-forest/10 bg-parchment/90 px-5 py-4 backdrop-blur-lg md:top-20 md:-mx-8 md:px-8">
+      {/* Sticky only from tablet up: on phones the stacked filters would cover a third of the screen */}
+      <div className="relative z-30 -mx-5 border-b border-forest/10 bg-parchment/90 px-5 py-4 backdrop-blur-lg md:sticky md:top-20">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <LayoutGroup id="category-tabs">
@@ -150,7 +151,7 @@ export function CatalogView({ products }: { products: Product[] }) {
                   className={cn(
                     "chip shrink-0",
                     active
-                      ? "border-terracotta bg-terracotta text-white"
+                      ? "border-terracotta-deep bg-terracotta-deep text-white"
                       : "border-forest/15 bg-surface text-forest hover:border-forest/30",
                   )}
                 >
@@ -182,7 +183,7 @@ export function CatalogView({ products }: { products: Product[] }) {
           {t.foundAfter}
         </span>
         {hasFilters && (
-          <button type="button" onClick={reset} className="font-semibold text-terracotta hover:underline">
+          <button type="button" onClick={reset} className="font-semibold text-terracotta-dark hover:underline">
             {t.reset}
           </button>
         )}

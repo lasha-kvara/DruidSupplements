@@ -67,7 +67,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
           <Rating value={product.rating} className="shrink-0 text-xs" />
         </div>
         <h3 className="mt-3 font-serif text-lg font-semibold leading-snug md:text-xl">
-          <Link href={href} className="transition-colors hover:text-terracotta">
+          <Link href={href} className="transition-colors hover:text-terracotta-dark">
             {product.name}
           </Link>
         </h3>
@@ -122,7 +122,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
               </a>
             </div>
           ) : (
-            <Link href={href} className="text-sm font-semibold text-terracotta hover:underline">
+            <Link href={href} className="inline-flex min-h-[44px] items-center text-sm font-semibold text-terracotta-dark hover:underline">
               {t.common.details}
             </Link>
           )}

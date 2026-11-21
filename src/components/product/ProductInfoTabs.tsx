@@ -82,7 +82,7 @@ function buildSections(d: ProductDetails, t: Dictionary["product"]): Section[] {
           <ul className="space-y-3">
             {d.contraindications.map((c) => (
               <li key={c} className="flex gap-3">
-                <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-terracotta" />
+                <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-terracotta-dark" />
                 <span>{c}</span>
               </li>
             ))}

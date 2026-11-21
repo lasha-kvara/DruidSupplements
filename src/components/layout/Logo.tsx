@@ -20,7 +20,7 @@ export function Logo({ light = false, className }: { light?: boolean; className?
         <span className={cn("text-xl font-bold tracking-tight", light ? "text-cream" : "text-forest")}>{t.site.name}</span>
         <span
           className={cn(
-            "mt-1 hidden text-[10px] font-medium tracking-wide min-[380px]:block",
+            "mt-1 hidden text-[11px] font-medium leading-none tracking-wide min-[380px]:block",
             light ? "text-cream/70" : "text-charcoal-muted",
           )}
         >

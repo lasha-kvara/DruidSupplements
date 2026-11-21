@@ -77,7 +77,8 @@ export default async function RootLayout({ children, params }: { children: React
         <I18nProvider lang={lang}>
           <Providers>
             <Header />
-            <main className="min-h-[60vh]">{children}</main>
+            {/* pb-24 = gap above the footer; pages ending in a full-bleed section cancel it (see home page) */}
+            <main className="min-h-[60vh] pb-24">{children}</main>
             <Footer lang={lang} />
             <FloatingContact />
           </Providers>

@@ -200,7 +200,7 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
                             {order.variantLabel} × {order.quantity ?? 1}
                           </p>
                         </div>
-                        <p className="text-lg font-bold text-terracotta">
+                        <p className="text-lg font-bold text-terracotta-dark">
                           {formatAmount(total)} {siteConfig.currency}
                         </p>
                       </div>
