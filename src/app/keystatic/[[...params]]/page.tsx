@@ -19,8 +19,8 @@ function NotConfigured() {
       <div style={{ maxWidth: 520, textAlign: "center" }}>
         <h1 style={{ color: "#1B3022", fontSize: 26, marginBottom: 12 }}>ადმინ პანელი ჯერ არ არის ჩართული</h1>
         <p style={{ lineHeight: 1.6 }}>
-          რედაქტორი მუშაობს GitHub-ის მეშვეობით. დააყენეთ GitHub App და დაამატეთ მისი გარემოს ცვლადები Vercel-ში
-          (იხ. README → „ადმინ პანელი“).
+          რედაქტორი მუშაობს Keystatic Cloud-ის მეშვეობით. შექმენით პროექტი keystatic.cloud-ზე და მიუთითეთ მისი სახელი
+          კონფიგურაციაში (იხ. README → „ადმინ პანელი“).
         </p>
       </div>
     </main>

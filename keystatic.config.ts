@@ -4,18 +4,22 @@ import { collection, config, fields, singleton } from "@keystatic/core";
  * Keystatic CMS — the admin panel at /keystatic.
  *
  * Content lives in /content as JSON (+ Markdoc for article bodies) and is committed to Git.
- * - `npm run dev`            → edits files on your disk (local mode)
- * - production (Vercel)      → edits go through GitHub: each save is a commit to `main`,
- *                              and Vercel redeploys the site automatically.
- * GitHub mode turns on when the GitHub App env vars exist (NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG etc.),
- * or when NEXT_PUBLIC_KEYSTATIC_GITHUB=1 is set locally to run the one-time GitHub App setup.
- * In production without a GitHub App the admin is disabled (see keystaticEnabled).
+ * - `npm run dev`        → edits files on your disk (local mode)
+ * - production (Vercel)  → Keystatic Cloud: editors sign in to Keystatic Cloud (no GitHub account needed),
+ *                          each save is committed to the GitHub repo and Vercel redeploys automatically.
+ *                          Editors are managed in the Keystatic Cloud team (free plan: up to 3 users).
+ * Set NEXT_PUBLIC_KEYSTATIC_CLOUD=1 to use Cloud mode while running locally.
  */
-const useGithub =
-  Boolean(process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG) || process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB === "1";
 
-/** Local file editing is only safe on your own machine; production needs the GitHub App. */
-export const keystaticEnabled = process.env.NODE_ENV !== "production" || useGithub;
+/** Keystatic Cloud "team/project" (not a secret). Empty until the Cloud project exists → admin stays off in production. */
+const CLOUD_PROJECT = process.env.NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT || "";
+
+const useCloud =
+  Boolean(CLOUD_PROJECT) &&
+  (process.env.NODE_ENV === "production" || process.env.NEXT_PUBLIC_KEYSTATIC_CLOUD === "1");
+
+/** Local file editing is only safe on your own machine; production needs Keystatic Cloud. */
+export const keystaticEnabled = process.env.NODE_ENV !== "production" || useCloud;
 
 /** Georgian + English pair of plain text inputs */
 const bi = (label: string, opts: { multiline?: boolean; required?: boolean } = {}) =>
@@ -61,9 +65,8 @@ const imageField = (label: string, kind: "products" | "posts") =>
   });
 
 export default config({
-  storage: useGithub
-    ? { kind: "github", repo: { owner: "lasha-kvara", name: "DruidSupplements" } }
-    : { kind: "local" },
+  storage: useCloud ? { kind: "cloud" } : { kind: "local" },
+  ...(CLOUD_PROJECT ? { cloud: { project: CLOUD_PROJECT } } : {}),
 
   ui: {
     brand: { name: "დრუიდი · ადმინი" },

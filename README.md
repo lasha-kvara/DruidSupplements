@@ -15,25 +15,25 @@ npm run build && npm start
 Hosted on **Vercel**: the project is connected to this GitHub repo, so every push to `main`
 deploys to production and every other branch gets a preview URL.
 
-## Admin panel (Keystatic)
+## Admin panel (Keystatic Cloud)
 
-Open **`/keystatic`**. Everything is stored as files in `content/` (+ photos in `public/images/products|posts/`).
+Open **`/keystatic`** (`/admin` redirects there). Content is stored as files in `content/`
+(+ photos in `public/images/products|posts/`) and committed to this GitHub repository.
 
+- **Live site**: editors sign in through **Keystatic Cloud** — they do *not* need a GitHub account or
+  access to this repository. Each *Save* is committed to `main`; Vercel redeploys in ~1–2 min.
+  Editors are managed in the Keystatic Cloud team (free plan: up to 3 users per team).
 - **Locally** (`npm run dev` → http://localhost:3000/keystatic): edits files on disk; commit & push yourself.
-- **On the live site**: logs in with GitHub; every *Save* is a commit to `main`, Vercel redeploys in ~1–2 min.
-  Only GitHub users with write access to this repository can edit.
+  `NEXT_PUBLIC_KEYSTATIC_CLOUD=1 npm run dev` uses Cloud mode locally instead.
 
-One-time GitHub setup (until it is done, `/keystatic` on the live site shows "not configured"):
+One-time setup:
+1. Sign in at https://keystatic.cloud, create a **team** and a **project** connected to this repository.
+2. Put the project name (`team/project`, shown in the project settings snippet) into `CLOUD_PROJECT`
+   in `keystatic.config.ts` (or the `NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT` env var) and push.
+3. Invite the editors to the team in Keystatic Cloud.
 
-1. Locally run `NEXT_PUBLIC_KEYSTATIC_GITHUB=1 npm run dev` and open `/keystatic` → **Create GitHub App**.
-   Keystatic writes `KEYSTATIC_GITHUB_CLIENT_ID`, `KEYSTATIC_GITHUB_CLIENT_SECRET`, `KEYSTATIC_SECRET`,
-   `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` into `.env`.
-2. Install the new GitHub App on the `DruidSupplements` repository.
-3. In the GitHub App settings add the callback URL
-   `https://druid-supplements.vercel.app/api/keystatic/github/oauth/callback`.
-4. Copy the four variables into Vercel → Settings → Environment Variables, then redeploy.
-
-`/admin` is a read-only overview with links into the editor. `npx tsx scripts/check-content.ts` validates all content files.
+Until a project is set, `/keystatic` on the live site shows "not configured" and its API returns 404.
+`npx tsx scripts/check-content.ts` validates all content files. Photo credits: `CREDITS.md`.
 
 ## Languages
 
@@ -54,7 +54,6 @@ One-time GitHub setup (until it is done, `/keystatic` on the live site shows "no
 | Testimonials & FAQ | Admin → „შეფასებები“ / „კითხვები“ (`content/*.json`) |
 | Categories & benefits (fixed) | `src/data/categories.ts` |
 
-`/admin` is a read-only overview of the data, order-channel status and a WhatsApp link tester (not indexed).
 
 ## Ordering
 
@@ -67,6 +66,6 @@ One-time GitHub setup (until it is done, `/keystatic` on the live site shows "no
 ### Environment variables on Vercel
 
 Project → Settings → Environment Variables (see `.env.example`), then redeploy:
-`NEXT_PUBLIC_WHATSAPP_NUMBER`, `NEXT_PUBLIC_PHONE_NUMBER`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`,
+`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`,
 optionally `FORMSPREE_ENDPOINT` and `NEXT_PUBLIC_SITE_URL` (custom domain).
-`/admin` shows which order channel is active.
+To check the channel, send a test quick order: with Telegram/Formspree configured it arrives there, otherwise the modal offers WhatsApp.
