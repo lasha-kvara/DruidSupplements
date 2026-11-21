@@ -8,6 +8,9 @@ import { siteConfig } from "@/config/site";
 import { formatPrice } from "@/lib/utils";
 import { buildOrderMessage, buildOrderWhatsAppUrl } from "@/lib/whatsapp";
 
+// Render on request so the order-channel status reflects runtime env vars.
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "ადმინ პანელი",
   robots: { index: false, follow: false },
@@ -20,8 +23,8 @@ export const metadata: Metadata = {
  */
 export default function AdminPage() {
   const inStock = products.filter((p) => p.inStock).length;
-  // Read at build time (static site).
-  const orderEndpoint = Boolean(process.env.NEXT_PUBLIC_ORDER_ENDPOINT);
+  const telegram = Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
+  const formspree = Boolean(process.env.FORMSPREE_ENDPOINT);
   const sample = products[0];
   const sampleLine = {
     productName: sample.name,
@@ -64,11 +67,12 @@ export default function AdminPage() {
         <div className="rounded-2xl border border-forest/10 bg-white p-5">
           <h2 className="font-sans text-base font-semibold">შეკვეთების არხი (სწრაფი შეკვეთა)</h2>
           <ul className="mt-3 space-y-2 text-sm">
-            <li>Formspree / ფორმის endpoint: {orderEndpoint ? "✅ ჩართულია" : "⚪ არ არის კონფიგურირებული"}</li>
-            {!orderEndpoint && (
+            <li>Telegram: {telegram ? "✅ ჩართულია" : "⚪ არ არის კონფიგურირებული"}</li>
+            <li>Formspree: {formspree ? "✅ ჩართულია" : "⚪ არ არის კონფიგურირებული"}</li>
+            {!telegram && !formspree && (
               <li className="text-terracotta-dark">
-                ამჟამად „დამირეკეთ“ ხსნის WhatsApp-ს მზა შეტყობინებით. ელფოსტით მისაღებად დაამატეთ
-                NEXT_PUBLIC_ORDER_ENDPOINT (იხ. README).
+                ამჟამად „დამირეკეთ“ მომხმარებელს სთავაზობს WhatsApp-ით გაგზავნას. Vercel → Settings → Environment
+                Variables-ში დაამატეთ TELEGRAM_BOT_TOKEN და TELEGRAM_CHAT_ID (იხ. README).
               </li>
             )}
           </ul>

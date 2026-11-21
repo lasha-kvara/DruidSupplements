@@ -8,11 +8,11 @@ Georgian-language storefront with WhatsApp / call-back ordering (no payment gate
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm run build      # static site in ./out
+npm run build && npm start
 ```
 
-Live: https://lasha-kvara.github.io/DruidSupplements/ — every push to `main` is built and deployed
-by `.github/workflows/deploy-pages.yml`.
+Hosted on **Vercel**: the project is connected to this GitHub repo, so every push to `main`
+deploys to production and every other branch gets a preview URL.
 
 ## Where to change things
 
@@ -31,12 +31,13 @@ by `.github/workflows/deploy-pages.yml`.
 
 - **WhatsApp** — `src/lib/whatsapp.ts` builds
   `https://wa.me/<number>?text=<encodeURIComponent(message)>` from the selected product, weight, quantity and total.
-- **Quick order (call-back)** — GitHub Pages is static, so `src/lib/order.ts` runs in the browser:
-  - if `NEXT_PUBLIC_ORDER_ENDPOINT` is set (e.g. a free https://formspree.io form), the order is POSTed there and arrives by email;
-  - otherwise WhatsApp opens with a pre-filled call-back message.
+- **Quick order (call-back)** — the modal posts to `src/app/api/order/route.ts` (server), which validates the
+  Georgian phone number and forwards the order to Telegram (`TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`)
+  or Formspree (`FORMSPREE_ENDPOINT`). With neither configured, the customer is asked to send it via WhatsApp.
 
-### Settings for the live site
+### Environment variables on Vercel
 
-In GitHub → Settings → Secrets and variables → Actions → **Variables**, add any of:
-`NEXT_PUBLIC_WHATSAPP_NUMBER`, `NEXT_PUBLIC_PHONE_NUMBER`, `NEXT_PUBLIC_ORDER_ENDPOINT`,
-then re-run the "Deploy to GitHub Pages" workflow. These values are public — never put secrets there.
+Project → Settings → Environment Variables (see `.env.example`), then redeploy:
+`NEXT_PUBLIC_WHATSAPP_NUMBER`, `NEXT_PUBLIC_PHONE_NUMBER`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`,
+optionally `FORMSPREE_ENDPOINT` and `NEXT_PUBLIC_SITE_URL` (custom domain).
+`/admin` shows which order channel is active.

@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle2, Loader2, Phone, User, X } from "lucide-react";
 import type { QuickOrderContext } from "./QuickOrderProvider";
 import { formatAmount } from "@/lib/utils";
-import { submitQuickOrder, validateQuickOrder, type OrderChannel } from "@/lib/order";
+import { callbackWhatsAppUrl, submitQuickOrder, validateQuickOrder, type OrderChannel } from "@/lib/order";
 import { buildOrderWhatsAppUrl, buildWhatsAppUrl, lineTotal } from "@/lib/whatsapp";
 import { siteConfig } from "@/config/site";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
@@ -25,7 +25,7 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
   const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
-  const [channel, setChannel] = useState<OrderChannel>("form");
+  const [channel, setChannel] = useState<OrderChannel>("server");
   const nameRef = useRef<HTMLInputElement>(null);
 
   const hasProduct = Boolean(order.productName && order.unitPrice);
@@ -53,11 +53,10 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
     const invalid = validateQuickOrder({ name, phone });
     if (invalid) return setError(invalid);
     setError(null);
-    // Honeypot filled → silently pretend success (bots only).
-    if (website) return setStatus("success");
     setStatus("sending");
     try {
       const used = await submitQuickOrder({
+        website,
         name: name.trim(),
         phone: phone.trim(),
         product: order.productName,
@@ -137,11 +136,27 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
                     </motion.div>
                     <h2 className="mt-6 text-2xl font-semibold">მადლობა, {name.split(" ")[0]}!</h2>
                     {channel === "whatsapp" ? (
-                      <p className="mt-3 text-charcoal-soft">
-                        WhatsApp-ში მომზადდა შეტყობინება თქვენი მონაცემებით — <b>დააჭირეთ „გაგზავნას“</b>, და
-                        კონსულტანტი დაგირეკავთ ნომერზე{" "}
-                        <span className="whitespace-nowrap font-semibold text-forest">{phone}</span>.
-                      </p>
+                      <>
+                        <p className="mt-3 text-charcoal-soft">
+                          კიდევ ერთი ნაბიჯი: გაგზავნეთ მზა შეტყობინება WhatsApp-ში და კონსულტანტი დაგირეკავთ ნომერზე{" "}
+                          <span className="whitespace-nowrap font-semibold text-forest">{phone}</span>.
+                        </p>
+                        <a
+                          href={callbackWhatsAppUrl({
+                            name,
+                            phone,
+                            product: order.productName,
+                            variant: order.variantLabel,
+                            quantity: order.quantity,
+                            total: hasProduct ? total : undefined,
+                          })}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-whatsapp mt-6 w-full"
+                        >
+                          <WhatsAppIcon /> გაგზავნა WhatsApp-ით
+                        </a>
+                      </>
                     ) : (
                       <p className="mt-3 text-charcoal-soft">
                         თქვენი შეკვეთა მიღებულია. ჩვენი კონსულტანტი დაგიკავშირდებათ <b>15 წუთში</b> ნომერზე{" "}
@@ -149,7 +164,11 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
                       </p>
                     )}
                     <p className="mt-2 text-sm text-charcoal-muted">სამუშაო საათები: {siteConfig.workingHours}</p>
-                    <button type="button" onClick={onClose} className="btn-forest mt-7 w-full">
+                    <button
+                      type="button"
+                      onClick={onClose}
+                      className={channel === "whatsapp" ? "btn-outline mt-3 w-full" : "btn-forest mt-7 w-full"}
+                    >
                       კარგი
                     </button>
                   </motion.div>

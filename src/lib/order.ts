@@ -3,18 +3,15 @@ import { formatAmount, isValidGeorgianPhone } from "./utils";
 import { siteConfig } from "@/config/site";
 
 /**
- * Quick-order delivery for a static site (GitHub Pages has no server).
- *
- * 1. If NEXT_PUBLIC_ORDER_ENDPOINT is set (e.g. https://formspree.io/f/xxxx),
- *    the order is POSTed there as JSON and arrives in your email / Formspree inbox.
- * 2. Otherwise WhatsApp opens with a pre-filled call-back request.
- *
- * Never put a Telegram bot token in NEXT_PUBLIC_* variables: everything in a
- * static site is visible to visitors.
+ * Quick-order ("დამირეკეთ") client.
+ * Posts to /api/order, which forwards to Telegram or Formspree (server env vars).
+ * If no channel is configured on the server, the modal offers WhatsApp instead,
+ * so an order is never silently lost.
  */
 export interface QuickOrderPayload {
   name: string;
   phone: string;
+  website?: string; // honeypot
   product?: string;
   variant?: string;
   quantity?: number;
@@ -22,7 +19,8 @@ export interface QuickOrderPayload {
   page?: string;
 }
 
-export type OrderChannel = "form" | "whatsapp";
+/** "server" = delivered to Telegram/Formspree; "whatsapp" = customer must send the WhatsApp message */
+export type OrderChannel = "server" | "whatsapp";
 
 export function validateQuickOrder({ name, phone }: Pick<QuickOrderPayload, "name" | "phone">): string | null {
   if (name.trim().length < 2) return "გთხოვთ, მიუთითოთ სახელი";
@@ -40,24 +38,16 @@ export function buildCallbackMessage(o: QuickOrderPayload): string {
   return parts.join(" ");
 }
 
+export const callbackWhatsAppUrl = (o: QuickOrderPayload) => buildWhatsAppUrl(buildCallbackMessage(o));
+
 export async function submitQuickOrder(order: QuickOrderPayload): Promise<OrderChannel> {
-  const endpoint = process.env.NEXT_PUBLIC_ORDER_ENDPOINT;
-
-  if (!endpoint) {
-    // Must run synchronously inside the click handler, otherwise popup blockers stop it.
-    window.open(buildWhatsAppUrl(buildCallbackMessage(order)), "_blank", "noopener,noreferrer");
-    return "whatsapp";
-  }
-
-  const res = await fetch(endpoint, {
+  const res = await fetch("/api/order", {
     method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({
-      ...order,
-      _subject: `ახალი სწრაფი შეკვეთა — ${order.name}`,
-      message: buildCallbackMessage(order),
-    }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(order),
   });
-  if (!res.ok) throw new Error("შეკვეთის გაგზავნა ვერ მოხერხდა. გთხოვთ, მოგვწეროთ WhatsApp-ით.");
-  return "form";
+  const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string; notConfigured?: boolean };
+  if (data.notConfigured) return "whatsapp";
+  if (!res.ok || !data.ok) throw new Error(data.error ?? "შეკვეთის გაგზავნა ვერ მოხერხდა. გთხოვთ, მოგვწეროთ WhatsApp-ით.");
+  return "server";
 }

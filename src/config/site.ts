@@ -7,7 +7,12 @@ export const siteConfig = {
   tagline: "სამკურნალო სოკოები და მცენარეები",
   description:
     "სამკურნალო სოკოები, მცენარეები და ექსტრაქტები საქართველოს ტყეებიდან და სანდო მწარმოებლებისგან. ლაბორატორიულად შემოწმებული ხარისხი, სწრაფი მიწოდება მთელ საქართველოში.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://druid.ge",
+  /** Canonical URL: explicit env → Vercel production domain → localhost */
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000"),
 
   /** Digits only, with country code, no "+" — used for https://wa.me/<number> */
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "995555123456",
