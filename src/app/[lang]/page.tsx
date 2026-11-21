@@ -8,7 +8,8 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { Faq } from "@/components/home/Faq";
 import { PostCard } from "@/components/blog/PostCard";
 import { Reveal, SectionHeading } from "@/components/ui/Reveal";
-import { getFaqs, getPosts } from "@/data";
+import { getFaqs } from "@/data";
+import { getPosts, getProducts } from "@/data/server";
 import { getDictionary, isLocale, localizePath } from "@/i18n";
 
 type Params = Promise<{ lang: string }>;
@@ -17,6 +18,7 @@ export default async function HomePage({ params }: { params: Params }) {
   const { lang: raw } = await params;
   const lang = isLocale(raw) ? raw : "ka";
   const t = getDictionary(lang);
+  const [products, posts] = await Promise.all([getProducts(lang), getPosts(lang)]);
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -33,8 +35,8 @@ export default async function HomePage({ params }: { params: Params }) {
     <>
       <Hero />
       <TrustBar />
-      <Bestsellers />
-      <ShopByBenefit />
+      <Bestsellers products={products} />
+      <ShopByBenefit products={products} />
       <Testimonials />
 
       <section className="pb-20 md:pb-28">
@@ -51,7 +53,7 @@ export default async function HomePage({ params }: { params: Params }) {
             </Link>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {getPosts(lang).map((p, i) => (
+            {posts.slice(0, 3).map((p, i) => (
               <Reveal key={p.slug} delay={i * 0.08}>
                 <PostCard post={p} />
               </Reveal>

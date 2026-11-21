@@ -1,0 +1,102 @@
+{
+  "name": "ჩაგა",
+  "nameEn": "Chaga",
+  "latinName": "Inonotus obliquus",
+  "order": 30,
+  "category": "mushrooms",
+  "benefits": [
+    "immunity",
+    "digestion"
+  ],
+  "inStock": true,
+  "bestseller": true,
+  "isNew": false,
+  "variants": [
+    {
+      "label": "100გ",
+      "price": 28
+    },
+    {
+      "label": "250გ",
+      "price": 62
+    },
+    {
+      "label": "500გ",
+      "price": 110,
+      "oldPrice": 124
+    }
+  ],
+  "images": [
+    "/images/products/chaga/images/0.jpg",
+    "/images/products/chaga/images/1.jpg"
+  ],
+  "shortBenefit": {
+    "ka": "იმუნიტეტი და ანტიოქსიდანტები",
+    "en": "Immunity & antioxidants"
+  },
+  "form": {
+    "ka": "დაქუცმაცებული ნაწილაკები",
+    "en": "Crushed chunks"
+  },
+  "excerpt": {
+    "ka": "არყის ხის „შავი ოქრო“ — ერთ-ერთი ყველაზე მდიდარი ბუნებრივი ანტიოქსიდანტი.",
+    "en": "The “black gold” of the birch tree — one of the richest natural antioxidants."
+  },
+  "description": {
+    "ka": "ჩაგა იზრდება ცოცხალ არყის ხეებზე ცივ კლიმატში და წლების განმავლობაში აგროვებს ბეტულინს, მელანინსა და პოლიფენოლებს. ჩვენი ჩაგა ველურად შეგროვებულია მხოლოდ ცოცხალი ხეებიდან, ხეს ზიანის მიყენების გარეშე, დაქუცმაცებულია მსხვილ ნაწილაკებად — ნახარშისთვის იდეალური ფორმით. გემო რბილი, ვანილისა და ხის ნოტებით.",
+    "en": "Chaga grows on living birch trees in cold climates and accumulates betulin, melanin and polyphenols over many years. Our Chaga is wild-harvested only from living trees without harming them and crushed into coarse pieces — the ideal form for a decoction. Mild taste with notes of vanilla and wood."
+  },
+  "detailsKa": {
+    "benefits": [
+      "ორგანიზმის ბუნებრივი თავდაცვის მხარდაჭერა",
+      "მაღალი ანტიოქსიდანტური აქტივობა (ORAC)",
+      "ტრადიციულად გამოიყენება საჭმლის მონელების კომფორტისთვის",
+      "კანის ჯანმრთელობის მხარდაჭერა მელანინის წყალობით"
+    ],
+    "usage": "1 სუფრის კოვზი ჩაგა ჩაყარეთ 1 ლიტრ წყალში და ადუღეთ დაბალ ცეცხლზე 1 საათი, ან დაასხით 60–70°C წყალი თერმოსში 6–8 საათით. ერთი და იგივე ნაწილაკები შეიძლება გამოიყენოთ 2–3-ჯერ.",
+    "dosage": [
+      "1–3 ჭიქა ნახარში დღეში",
+      "მიიღეთ ჭამამდე 20–30 წუთით ადრე",
+      "კურსი: 2–3 თვე, შემდეგ 2 კვირა შესვენება"
+    ],
+    "ingredients": "100% ველური ჩაგა (Inonotus obliquus), დაქუცმაცებული.",
+    "origin": "ველურად შეგროვებული ჩრდილოეთის არყის ტყეებიდან. თითოეული პარტია გადის ლაბორატორიულ შემოწმებას მძიმე მეტალებსა და რადიაციულ ფონზე.",
+    "contraindications": [
+      "შეიცავს ოქსალატებს — თირკმლის კენჭების ისტორიის შემთხვევაში არ მიიღოთ",
+      "არ შეუთავსოთ ანტიბიოტიკ პენიცილინს და ინტრავენურ გლუკოზას",
+      "ანტიკოაგულანტებისა და დიაბეტის მედიკამენტების მიღებისას — ექიმის კონსულტაციით",
+      "ორსულობისა და ძუძუთი კვების პერიოდში არ არის რეკომენდებული"
+    ]
+  },
+  "detailsEn": {
+    "benefits": [
+      "Supports the body's natural defences",
+      "High antioxidant activity (ORAC)",
+      "Traditionally used for digestive comfort",
+      "Supports skin health thanks to melanin"
+    ],
+    "usage": "Simmer 1 tablespoon of Chaga in 1 litre of water on low heat for 1 hour, or pour 60–70°C water over it in a thermos for 6–8 hours. The same chunks can be reused 2–3 times.",
+    "dosage": [
+      "1–3 cups of decoction per day",
+      "Take 20–30 minutes before meals",
+      "Course: 2–3 months, then a 2-week break"
+    ],
+    "ingredients": "100% wild Chaga (Inonotus obliquus), crushed.",
+    "origin": "Wild-harvested from northern birch forests. Every batch is lab-tested for heavy metals and radiation.",
+    "contraindications": [
+      "Contains oxalates — do not take if you have a history of kidney stones",
+      "Do not combine with penicillin antibiotics or intravenous glucose",
+      "If you take anticoagulants or diabetes medication — consult a doctor",
+      "Not recommended during pregnancy and breastfeeding"
+    ]
+  },
+  "rating": 4.9,
+  "reviewCount": 156,
+  "keywords": [
+    "chaga",
+    "ჭაგა",
+    "არყი",
+    "იმუნიტეტი",
+    "ანტიოქსიდანტი"
+  ]
+}

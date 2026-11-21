@@ -51,3 +51,26 @@ export const benefits: Benefit[] = [
 
 export const categoryById = (id: string) => categories.find((c) => c.id === id);
 export const benefitById = (id: string) => benefits.find((b) => b.id === id);
+
+/** English names/descriptions for the fixed categories and benefits */
+export const categoriesEn = {
+  mushrooms: {
+    name: "Medicinal mushrooms",
+    description: "Dried and milled functional mushrooms — Lion's Mane, Reishi, Chaga and more.",
+  },
+  herbs: {
+    name: "Medicinal herbs",
+    description: "Herbs and fruits gathered in the Caucasus mountains for teas and infusions.",
+  },
+  extracts: {
+    name: "Extracts & tinctures",
+    description: "Concentrated dual extracts for easy everyday use.",
+  },
+} as const;
+
+export const benefitsEn = {
+  immunity: { name: "Immunity", description: "Support for your body's natural defences through the seasons" },
+  energy: { name: "Energy & focus", description: "Mental clarity, concentration and physical stamina" },
+  sleep: { name: "Sleep & stress relief", description: "A calming evening ritual and deep, restorative sleep" },
+  digestion: { name: "Digestion", description: "Gut comfort and a healthy microbiome" },
+} as const;

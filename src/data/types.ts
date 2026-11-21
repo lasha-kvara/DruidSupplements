@@ -81,7 +81,6 @@ export interface BlogPost {
   author: string;
   tags: string[];
   relatedProducts: string[];
-  content: BlogBlock[];
 }
 
 export interface Testimonial {

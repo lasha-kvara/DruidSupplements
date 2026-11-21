@@ -1,0 +1,98 @@
+{
+  "name": "ასკილი",
+  "nameEn": "Rosehip",
+  "latinName": "Rosa canina",
+  "order": 60,
+  "category": "herbs",
+  "benefits": [
+    "immunity",
+    "digestion"
+  ],
+  "inStock": true,
+  "bestseller": true,
+  "isNew": false,
+  "variants": [
+    {
+      "label": "100გ",
+      "price": 9
+    },
+    {
+      "label": "250გ",
+      "price": 20
+    },
+    {
+      "label": "500გ",
+      "price": 36
+    }
+  ],
+  "images": [
+    "/images/products/askili/images/0.jpg",
+    "/images/products/askili/images/1.jpg"
+  ],
+  "shortBenefit": {
+    "ka": "ვიტამინი C და იმუნიტეტი",
+    "en": "Vitamin C & immunity"
+  },
+  "form": {
+    "ka": "მთლიანი გამხმარი ნაყოფი",
+    "en": "Whole dried hips"
+  },
+  "excerpt": {
+    "ka": "კავკასიის მთის ველური ასკილი — ბუნებრივი ვიტამინი C ცივი სეზონისთვის.",
+    "en": "Wild Caucasian mountain rosehip — natural vitamin C for the cold season."
+  },
+  "description": {
+    "ka": "ასკილის ნაყოფი ბუნებრივი ვიტამინი C-ის ერთ-ერთი უმდიდრესი წყაროა — ციტრუსზე რამდენჯერმე მეტი. ჩვენი ასკილი შეგროვებულია შემოდგომაზე, პირველი ყინვების შემდეგ, თრიალეთისა და ჯავახეთის მთის ფერდობებზე და ნელა გამომშრალია ჩრდილში, რომ შეინარჩუნოს ვიტამინები და ტკბილ-მომჟავო გემო.",
+    "en": "Rosehip is one of the richest sources of natural vitamin C — several times more than citrus. Ours is picked in autumn after the first frosts on the mountain slopes of Trialeti and Javakheti and slowly dried in the shade to keep its vitamins and sweet-tart taste."
+  },
+  "detailsKa": {
+    "benefits": [
+      "ბუნებრივი ვიტამინი C სეზონური იმუნიტეტისთვის",
+      "მდიდარია კაროტინოიდებითა და ფლავონოიდებით",
+      "ტრადიციულად გამოიყენება ნაღვლის გამოყოფისა და მონელების მხარდასაჭერად",
+      "მსუბუქი შარდმდენი მოქმედება"
+    ],
+    "usage": "2 სუფრის კოვზი ნაყოფი ოდნავ დანაყეთ, ჩაყარეთ თერმოსში და დაასხით 500 მლ 80–90°C წყალი. დააყოვნეთ 6–8 საათი (ღამით). მიღებამდე გადაწურეთ.",
+    "dosage": [
+      "1–2 ჭიქა ნაყენი დღეში",
+      "ბავშვები 6 წლიდან: ½ ჭიქა დღეში",
+      "მიღების შემდეგ გამოივლეთ პირი"
+    ],
+    "ingredients": "100% ველური ასკილის (Rosa canina) ნაყოფი.",
+    "origin": "ველურად შეგროვებული თრიალეთის ქედზე, 1200–1600 მ სიმაღლეზე, გზებისა და საწარმოებისგან მოშორებით.",
+    "contraindications": [
+      "კუჭის მომატებული მჟავიანობისა და წყლულის დროს — სიფრთხილით",
+      "თრომბოფლებიტის ისტორიის შემთხვევაში — ექიმის კონსულტაციით",
+      "ხანგრძლივი მიღება შეიძლება აზიანებდეს კბილის მინანქარს — გამოიყენეთ საწრუპი"
+    ]
+  },
+  "detailsEn": {
+    "benefits": [
+      "Natural vitamin C for seasonal immunity",
+      "Rich in carotenoids and flavonoids",
+      "Traditionally used to support bile flow and digestion",
+      "Mild diuretic effect"
+    ],
+    "usage": "Lightly crush 2 tablespoons of hips, place in a thermos and pour over 500 ml of 80–90°C water. Steep for 6–8 hours (overnight). Strain before drinking.",
+    "dosage": [
+      "1–2 cups of infusion per day",
+      "Children from 6 years: ½ cup per day",
+      "Rinse your mouth after drinking"
+    ],
+    "ingredients": "100% wild rosehip (Rosa canina) fruit.",
+    "origin": "Wild-harvested on the Trialeti ridge at 1,200–1,600 m, far from roads and industry.",
+    "contraindications": [
+      "Use with caution if you have high stomach acidity or ulcers",
+      "History of thrombophlebitis — consult a doctor",
+      "Long-term use may affect tooth enamel — drink through a straw"
+    ]
+  },
+  "rating": 4.9,
+  "reviewCount": 211,
+  "keywords": [
+    "rosehip",
+    "rosa canina",
+    "ვიტამინი c",
+    "ჩაი"
+  ]
+}

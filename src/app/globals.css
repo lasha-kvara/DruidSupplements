@@ -78,11 +78,50 @@
   .prose-ka h2 {
     @apply mb-4 mt-10 text-2xl font-semibold md:text-[28px];
   }
-  .prose-ka ul {
+  .prose-ka h3 {
+    @apply mb-3 mt-8 text-xl font-semibold md:text-2xl;
+  }
+  .prose-ka ul,
+  .prose-ka ol {
     @apply mb-6 space-y-3;
   }
+  .prose-ka li {
+    @apply relative pl-8 text-[17px] leading-relaxed text-charcoal-soft;
+  }
+  .prose-ka li > p {
+    @apply mb-0;
+  }
+  /* Leaf bullet for lists written in the admin editor */
+  .prose-ka ul > li::before {
+    content: "";
+    @apply absolute left-0 top-[0.3em] h-5 w-5 bg-forest-400;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z'/%3E%3Cpath d='M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z'/%3E%3Cpath d='M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+  }
+  .prose-ka ol {
+    counter-reset: step;
+  }
+  .prose-ka ol > li::before {
+    counter-increment: step;
+    content: counter(step);
+    @apply absolute left-0 top-[0.15em] flex h-6 w-6 items-center justify-center rounded-full bg-forest-50 text-xs font-bold text-forest;
+  }
+  .prose-ka strong {
+    @apply font-semibold text-charcoal;
+  }
+  .prose-ka a {
+    @apply font-medium text-terracotta underline decoration-terracotta/40 underline-offset-2 hover:decoration-terracotta;
+  }
+  .prose-ka img {
+    @apply my-8 w-full rounded-3xl;
+  }
   .prose-ka blockquote {
-    @apply my-8 rounded-r-2xl border-l-4 border-terracotta bg-terracotta-50 px-6 py-5 font-serif text-lg italic text-forest;
+    @apply my-8 rounded-r-2xl border-l-4 border-terracotta bg-terracotta-50 px-6 py-5 text-lg italic text-forest;
+  }
+  .prose-ka blockquote p {
+    @apply mb-0 text-lg text-forest;
   }
 }
 

@@ -1,0 +1,95 @@
+{
+  "name": "ლომის ფაფრის ორმაგი ექსტრაქტი",
+  "nameEn": "Lion's Mane Dual Extract",
+  "latinName": "Hericium erinaceus 10:1",
+  "order": 90,
+  "category": "extracts",
+  "benefits": [
+    "energy"
+  ],
+  "inStock": true,
+  "bestseller": true,
+  "isNew": true,
+  "variants": [
+    {
+      "label": "30მლ",
+      "price": 45
+    },
+    {
+      "label": "50მლ",
+      "price": 68
+    },
+    {
+      "label": "100მლ",
+      "price": 120,
+      "oldPrice": 136
+    }
+  ],
+  "images": [
+    "/images/products/lomis-fafris-eqstrakti/images/0.jpg",
+    "/images/products/lomis-fafris-eqstrakti/images/1.jpg"
+  ],
+  "shortBenefit": {
+    "ka": "კონცენტრირებული ფოკუსი",
+    "en": "Concentrated focus"
+  },
+  "form": {
+    "ka": "თხევადი ნაყენი, პიპეტით",
+    "en": "Liquid tincture with dropper"
+  },
+  "excerpt": {
+    "ka": "ორმაგი (წყლისა და სპირტის) ექსტრაქცია 10:1 — მაქსიმალური ბიოშეღწევადობა.",
+    "en": "Dual (water + alcohol) extraction 10:1 — maximum bioavailability."
+  },
+  "description": {
+    "ka": "ორმაგი ექსტრაქცია ნიშნავს, რომ სოკოდან ცალ-ცალკე გამოიყოფა როგორც წყალში ხსნადი პოლისაქარიდები, ისე სპირტში ხსნადი ჰერიცენონები. შედეგად მიიღება კონცენტრირებული, სწრაფად ათვისებადი ნაყენი, რომლის მიღებაც ერთ პიპეტში ჯდება.",
+    "en": "Dual extraction means both the water-soluble polysaccharides and the alcohol-soluble hericenones are drawn from the mushroom separately. The result is a concentrated, fast-absorbing tincture — a full daily serving fits in one dropper."
+  },
+  "detailsKa": {
+    "benefits": [
+      "კონცენტრირებული მხარდაჭერა მეხსიერებისა და ფოკუსისთვის",
+      "როგორც პოლისაქარიდები, ისე ჰერიცენონები ერთ პროდუქტში",
+      "სწრაფი ათვისება და მოსახერხებელი დოზირება"
+    ],
+    "usage": "შეანჯღრიეთ. მოათავსეთ ენის ქვეშ 30 წამით ან გახსენით წყალში, ჩაიში ან წვენში. მიიღეთ დილით.",
+    "dosage": [
+      "1 პიპეტი (≈1 მლ) დღეში 1–2-ჯერ",
+      "კურსი: 6–8 კვირა, შემდეგ 2 კვირა შესვენება"
+    ],
+    "ingredients": "ლომის ფაფრის ნაყოფსხეულის ორმაგი ექსტრაქტი (10:1), გაწმენდილი წყალი, ორგანული ყურძნის სპირტი (25%).",
+    "origin": "იწარმოება საქართველოში, ჩვენივე ორგანული ლომის ფაფრისგან, მცირე პარტიებად.",
+    "contraindications": [
+      "შეიცავს სპირტს — არ არის განკუთვნილი ბავშვებისთვის, ორსულებისთვის და ალკოჰოლზე დამოკიდებული პირებისთვის",
+      "სოკოებზე ალერგიის შემთხვევაში არ მიიღოთ",
+      "მედიკამენტების პარალელურად — ექიმის კონსულტაციით"
+    ]
+  },
+  "detailsEn": {
+    "benefits": [
+      "Concentrated support for memory and focus",
+      "Both polysaccharides and hericenones in one product",
+      "Fast absorption and easy dosing"
+    ],
+    "usage": "Shake well. Hold under the tongue for 30 seconds or dissolve in water, tea or juice. Take in the morning.",
+    "dosage": [
+      "1 dropper (≈1 ml) 1–2 times a day",
+      "Course: 6–8 weeks, then a 2-week break"
+    ],
+    "ingredients": "Lion's Mane fruiting-body dual extract (10:1), purified water, organic grape alcohol (25%).",
+    "origin": "Made in Georgia in small batches from our own organic Lion's Mane.",
+    "contraindications": [
+      "Contains alcohol — not for children, pregnant women or people with alcohol dependence",
+      "Do not take if you are allergic to mushrooms",
+      "If you take medication — consult a doctor"
+    ]
+  },
+  "rating": 4.9,
+  "reviewCount": 42,
+  "keywords": [
+    "extract",
+    "tincture",
+    "ნაყენი",
+    "lions mane",
+    "ფოკუსი"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "phoneDisplay": "+995 555 12 34 56",
+  "phoneNumber": "+995555123456",
+  "whatsappNumber": "995555123456",
+  "email": "info@druid.ge",
+  "address": {
+    "ka": "თბილისი, საქართველო",
+    "en": "Tbilisi, Georgia"
+  },
+  "workingHours": {
+    "ka": "ორშ–შაბ, 10:00–20:00",
+    "en": "Mon–Sat, 10:00–20:00"
+  },
+  "facebook": "https://facebook.com/",
+  "instagram": "https://instagram.com/",
+  "tiktok": "https://tiktok.com/",
+  "tbilisiPrice": 5,
+  "regionsPrice": 8,
+  "freeFrom": 100
+}

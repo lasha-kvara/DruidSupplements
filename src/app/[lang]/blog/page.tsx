@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getPosts } from "@/data";
+import { getPosts } from "@/data/server";
 import { getDictionary, isLocale, type Locale } from "@/i18n";
 import { alternatesFor } from "@/lib/seo";
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function BlogPage({ params }: { params: Params }) {
   const lang = toLocale((await params).lang);
   const t = getDictionary(lang).blog;
-  const [featured, ...rest] = [...getPosts(lang)].sort((a, b) => b.date.localeCompare(a.date));
+  const [featured, ...rest] = await getPosts(lang);
   return (
     <>
       <PageHeader eyebrow={t.eyebrow} title={t.title} description={t.description} image="/images/misty.jpg" />

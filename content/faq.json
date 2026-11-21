@@ -1,0 +1,74 @@
+{
+  "items": [
+    {
+      "question": {
+        "ka": "როგორ ხდება მიწოდება თბილისში?",
+        "en": "How does delivery work in Tbilisi?"
+      },
+      "answer": {
+        "ka": "თბილისში კურიერი შეკვეთას იმავე ან მომდევნო დღეს მოგიტანთ. მიწოდების ღირებულებაა 5 ₾, ხოლო 100 ₾-ზე მეტი შეკვეთისას — უფასოა.",
+        "en": "A courier delivers your order the same or next day. Delivery costs 5 ₾ and is free for orders over 100 ₾."
+      }
+    },
+    {
+      "question": {
+        "ka": "აგზავნით თუ არა რეგიონებში?",
+        "en": "Do you deliver to the regions?"
+      },
+      "answer": {
+        "ka": "დიახ, ვაგზავნით საქართველოს ყველა ქალაქსა და სოფელში. რეგიონებში მიწოდებას სჭირდება 1–3 სამუშაო დღეში, ღირებულება — 8 ₾ (100 ₾-დან უფასო).",
+        "en": "Yes, we deliver to every town and village in Georgia. Regional delivery takes 1–3 business days and costs 8 ₾ (free from 100 ₾)."
+      }
+    },
+    {
+      "question": {
+        "ka": "როგორ შემიძლია გადახდა?",
+        "en": "How can I pay?"
+      },
+      "answer": {
+        "ka": "ონლაინ ბარათით გადახდა არ არის საჭირო. შეგიძლიათ გადაიხადოთ ნაღდი ფულით კურიერთან პროდუქტის მიღებისას, ან საბანკო გადარიცხვით (საქართველოს ბანკი / თიბისი) — რეკვიზიტებს შეკვეთის დადასტურებისას გამოგიგზავნით.",
+        "en": "No online card payment is needed. Pay the courier in cash when you receive your order, or by bank transfer (Bank of Georgia / TBC) — we'll send the details when we confirm your order."
+      }
+    },
+    {
+      "question": {
+        "ka": "როგორ გავაკეთო შეკვეთა?",
+        "en": "How do I place an order?"
+      },
+      "answer": {
+        "ka": "აირჩიეთ პროდუქტი და მოცულობა, შემდეგ დააჭირეთ „შეკვეთა WhatsApp-ით“ — შეტყობინება ავტომატურად შეივსება. ან გამოიყენეთ „სწრაფი შეკვეთა ზარით“: მიუთითეთ სახელი და ტელეფონი, და ჩვენი კონსულტანტი 15 წუთში დაგიკავშირდებათ.",
+        "en": "Choose a product and size, then tap “Order via WhatsApp” — the message is filled in automatically. Or use “Quick order by phone”: leave your name and number and a consultant will call you within 15 minutes."
+      }
+    },
+    {
+      "question": {
+        "ka": "როგორ ამოწმებთ პროდუქციის ხარისხს?",
+        "en": "How do you check product quality?"
+      },
+      "answer": {
+        "ka": "თითოეული პარტია გადის ლაბორატორიულ ანალიზს მძიმე მეტალებზე, პესტიციდებსა და მიკრობიოლოგიურ სისუფთავეზე. ჩვენ ვიყენებთ მხოლოდ ნაყოფსხეულს (და არა მიცელიუმს მარცვალზე), შემავსებლების გარეშე. სერტიფიკატს მოთხოვნისთანავე გამოგიგზავნით.",
+        "en": "Every batch is lab-tested for heavy metals, pesticides and microbiological purity. We use only fruiting bodies (not mycelium on grain), with no fillers. We'll send the certificate on request."
+      }
+    },
+    {
+      "question": {
+        "ka": "შეიძლება თუ არა პროდუქტების ერთად მიღება?",
+        "en": "Can I take several products together?"
+      },
+      "answer": {
+        "ka": "დიახ, ფუნქციური სოკოები ხშირად კომბინაციაში მიიღება — მაგალითად, დილით ლომის ფაფარი და კორდიცეფსი, საღამოს კი რეიში. თუ რაიმე მედიკამენტს იღებთ, მიღებამდე გაიარეთ კონსულტაცია ექიმთან.",
+        "en": "Yes, functional mushrooms are often combined — for example Lion's Mane and Cordyceps in the morning and Reishi in the evening. If you take any medication, consult your doctor first."
+      }
+    },
+    {
+      "question": {
+        "ka": "რა ვადა აქვს პროდუქტს და როგორ შევინახო?",
+        "en": "What is the shelf life and how should I store them?"
+      },
+      "answer": {
+        "ka": "გამხმარი სოკოები და მცენარეები ინახება 24 თვე, ექსტრაქტები — 36 თვე. შეინახეთ მშრალ, გრილ ადგილას, მზის პირდაპირი სხივებისგან დაცულად, ჰერმეტულად დახურულ შეფუთვაში.",
+        "en": "Dried mushrooms and herbs keep for 24 months, extracts for 36 months. Store in a dry, cool place away from direct sunlight, in a tightly closed package."
+      }
+    }
+  ]
+}

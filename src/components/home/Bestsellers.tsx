@@ -4,13 +4,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { getBestsellers } from "@/lib/catalog";
+import type { Product } from "@/data/types";
 import { ProductCard } from "@/components/product/ProductCard";
 import { SectionHeading, fadeUpItem, staggerContainer } from "@/components/ui/Reveal";
 import { useI18n } from "@/i18n/I18nProvider";
 
-export function Bestsellers() {
-  const { lang, t, path } = useI18n();
-  const items = getBestsellers(lang, 6);
+export function Bestsellers({ products }: { products: Product[] }) {
+  const { t, path } = useI18n();
+  const items = getBestsellers(products, 6);
   return (
     <section className="py-20 md:py-28">
       <div className="container">

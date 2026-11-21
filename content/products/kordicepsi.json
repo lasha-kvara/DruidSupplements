@@ -1,0 +1,100 @@
+{
+  "name": "კორდიცეფსი",
+  "nameEn": "Cordyceps",
+  "latinName": "Cordyceps militaris",
+  "order": 40,
+  "category": "mushrooms",
+  "benefits": [
+    "energy",
+    "immunity"
+  ],
+  "inStock": true,
+  "bestseller": true,
+  "isNew": false,
+  "variants": [
+    {
+      "label": "30გ",
+      "price": 38
+    },
+    {
+      "label": "50გ",
+      "price": 58
+    },
+    {
+      "label": "100გ",
+      "price": 105
+    }
+  ],
+  "images": [
+    "/images/products/kordicepsi/images/0.jpg",
+    "/images/products/kordicepsi/images/1.jpg"
+  ],
+  "shortBenefit": {
+    "ka": "ენერგია და გამძლეობა",
+    "en": "Energy & endurance"
+  },
+  "form": {
+    "ka": "დაფქვილი ფხვნილი",
+    "en": "Fine powder"
+  },
+  "excerpt": {
+    "ka": "ბუნებრივი ენერგიის წყარო — სპორტსმენებისა და აქტიური ადამიანების ფავორიტი.",
+    "en": "A natural source of energy — a favourite of athletes and active people."
+  },
+  "description": {
+    "ka": "კორდიცეფსი მილიტარისი მდიდარია კორდიცეპინითა და ადენოზინით — ნაერთებით, რომლებიც უჯრედულ ენერგიასთან (ATP) კავშირში შეისწავლება. ის არ იწვევს ყავისთვის დამახასიათებელ „ვარდნას“ და იძლევა თანაბარ, ხანგრძლივ ენერგიას. შესანიშნავია ვარჯიშამდე ან დატვირთული სამუშაო დღის დასაწყისში.",
+    "en": "Cordyceps militaris is rich in cordycepin and adenosine — compounds studied in connection with cellular energy (ATP). It doesn't cause the crash typical of coffee and gives steady, long-lasting energy. Great before a workout or at the start of a busy day."
+  },
+  "detailsKa": {
+    "benefits": [
+      "ხელს უწყობს ფიზიკურ გამძლეობას და ენერგიას",
+      "ტრადიციულად გამოიყენება სუნთქვის სისტემის მხარდასაჭერად",
+      "ეხმარება დაღლილობისგან აღდგენას",
+      "ლიბიდოსა და ვიტალობის ბუნებრივი მხარდაჭერა"
+    ],
+    "usage": "შეურიეთ ფხვნილი წყალს, ყავას, სმუზის ან პროტეინის კოქტეილს. მიიღეთ დილით ან ვარჯიშამდე 30–45 წუთით ადრე. არ მიიღოთ საღამოს.",
+    "dosage": [
+      "ზრდასრულები: 1–2 გ დღეში",
+      "სპორტული დატვირთვისას: 2–3 გ დღეში, 2 ნაწილად",
+      "კურსი: 6–8 კვირა"
+    ],
+    "ingredients": "100% კორდიცეფს მილიტარისის (Cordyceps militaris) ნაყოფსხეული.",
+    "origin": "მოყვანილია სტერილურ, ორგანულ სუბსტრატზე ვეგანური მეთოდით. შემოწმებულია კორდიცეპინის შემცველობაზე.",
+    "contraindications": [
+      "აუტოიმუნური დაავადებების შემთხვევაში — მხოლოდ ექიმის კონსულტაციით",
+      "სისხლის გამათხელებელი მედიკამენტების მიღებისას არ არის რეკომენდებული",
+      "ორსულობისა და ძუძუთი კვების პერიოდში არ მიიღოთ",
+      "შეიძლება გამოიწვიოს უძილობა საღამოს მიღებისას"
+    ]
+  },
+  "detailsEn": {
+    "benefits": [
+      "Supports physical endurance and energy",
+      "Traditionally used to support the respiratory system",
+      "Helps recovery from fatigue",
+      "Natural support for libido and vitality"
+    ],
+    "usage": "Mix the powder into water, coffee, a smoothie or a protein shake. Take in the morning or 30–45 minutes before training. Avoid taking it in the evening.",
+    "dosage": [
+      "Adults: 1–2 g per day",
+      "During training: 2–3 g per day in 2 doses",
+      "Course: 6–8 weeks"
+    ],
+    "ingredients": "100% Cordyceps militaris fruiting body.",
+    "origin": "Grown on a sterile organic substrate using a vegan method. Tested for cordycepin content.",
+    "contraindications": [
+      "Autoimmune conditions — only after consulting a doctor",
+      "Not recommended while taking blood-thinning medication",
+      "Do not take during pregnancy and breastfeeding",
+      "May cause sleeplessness if taken in the evening"
+    ]
+  },
+  "rating": 4.7,
+  "reviewCount": 73,
+  "keywords": [
+    "cordyceps",
+    "ენერგია",
+    "სპორტი",
+    "გამძლეობა"
+  ]
+}

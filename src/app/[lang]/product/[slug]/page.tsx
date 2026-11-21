@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
-import { getBenefits, getCategories, getProduct, productSlugs } from "@/data";
+import { getBenefits, getCategories } from "@/data";
+import { getProductSlugs, getProducts } from "@/data/server";
 import { getRelatedProducts, getStartingPrice } from "@/lib/catalog";
 import { getDictionary, isLocale, localizePath, type Locale } from "@/i18n";
 import { absoluteUrl } from "@/lib/utils";
@@ -20,14 +21,14 @@ type Params = Promise<{ lang: string; slug: string }>;
 
 const toLocale = (v: string): Locale => (isLocale(v) ? v : "ka");
 
-export function generateStaticParams() {
-  return productSlugs.map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  return (await getProductSlugs()).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { lang: raw, slug } = await params;
   const lang = toLocale(raw);
-  const product = getProduct(lang, slug);
+  const product = (await getProducts(lang)).find((p) => p.slug === slug);
   if (!product) return { title: getDictionary(lang).product.notFound };
   return {
     title: `${product.name} (${product.latinName})`,
@@ -40,14 +41,15 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function ProductPage({ params }: { params: Params }) {
   const { lang: raw, slug } = await params;
   const lang = toLocale(raw);
-  const product = getProduct(lang, slug);
+  const products = await getProducts(lang);
+  const product = products.find((p) => p.slug === slug);
   if (!product) notFound();
 
   const t = getDictionary(lang);
   const path = (href: string) => localizePath(lang, href);
   const category = getCategories(lang).find((c) => c.id === product.category);
   const benefits = getBenefits(lang);
-  const related = getRelatedProducts(lang, product, 4);
+  const related = getRelatedProducts(products, product, 4);
 
   const jsonLd = {
     "@context": "https://schema.org",

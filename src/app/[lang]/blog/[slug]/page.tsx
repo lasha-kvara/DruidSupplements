@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Clock, Leaf } from "lucide-react";
-import { getPost, getPosts, getProduct, postSlugs } from "@/data";
-import type { BlogBlock } from "@/data/types";
+import React from "react";
+import Markdoc from "@markdoc/markdoc";
+import { ArrowLeft, Clock } from "lucide-react";
+import { getPostBody, getPostSlugs, getPosts, getProducts } from "@/data/server";
 import { getDictionary, isLocale, localizePath, type Locale } from "@/i18n";
 import { absoluteUrl, formatDate } from "@/lib/utils";
 import { alternatesFor } from "@/lib/seo";
@@ -19,14 +20,14 @@ type Params = Promise<{ lang: string; slug: string }>;
 
 const toLocale = (v: string): Locale => (isLocale(v) ? v : "ka");
 
-export function generateStaticParams() {
-  return postSlugs.map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  return (await getPostSlugs()).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { lang: raw, slug } = await params;
   const lang = toLocale(raw);
-  const post = getPost(lang, slug);
+  const post = (await getPosts(lang)).find((p) => p.slug === slug);
   if (!post) return { title: getDictionary(lang).blog.notFound };
   return {
     title: post.title,
@@ -36,37 +37,20 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   };
 }
 
-function Block({ block }: { block: BlogBlock }) {
-  switch (block.type) {
-    case "h2":
-      return <h2>{block.text}</h2>;
-    case "ul":
-      return (
-        <ul>
-          {block.items.map((item) => (
-            <li key={item} className="flex gap-3 text-[17px] leading-relaxed text-charcoal-soft">
-              <Leaf className="mt-1 h-5 w-5 shrink-0 text-forest-400" aria-hidden />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      );
-    case "quote":
-      return <blockquote>{block.text}</blockquote>;
-    default:
-      return <p>{block.text}</p>;
-  }
-}
-
 export default async function BlogPostPage({ params }: { params: Params }) {
   const { lang: raw, slug } = await params;
   const lang = toLocale(raw);
-  const post = getPost(lang, slug);
-  if (!post) notFound();
+  const [posts, products, body] = await Promise.all([getPosts(lang), getProducts(lang), getPostBody(lang, slug)]);
+  const post = posts.find((p) => p.slug === slug);
+  if (!post || !body) notFound();
 
   const t = getDictionary(lang);
-  const related = post.relatedProducts.map((s) => getProduct(lang, s)).filter((p) => p !== undefined);
-  const otherPosts = getPosts(lang).filter((p) => p.slug !== post.slug).slice(0, 2);
+  const related = post.relatedProducts
+    .map((s) => products.find((p) => p.slug === s))
+    .filter((p) => p !== undefined);
+  const otherPosts = posts.filter((p) => p.slug !== post.slug).slice(0, 2);
+  // Article body is Markdoc written in the admin panel (/keystatic); styled by .prose-ka in globals.css.
+  const article = Markdoc.renderers.react(Markdoc.transform(body), React);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -117,11 +101,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
         <div className="container mt-12 max-w-3xl">
           <p className="mb-8 font-serif text-xl leading-relaxed text-forest md:text-2xl">{post.excerpt}</p>
-          <div className="prose-ka">
-            {post.content.map((block, i) => (
-              <Block key={i} block={block} />
-            ))}
-          </div>
+          <div className="prose-ka">{article}</div>
           <p className="mt-10 rounded-2xl border border-forest/10 bg-white p-5 text-sm text-charcoal-muted">
             {t.blog.disclaimer}
           </p>

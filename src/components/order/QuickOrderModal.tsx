@@ -168,7 +168,7 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
                         <span className="whitespace-nowrap font-semibold text-forest">{phone}</span>.
                       </p>
                     )}
-                    <p className="mt-2 text-sm text-charcoal-muted">{t.hours} {dict.site.workingHours}</p>
+                    <p className="mt-2 text-sm text-charcoal-muted">{t.hours} {siteConfig.workingHours[lang] || siteConfig.workingHours.ka}</p>
                     <button
                       type="button"
                       onClick={onClose}

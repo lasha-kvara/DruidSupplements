@@ -1,0 +1,93 @@
+{
+  "name": "ჩაგას ნაყენი",
+  "nameEn": "Chaga Tincture",
+  "latinName": "Inonotus obliquus 8:1",
+  "order": 100,
+  "category": "extracts",
+  "benefits": [
+    "immunity"
+  ],
+  "inStock": false,
+  "bestseller": false,
+  "isNew": false,
+  "variants": [
+    {
+      "label": "30მლ",
+      "price": 39
+    },
+    {
+      "label": "50მლ",
+      "price": 59
+    },
+    {
+      "label": "100მლ",
+      "price": 105
+    }
+  ],
+  "images": [
+    "/images/products/chagas-nayeni/images/0.jpg",
+    "/images/products/chagas-nayeni/images/1.jpg"
+  ],
+  "shortBenefit": {
+    "ka": "იმუნიტეტი ყოველდღე",
+    "en": "Everyday immunity"
+  },
+  "form": {
+    "ka": "თხევადი ნაყენი, პიპეტით",
+    "en": "Liquid tincture with dropper"
+  },
+  "excerpt": {
+    "ka": "ორმაგი ექსტრაქციის ჩაგა — ბეტულინი და პოლისაქარიდები ერთ წვეთში.",
+    "en": "Dual-extracted Chaga — betulin and polysaccharides in every drop."
+  },
+  "description": {
+    "ka": "ჩაგას ნაყენი იმ ადამიანებისთვისაა, ვისაც ნახარშის მომზადების დრო არ აქვს. ცხელი წყლითა და სპირტით ორჯერადი ექსტრაქცია უზრუნველყოფს ბეტა-გლუკანებისა და ბეტულინის მჟავის სრულ სპექტრს. გემო მსუბუქად ტკბილი, ხის ნოტებით.",
+    "en": "Chaga tincture is for people who don't have time to brew a decoction. Double extraction with hot water and alcohol delivers the full spectrum of beta-glucans and betulinic acid. Lightly sweet taste with woody notes."
+  },
+  "detailsKa": {
+    "benefits": [
+      "იმუნური სისტემის ყოველდღიური მხარდაჭერა",
+      "მაღალი ანტიოქსიდანტური აქტივობა",
+      "მოსახერხებელია მოგზაურობისა და სამსახურისთვის"
+    ],
+    "usage": "შეანჯღრიეთ. 1 პიპეტი გახსენით ჭიქა წყალში ან ჩაიში. მიიღეთ ჭამამდე 15–20 წუთით ადრე.",
+    "dosage": [
+      "1 პიპეტი (≈1 მლ) დღეში 2-ჯერ",
+      "კურსი: 2 თვე, შემდეგ 2 კვირა შესვენება"
+    ],
+    "ingredients": "ჩაგას ორმაგი ექსტრაქტი (8:1), გაწმენდილი წყალი, ორგანული ყურძნის სპირტი (25%).",
+    "origin": "იწარმოება საქართველოში ველური, ლაბორატორიულად შემოწმებული ჩაგასგან.",
+    "contraindications": [
+      "შეიცავს სპირტს — არ არის განკუთვნილი ბავშვებისა და ორსულებისთვის",
+      "თირკმლის კენჭების ისტორიის შემთხვევაში არ მიიღოთ",
+      "ანტიკოაგულანტებისა და დიაბეტის მედიკამენტების მიღებისას — ექიმის კონსულტაციით"
+    ]
+  },
+  "detailsEn": {
+    "benefits": [
+      "Daily support for the immune system",
+      "High antioxidant activity",
+      "Convenient for travel and work"
+    ],
+    "usage": "Shake well. Dissolve 1 dropper in a glass of water or tea. Take 15–20 minutes before meals.",
+    "dosage": [
+      "1 dropper (≈1 ml) twice a day",
+      "Course: 2 months, then a 2-week break"
+    ],
+    "ingredients": "Chaga dual extract (8:1), purified water, organic grape alcohol (25%).",
+    "origin": "Made in Georgia from wild, lab-tested Chaga.",
+    "contraindications": [
+      "Contains alcohol — not for children or pregnant women",
+      "Do not take if you have a history of kidney stones",
+      "If you take anticoagulants or diabetes medication — consult a doctor"
+    ]
+  },
+  "rating": 4.8,
+  "reviewCount": 38,
+  "keywords": [
+    "chaga extract",
+    "tincture",
+    "ნაყენი",
+    "იმუნიტეტი"
+  ]
+}

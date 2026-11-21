@@ -1,0 +1,118 @@
+{
+  "items": [
+    {
+      "name": {
+        "ka": "მარიამ კ.",
+        "en": "Mariam K."
+      },
+      "city": {
+        "ka": "თბილისი",
+        "en": "Tbilisi"
+      },
+      "product": {
+        "ka": "ლომის ფაფარი",
+        "en": "Lion's Mane"
+      },
+      "rating": 5,
+      "text": {
+        "ka": "ორი თვეა ვამატებ დილის ყავაში. სამსახურში კონცენტრაცია აშკარად გამიუმჯობესდა და საღამოს აღარ ვარ ისეთი დაღლილი. შეკვეთა იმავე დღეს მომიტანეს.",
+        "en": "I've been adding it to my morning coffee for two months. My focus at work has clearly improved and I'm not as tired in the evening. The order arrived the same day."
+      }
+    },
+    {
+      "name": {
+        "ka": "ლევან ჯ.",
+        "en": "Levan J."
+      },
+      "city": {
+        "ka": "ბათუმი",
+        "en": "Batumi"
+      },
+      "product": {
+        "ka": "კორდიცეფსი",
+        "en": "Cordyceps"
+      },
+      "rating": 5,
+      "text": {
+        "ka": "ვარჯიშამდე ვიღებ და გამძლეობაში სხვაობას ვგრძნობ. ყავის მერე რომ ვარდნა მქონდა, ის აღარ არის. ხარისხი შესანიშნავია, შეფუთვაც ძალიან ლამაზი.",
+        "en": "I take it before training and feel the difference in endurance. The crash I used to get after coffee is gone. Excellent quality and beautiful packaging."
+      }
+    },
+    {
+      "name": {
+        "ka": "ეკა ბ.",
+        "en": "Eka B."
+      },
+      "city": {
+        "ka": "ქუთაისი",
+        "en": "Kutaisi"
+      },
+      "product": {
+        "ka": "ჩაგა",
+        "en": "Chaga"
+      },
+      "rating": 5,
+      "text": {
+        "ka": "მთელი ოჯახი ზამთარში ჩაგას ნახარშს ვსვამთ. ამ სეზონზე თითქმის არ გავცივებულვართ. ვატსაპით შეკვეთა ძალიან მოსახერხებელია.",
+        "en": "The whole family drinks Chaga tea in winter. We've hardly caught a cold this season. Ordering through WhatsApp is really convenient."
+      }
+    },
+    {
+      "name": {
+        "ka": "გიორგი ნ.",
+        "en": "Giorgi N."
+      },
+      "city": {
+        "ka": "თელავი",
+        "en": "Telavi"
+      },
+      "product": {
+        "ka": "რეიში",
+        "en": "Reishi"
+      },
+      "rating": 4,
+      "text": {
+        "ka": "ძილის პრობლემა მქონდა წლების განმავლობაში. რეიში და ბარამბო საღამოს რიტუალად ვაქციე — ახლა ბევრად ადვილად მეძინება.",
+        "en": "I struggled with sleep for years. Reishi and lemon balm became my evening ritual — now I fall asleep much more easily."
+      }
+    },
+    {
+      "name": {
+        "ka": "ნათია ტ.",
+        "en": "Natia T."
+      },
+      "city": {
+        "ka": "რუსთავი",
+        "en": "Rustavi"
+      },
+      "product": {
+        "ka": "ასკილი",
+        "en": "Rosehip"
+      },
+      "rating": 5,
+      "text": {
+        "ka": "ასეთი ასკილი ბავშვობის მერე არ მქონია — ტკბილი, სუფთა და დიდი ნაყოფით. კურიერმა ზუსტად დათქმულ დროს მოიტანა.",
+        "en": "I haven't had rosehip like this since childhood — sweet, clean and large hips. The courier arrived exactly on time."
+      }
+    },
+    {
+      "name": {
+        "ka": "დავით მ.",
+        "en": "Davit M."
+      },
+      "city": {
+        "ka": "ზუგდიდი",
+        "en": "Zugdidi"
+      },
+      "product": {
+        "ka": "ლომის ფაფრის ექსტრაქტი",
+        "en": "Lion's Mane Extract"
+      },
+      "rating": 5,
+      "text": {
+        "ka": "ექსტრაქტი ძალიან მოსახერხებელია, ჩანთაში ვატარებ. კონსულტაციაც დამეხმარა სწორი დოზის შერჩევაში. გირჩევთ!",
+        "en": "The extract is very convenient — I carry it in my bag. The consultation helped me choose the right dose. Highly recommend!"
+      }
+    }
+  ]
+}

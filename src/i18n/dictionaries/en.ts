@@ -7,8 +7,6 @@ export const en: Dictionary = {
     tagline: "Medicinal mushrooms & herbs",
     description:
       "Medicinal mushrooms, herbs and extracts from the forests of Georgia and trusted growers. Lab-tested quality, fast delivery across Georgia.",
-    address: "Tbilisi, Georgia",
-    workingHours: "Mon–Sat, 10:00–20:00",
   },
   nav: { home: "Home", catalog: "Shop", blog: "Journal", faq: "FAQ" },
   header: {

@@ -4,14 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { getBenefits, getProducts } from "@/data";
+import { getBenefits } from "@/data";
+import type { Product } from "@/data/types";
 import { useI18n } from "@/i18n/I18nProvider";
 import { BenefitIcon } from "@/components/ui/Badges";
 import { SectionHeading, fadeUpItem, staggerContainer } from "@/components/ui/Reveal";
 
-export function ShopByBenefit() {
+export function ShopByBenefit({ products }: { products: Product[] }) {
   const { lang, t, path } = useI18n();
-  const products = getProducts(lang);
   return (
     <section className="relative overflow-hidden bg-forest py-20 text-parchment md:py-28">
       <div className="grain pointer-events-none absolute inset-0" />

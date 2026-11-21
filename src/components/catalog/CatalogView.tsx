@@ -4,9 +4,9 @@ import { useEffect, useMemo, useState, useDeferredValue } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { PackageX, Search, X } from "lucide-react";
-import { getBenefits, getCategories, getProducts } from "@/data";
+import { getBenefits, getCategories } from "@/data";
 import { useI18n } from "@/i18n/I18nProvider";
-import type { BenefitId, CategoryId } from "@/data/types";
+import type { BenefitId, CategoryId, Product } from "@/data/types";
 import { filterProducts } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
 import { BenefitIcon } from "@/components/ui/Badges";
@@ -18,7 +18,7 @@ const BENEFIT_IDS: BenefitId[] = ["immunity", "energy", "sleep", "digestion"];
 const isCategory = (v: string | null): v is CategoryId => CATEGORY_IDS.includes(v as CategoryId);
 const isBenefit = (v: string | null): v is BenefitId => BENEFIT_IDS.includes(v as BenefitId);
 
-export function CatalogView() {
+export function CatalogView({ products }: { products: Product[] }) {
   const { lang, t: dict } = useI18n();
   const t = dict.catalog;
   const benefits = getBenefits(lang);
@@ -61,9 +61,9 @@ export function CatalogView() {
   }, []);
 
   const results = useMemo(() => {
-    const list = filterProducts(getProducts(lang), { category, benefit, query: deferredQuery });
+    const list = filterProducts(products, { category, benefit, query: deferredQuery });
     return inStockOnly ? list.filter((p) => p.inStock) : list;
-  }, [lang, category, benefit, deferredQuery, inStockOnly]);
+  }, [products, category, benefit, deferredQuery, inStockOnly]);
 
   const hasFilters = category !== "all" || benefit !== "all" || query !== "" || inStockOnly;
   const reset = () => {

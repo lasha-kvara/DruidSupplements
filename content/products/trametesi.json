@@ -1,0 +1,98 @@
+{
+  "name": "ტრამეტესი (ინდაურის კუდი)",
+  "nameEn": "Turkey Tail",
+  "latinName": "Trametes versicolor",
+  "order": 50,
+  "category": "mushrooms",
+  "benefits": [
+    "immunity",
+    "digestion"
+  ],
+  "inStock": false,
+  "bestseller": false,
+  "isNew": true,
+  "variants": [
+    {
+      "label": "50გ",
+      "price": 26
+    },
+    {
+      "label": "100გ",
+      "price": 45
+    },
+    {
+      "label": "250გ",
+      "price": 99
+    }
+  ],
+  "images": [
+    "/images/products/trametesi/images/0.jpg",
+    "/images/products/trametesi/images/1.jpg"
+  ],
+  "shortBenefit": {
+    "ka": "იმუნიტეტი და მიკროფლორა",
+    "en": "Immunity & gut flora"
+  },
+  "form": {
+    "ka": "დაფქვილი ფხვნილი",
+    "en": "Fine powder"
+  },
+  "excerpt": {
+    "ka": "ფერადი ტყის სოკო, რომელიც მდიდარია PSK და PSP პოლისაქარიდებით.",
+    "en": "A colourful forest mushroom rich in PSK and PSP polysaccharides."
+  },
+  "description": {
+    "ka": "ტრამეტესი ანუ „ინდაურის კუდი“ საქართველოს ტყეებშიც გავრცელებული სოკოა, რომელიც მსოფლიოში ერთ-ერთ ყველაზე შესწავლილ იმუნომოდულატორ სოკოდ ითვლება. მისი პოლისაქარიდები ასევე პრებიოტიკულად მოქმედებს და ხელს უწყობს ნაწლავის ჯანსაღ მიკროფლორას.",
+    "en": "Turkey Tail (Trametes versicolor) also grows in Georgian forests and is one of the most studied immunomodulating mushrooms in the world. Its polysaccharides also act as prebiotics and support a healthy gut microbiome."
+  },
+  "detailsKa": {
+    "benefits": [
+      "იმუნური სისტემის ბალანსის მხარდაჭერა",
+      "პრებიოტიკური მოქმედება ნაწლავის მიკროფლორისთვის",
+      "მდიდარია ანტიოქსიდანტებით",
+      "ტრადიციულად გამოიყენება აღდგენით პერიოდში"
+    ],
+    "usage": "შეურიეთ თბილ სასმელს, სუპს ან ფაფას. ნახარშისთვის 2 გ ფხვნილი ადუღეთ 300 მლ წყალში 15 წუთი.",
+    "dosage": [
+      "ზრდასრულები: 1–3 გ დღეში",
+      "მიიღეთ საკვებთან ერთად",
+      "კურსი: 8–12 კვირა"
+    ],
+    "ingredients": "100% ტრამეტესის (Trametes versicolor) ნაყოფსხეული.",
+    "origin": "ველურად შეგროვებული სამეგრელოსა და გურიის ტყეებიდან, ეკოლოგიურად სუფთა ზონიდან.",
+    "contraindications": [
+      "ორსულობისა და ძუძუთი კვების პერიოდში — ექიმის კონსულტაციით",
+      "ქიმიოთერაპიის პერიოდში მიიღეთ მხოლოდ ონკოლოგის თანხმობით",
+      "სოკოებზე ალერგიის შემთხვევაში არ მიიღოთ"
+    ]
+  },
+  "detailsEn": {
+    "benefits": [
+      "Supports immune balance",
+      "Prebiotic action for the gut microbiome",
+      "Rich in antioxidants",
+      "Traditionally used during recovery"
+    ],
+    "usage": "Stir into a warm drink, soup or porridge. For a decoction, simmer 2 g of powder in 300 ml of water for 15 minutes.",
+    "dosage": [
+      "Adults: 1–3 g per day",
+      "Take with food",
+      "Course: 8–12 weeks"
+    ],
+    "ingredients": "100% Turkey Tail (Trametes versicolor) fruiting body.",
+    "origin": "Wild-harvested in the ecologically clean forests of Samegrelo and Guria.",
+    "contraindications": [
+      "During pregnancy and breastfeeding — consult a doctor",
+      "During chemotherapy take only with your oncologist's approval",
+      "Do not take if you are allergic to mushrooms"
+    ]
+  },
+  "rating": 4.8,
+  "reviewCount": 31,
+  "keywords": [
+    "turkey tail",
+    "trametes",
+    "ინდაურის კუდი",
+    "პრებიოტიკი"
+  ]
+}

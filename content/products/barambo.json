@@ -1,0 +1,97 @@
+{
+  "name": "ბარამბო",
+  "nameEn": "Lemon Balm",
+  "latinName": "Melissa officinalis",
+  "order": 70,
+  "category": "herbs",
+  "benefits": [
+    "sleep",
+    "digestion"
+  ],
+  "inStock": true,
+  "bestseller": false,
+  "isNew": false,
+  "variants": [
+    {
+      "label": "50გ",
+      "price": 7
+    },
+    {
+      "label": "100გ",
+      "price": 12
+    },
+    {
+      "label": "250გ",
+      "price": 26
+    }
+  ],
+  "images": [
+    "/images/products/barambo/images/0.jpg",
+    "/images/products/barambo/images/1.jpg"
+  ],
+  "shortBenefit": {
+    "ka": "სიმშვიდე და ძილი",
+    "en": "Calm & sleep"
+  },
+  "form": {
+    "ka": "გამხმარი ფოთოლი",
+    "en": "Dried leaves"
+  },
+  "excerpt": {
+    "ka": "ლიმნის არომატის მქონე ქართული ბაღის მცენარე საღამოს დამამშვიდებელი ჩაისთვის.",
+    "en": "A lemon-scented Georgian garden herb for a calming evening tea."
+  },
+  "description": {
+    "ka": "ბარამბო ანუ ლიმონის ბალახი ქართულ ოჯახებში საუკუნეებია გამოიყენება ნერვების დასამშვიდებლად და ძილის გასაუმჯობესებლად. ჩვენი ბარამბო მოყვანილია კახეთში, ქიმიური სასუქების გარეშე და მოკრეფილია ყვავილობის დაწყებისას — როცა ეთერზეთების შემცველობა მაქსიმალურია.",
+    "en": "Lemon balm (barambo) has been used in Georgian homes for centuries to calm the nerves and improve sleep. Ours is grown in Kakheti without chemical fertilisers and picked at the start of flowering, when its essential-oil content is highest."
+  },
+  "detailsKa": {
+    "benefits": [
+      "ხელს უწყობს მოდუნებას და ნერვული დაძაბულობის მოხსნას",
+      "ეხმარება ჩაძინებას და ძილის ხარისხს",
+      "ამსუბუქებს მუცლის შებერილობას და სპაზმებს",
+      "ტრადიციულად გამოიყენება გუნება-განწყობის გასაუმჯობესებლად"
+    ],
+    "usage": "1 ჩაის კოვზი ფოთოლი დაასხით 250 მლ 90°C წყალი, დაახურეთ და დააყოვნეთ 7–10 წუთი. შეიძლება შეურიოთ თაფლი ან ლიმონი.",
+    "dosage": [
+      "2–3 ჭიქა ჩაი დღეში",
+      "ძილის გასაუმჯობესებლად — 1 ჭიქა ძილამდე 30–60 წუთით ადრე"
+    ],
+    "ingredients": "100% ბარამბოს (Melissa officinalis) გამხმარი ფოთოლი.",
+    "origin": "მოყვანილია ორგანულ ბაღში, კახეთის რეგიონში, ხელით მოკრეფილი და ჩრდილში გამომშრალი.",
+    "contraindications": [
+      "ფარისებრი ჯირკვლის ჰიპოფუნქციის შემთხვევაში — ექიმის კონსულტაციით",
+      "შეიძლება გააძლიეროს დამამშვიდებელი მედიკამენტების მოქმედება",
+      "მიღების შემდეგ თავი შეიკავეთ მანქანის მართვისგან, თუ გრძნობთ ძილიანობას"
+    ]
+  },
+  "detailsEn": {
+    "benefits": [
+      "Helps relaxation and relieves nervous tension",
+      "Supports falling asleep and sleep quality",
+      "Eases bloating and cramps",
+      "Traditionally used to lift the mood"
+    ],
+    "usage": "Pour 250 ml of 90°C water over 1 teaspoon of leaves, cover and steep for 7–10 minutes. Add honey or lemon if you like.",
+    "dosage": [
+      "2–3 cups of tea per day",
+      "For better sleep — 1 cup 30–60 minutes before bed"
+    ],
+    "ingredients": "100% dried lemon balm (Melissa officinalis) leaves.",
+    "origin": "Grown in an organic garden in Kakheti, hand-picked and dried in the shade.",
+    "contraindications": [
+      "Underactive thyroid — consult a doctor",
+      "May enhance the effect of sedative medication",
+      "Avoid driving if you feel drowsy after drinking"
+    ]
+  },
+  "rating": 4.8,
+  "reviewCount": 87,
+  "keywords": [
+    "lemon balm",
+    "melissa",
+    "მელისა",
+    "ლიმნის ბალახი",
+    "ძილი"
+  ]
+}

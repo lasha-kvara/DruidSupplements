@@ -115,10 +115,10 @@ export function Footer({ lang }: { lang: Locale }) {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-terracotta-light" /> {t.site.address}
+                <MapPin className="h-4 w-4 text-terracotta-light" /> {siteConfig.address[lang] || siteConfig.address.ka}
               </li>
               <li className="flex items-center gap-3">
-                <Clock className="h-4 w-4 text-terracotta-light" /> {t.site.workingHours}
+                <Clock className="h-4 w-4 text-terracotta-light" /> {siteConfig.workingHours[lang] || siteConfig.workingHours.ka}
               </li>
             </ul>
           </div>

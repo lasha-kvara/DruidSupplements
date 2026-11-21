@@ -1,0 +1,5 @@
+# Keep LF everywhere: Keystatic (and GitHub) write LF, Windows checkouts would otherwise turn content into CRLF.
+* text=auto eol=lf
+*.jpg binary
+*.png binary
+*.woff2 binary

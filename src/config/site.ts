@@ -1,12 +1,11 @@
 /**
- * Central store configuration. Change phone numbers, socials and delivery
- * terms here — every component reads from this file.
+ * Store configuration. Phone numbers, socials, address, hours and delivery prices are
+ * edited in the admin panel (/keystatic → „საკონტაქტო და მიწოდება“) and stored in
+ * content/settings.json. Everything else here is fixed in code.
  */
+import settings from "../../content/settings.json";
+
 export const siteConfig = {
-  name: "დრუიდი",
-  tagline: "სამკურნალო სოკოები და მცენარეები",
-  description:
-    "სამკურნალო სოკოები, მცენარეები და ექსტრაქტები საქართველოს ტყეებიდან და სანდო მწარმოებლებისგან. ლაბორატორიულად შემოწმებული ხარისხი, სწრაფი მიწოდება მთელ საქართველოში.",
   /** Canonical URL: explicit env → Vercel production domain → localhost */
   url:
     process.env.NEXT_PUBLIC_SITE_URL ||
@@ -15,27 +14,27 @@ export const siteConfig = {
       : "http://localhost:3000"),
 
   /** Digits only, with country code, no "+" — used for https://wa.me/<number> */
-  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "995555123456",
+  whatsappNumber: settings.whatsappNumber.replace(/\D/g, ""),
   /** Used for tel: links */
-  phoneNumber: process.env.NEXT_PUBLIC_PHONE_NUMBER || "+995555123456",
+  phoneNumber: settings.phoneNumber.replace(/[^\d+]/g, ""),
   /** Human-readable phone */
-  phoneDisplay: "+995 555 12 34 56",
-  email: "info@druid.ge",
-  address: "თბილისი, საქართველო",
-  workingHours: "ორშ–შაბ, 10:00–20:00",
+  phoneDisplay: settings.phoneDisplay,
+  email: settings.email,
+  /** { ka, en } */
+  address: settings.address,
+  /** { ka, en } */
+  workingHours: settings.workingHours,
 
   socials: {
-    facebook: "https://facebook.com/",
-    instagram: "https://instagram.com/",
-    tiktok: "https://tiktok.com/",
+    facebook: settings.facebook || "",
+    instagram: settings.instagram || "",
+    tiktok: settings.tiktok || "",
   },
 
   delivery: {
-    tbilisiPrice: 5,
-    regionsPrice: 8,
-    freeFrom: 100,
-    tbilisiTime: "იმავე ან მომდევნო დღეს",
-    regionsTime: "1–3 სამუშაო დღეში",
+    tbilisiPrice: settings.tbilisiPrice ?? 5,
+    regionsPrice: settings.regionsPrice ?? 8,
+    freeFrom: settings.freeFrom ?? 100,
   },
 
   currency: "₾",

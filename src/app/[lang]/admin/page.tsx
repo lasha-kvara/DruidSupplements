@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { products } from "@/data/products";
-import { posts } from "@/data/posts";
+import { PencilLine } from "lucide-react";
+import { getPosts, getProducts } from "@/data/server";
 import { categoryById } from "@/data/categories";
 import { imageCredits } from "@/data/image-credits";
 import { siteConfig } from "@/config/site";
 import { formatPrice } from "@/lib/utils";
 import { buildOrderMessage, buildOrderWhatsAppUrl } from "@/lib/whatsapp";
-
-// Render on request so the order-channel status reflects runtime env vars.
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "ადმინ პანელი",
@@ -17,11 +14,12 @@ export const metadata: Metadata = {
 };
 
 /**
- * Read-only overview of the data layer (src/data/*). Edit the TypeScript files
- * to change products; the structure maps 1:1 to a headless CMS collection
- * (Sanity / Strapi / Payload) if you migrate later.
+ * Store overview. Editing happens in the Keystatic admin at /keystatic
+ * (content/*.json + content/posts/*). Env-based status is read at build time —
+ * redeploy on Vercel after changing environment variables.
  */
-export default function AdminPage() {
+export default async function AdminPage() {
+  const [products, posts] = await Promise.all([getProducts("ka"), getPosts("ka")]);
   const inStock = products.filter((p) => p.inStock).length;
   const telegram = Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
   const formspree = Boolean(process.env.FORMSPREE_ENDPOINT);
@@ -44,14 +42,16 @@ export default function AdminPage() {
     <div className="container pb-10 pt-28 md:pt-32">
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div>
-          <p className="eyebrow">Admin · მხოლოდ კითხვა</p>
+          <p className="eyebrow">Admin</p>
           <h1 className="mt-2 text-3xl font-semibold md:text-4xl">მაღაზიის მიმოხილვა</h1>
           <p className="mt-2 max-w-2xl text-sm text-charcoal-soft">
-            მონაცემების შესაცვლელად დაარედაქტირეთ ფაილები <code className="rounded bg-forest/5 px-1.5">src/data/products.ts</code>,{" "}
-            <code className="rounded bg-forest/5 px-1.5">src/data/posts.ts</code> და{" "}
-            <code className="rounded bg-forest/5 px-1.5">src/config/site.ts</code>. ცვლილებები ავტომატურად აისახება საიტზე.
+            პროდუქტების, ფასების, მარაგის, სტატიების, შეფასებების, FAQ-ისა და საკონტაქტო ინფორმაციის შესაცვლელად
+            გახსენით რედაქტორი. შენახვის შემდეგ საიტი 1–2 წუთში განახლდება.
           </p>
         </div>
+        <a href="/keystatic" className="btn-primary shrink-0">
+          <PencilLine className="h-5 w-5" /> რედაქტორის გახსნა
+        </a>
       </div>
 
       <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -111,7 +111,12 @@ export default function AdminPage() {
                     <Link href={`/product/${p.slug}`} className="font-semibold text-forest hover:text-terracotta">
                       {p.name}
                     </Link>
-                    <p className="text-xs text-charcoal-muted">/{p.slug}</p>
+                    <p className="text-xs text-charcoal-muted">
+                      /{p.slug} ·{" "}
+                      <a href={`/keystatic/collection/products/item/${p.slug}`} className="text-terracotta hover:underline">
+                        რედაქტირება
+                      </a>
+                    </p>
                   </td>
                   <td className="px-4 py-3">{categoryById(p.category)?.name}</td>
                   <td className="px-4 py-3">

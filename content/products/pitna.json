@@ -1,0 +1,96 @@
+{
+  "name": "პიტნა",
+  "nameEn": "Peppermint",
+  "latinName": "Mentha × piperita",
+  "order": 80,
+  "category": "herbs",
+  "benefits": [
+    "digestion"
+  ],
+  "inStock": true,
+  "bestseller": false,
+  "isNew": false,
+  "variants": [
+    {
+      "label": "50გ",
+      "price": 6
+    },
+    {
+      "label": "100გ",
+      "price": 10
+    },
+    {
+      "label": "250გ",
+      "price": 22
+    }
+  ],
+  "images": [
+    "/images/products/pitna/images/0.jpg",
+    "/images/products/pitna/images/1.jpg"
+  ],
+  "shortBenefit": {
+    "ka": "მონელება და სიმსუბუქე",
+    "en": "Digestion & lightness"
+  },
+  "form": {
+    "ka": "გამხმარი ფოთოლი",
+    "en": "Dried leaves"
+  },
+  "excerpt": {
+    "ka": "არომატული პიტნის ფოთოლი — ჭამის შემდეგ სიმსუბუქისა და სიგრილისთვის.",
+    "en": "Aromatic peppermint leaves — for a light, fresh feeling after meals."
+  },
+  "description": {
+    "ka": "პიტნის მენთოლით მდიდარი ფოთოლი ერთ-ერთი ყველაზე ცნობილი მცენარეა საჭმლის მონელების კომფორტისთვის. ჩვენი პიტნა მოკრეფილია ზაფხულის პიკზე, ნელა გამომშრალი და შეფუთულია ჰერმეტულ შეფუთვაში, რომ არომატი შენარჩუნდეს.",
+    "en": "Menthol-rich peppermint is one of the best-known herbs for digestive comfort. Ours is picked at the height of summer, slowly dried and packed airtight to keep its aroma."
+  },
+  "detailsKa": {
+    "benefits": [
+      "ამსუბუქებს შებერილობას და მძიმე ჭამის შემდგომ დისკომფორტს",
+      "ტრადიციულად გამოიყენება გულისრევის შესამსუბუქებლად",
+      "აგრილებს და ახალისებს",
+      "ეხმარება ცხვირის სუნთქვას გაციების დროს (ორთქლის ინჰალაცია)"
+    ],
+    "usage": "1 ჩაის კოვზი ფოთოლი დაასხით 250 მლ ცხელი წყალი, დაახურეთ და დააყოვნეთ 5–7 წუთი. სასურველია ჭამის შემდეგ.",
+    "dosage": [
+      "2–3 ჭიქა ჩაი დღეში",
+      "ბავშვები 6 წლიდან: 1 ჭიქა სუსტი ჩაი დღეში"
+    ],
+    "ingredients": "100% პიტნის (Mentha × piperita) გამხმარი ფოთოლი.",
+    "origin": "მოყვანილია ქვემო ქართლში, ორგანული მეთოდით, პესტიციდების გარეშე.",
+    "contraindications": [
+      "გასტროეზოფაგური რეფლუქსის (გულძმარვის) დროს შეიძლება გააძლიეროს სიმპტომები",
+      "არ არის რეკომენდებული 3 წლამდე ბავშვებისთვის",
+      "ნაღვლის ბუშტის კენჭების შემთხვევაში — ექიმის კონსულტაციით"
+    ]
+  },
+  "detailsEn": {
+    "benefits": [
+      "Eases bloating and discomfort after a heavy meal",
+      "Traditionally used to relieve nausea",
+      "Cooling and refreshing",
+      "Helps clear the nose during colds (steam inhalation)"
+    ],
+    "usage": "Pour 250 ml of hot water over 1 teaspoon of leaves, cover and steep for 5–7 minutes. Best after meals.",
+    "dosage": [
+      "2–3 cups of tea per day",
+      "Children from 6 years: 1 cup of weak tea per day"
+    ],
+    "ingredients": "100% dried peppermint (Mentha × piperita) leaves.",
+    "origin": "Grown organically in Kvemo Kartli without pesticides.",
+    "contraindications": [
+      "May worsen heartburn (gastro-oesophageal reflux)",
+      "Not recommended for children under 3",
+      "Gallstones — consult a doctor"
+    ]
+  },
+  "rating": 4.7,
+  "reviewCount": 64,
+  "keywords": [
+    "mint",
+    "peppermint",
+    "მენთოლი",
+    "მონელება",
+    "ჩაი"
+  ]
+}

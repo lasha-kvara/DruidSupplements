@@ -1,0 +1,103 @@
+{
+  "name": "ლომის ფაფარი",
+  "nameEn": "Lion's Mane",
+  "latinName": "Hericium erinaceus",
+  "order": 10,
+  "category": "mushrooms",
+  "benefits": [
+    "energy",
+    "sleep"
+  ],
+  "inStock": true,
+  "bestseller": true,
+  "isNew": false,
+  "variants": [
+    {
+      "label": "50გ",
+      "price": 35
+    },
+    {
+      "label": "100გ",
+      "price": 60
+    },
+    {
+      "label": "250გ",
+      "price": 135,
+      "oldPrice": 150
+    }
+  ],
+  "images": [
+    "/images/products/lomis-fafari/images/0.jpg",
+    "/images/products/lomis-fafari/images/1.jpg",
+    "/images/products/lomis-fafari/images/2.jpg"
+  ],
+  "shortBenefit": {
+    "ka": "მეხსიერება და ფოკუსი",
+    "en": "Memory & focus"
+  },
+  "form": {
+    "ka": "დაფქვილი ფხვნილი",
+    "en": "Fine powder"
+  },
+  "excerpt": {
+    "ka": "„ტვინის სოკო“ — გონებრივი სიცხადის, მეხსიერებისა და კონცენტრაციის მხარდასაჭერად.",
+    "en": "The “brain mushroom” — for mental clarity, memory and concentration."
+  },
+  "description": {
+    "ka": "ლომის ფაფარი ერთ-ერთი ყველაზე შესწავლილი ფუნქციური სოკოა. ის შეიცავს ჰერიცენონებსა და ერინაცინებს — ნაერთებს, რომლებსაც მკვლევრები ნერვული უჯრედების ზრდის ფაქტორთან (NGF) კავშირში სწავლობენ. ჩვენი ლომის ფაფარი მოყვანილია ორგანულ მუხის ნახერხზე, ნაზად გამომშრალი დაბალ ტემპერატურაზე და წვრილად დაფქვილი, რომ ადვილად შეერიოს ყავას, ჩაის ან სმუზის.",
+    "en": "Lion's Mane is one of the most studied functional mushrooms. It contains hericenones and erinacines — compounds researchers study in connection with nerve growth factor (NGF). Ours is grown on organic oak substrate, gently dried at low temperature and finely milled so it blends easily into coffee, tea or smoothies."
+  },
+  "detailsKa": {
+    "benefits": [
+      "ხელს უწყობს კონცენტრაციას და გონებრივ სიცხადეს",
+      "ტრადიციულად გამოიყენება მეხსიერების მხარდასაჭერად",
+      "ეხმარება ნერვული სისტემის ბალანსს და ემოციურ სიმშვიდეს",
+      "შეიცავს ბეტა-გლუკანებს იმუნური სისტემისთვის"
+    ],
+    "usage": "შეურიეთ ფხვნილი ცხელ (არა მდუღარე) ყავას, ჩაის, კაკაოს ან სმუზის. საუკეთესოა დილით ან დღის პირველ ნახევარში. რეკომენდებულია 6–8 კვირიანი კურსი, შემდეგ 1–2 კვირიანი შესვენება.",
+    "dosage": [
+      "ზრდასრულები: 1–2 გ (½–1 ჩაის კოვზი) დღეში",
+      "დაიწყეთ მცირე დოზით და თანდათან გაზარდეთ",
+      "არ გადააჭარბოთ 3 გ-ს დღეში"
+    ],
+    "ingredients": "100% ლომის ფაფრის (Hericium erinaceus) ნაყოფსხეული, დაფქვილი. დანამატების, შემავსებლებისა და კონსერვანტების გარეშე.",
+    "origin": "მოყვანილია ორგანულ ფერმაში იმერეთში, ბუნებრივ მუხის სუბსტრატზე. თითოეული პარტია შემოწმებულია მძიმე მეტალებსა და მიკრობიოლოგიაზე.",
+    "contraindications": [
+      "ორსულობისა და ძუძუთი კვების პერიოდში — მხოლოდ ექიმის კონსულტაციით",
+      "სოკოებზე ალერგიის შემთხვევაში არ მიიღოთ",
+      "ანტიკოაგულანტების ან დიაბეტის მედიკამენტების მიღებისას გაიარეთ კონსულტაცია ექიმთან",
+      "არ არის განკუთვნილი 12 წლამდე ბავშვებისთვის"
+    ]
+  },
+  "detailsEn": {
+    "benefits": [
+      "Supports concentration and mental clarity",
+      "Traditionally used to support memory",
+      "Helps nervous-system balance and emotional calm",
+      "Contains beta-glucans for the immune system"
+    ],
+    "usage": "Stir the powder into hot (not boiling) coffee, tea, cocoa or a smoothie. Best taken in the morning or first half of the day. We recommend a 6–8 week course followed by a 1–2 week break.",
+    "dosage": [
+      "Adults: 1–2 g (½–1 teaspoon) per day",
+      "Start with a small dose and increase gradually",
+      "Do not exceed 3 g per day"
+    ],
+    "ingredients": "100% Lion's Mane (Hericium erinaceus) fruiting body, milled. No additives, fillers or preservatives.",
+    "origin": "Grown on an organic farm in Imereti on natural oak substrate. Every batch is tested for heavy metals and microbiology.",
+    "contraindications": [
+      "During pregnancy and breastfeeding — only after consulting a doctor",
+      "Do not take if you are allergic to mushrooms",
+      "Consult a doctor if you take anticoagulants or diabetes medication",
+      "Not intended for children under 12"
+    ]
+  },
+  "rating": 4.9,
+  "reviewCount": 128,
+  "keywords": [
+    "lions mane",
+    "hericium",
+    "ფოკუსი",
+    "მეხსიერება",
+    "ტვინი"
+  ]
+}
