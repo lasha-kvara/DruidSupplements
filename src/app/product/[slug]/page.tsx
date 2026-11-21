@@ -6,6 +6,9 @@ import { products } from "@/data/products";
 import { benefitById, categoryById } from "@/data/categories";
 import { getProductBySlug, getRelatedProducts, getStartingPrice } from "@/lib/catalog";
 import { siteConfig } from "@/config/site";
+import { absoluteUrl } from "@/lib/utils";
+
+export const dynamicParams = false;
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductPurchase } from "@/components/product/ProductPurchase";
 import { ProductInfoTabs } from "@/components/product/ProductInfoTabs";
@@ -26,7 +29,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return {
     title: `${product.name} (${product.latinName})`,
     description: product.excerpt,
-    openGraph: { title: product.name, description: product.excerpt, images: [product.images[0]] },
+    openGraph: { title: product.name, description: product.excerpt, images: [absoluteUrl(product.images[0])] },
   };
 }
 
@@ -44,7 +47,7 @@ export default async function ProductPage({ params }: { params: Params }) {
     name: product.name,
     alternateName: product.latinName,
     description: product.description,
-    image: product.images.map((i) => `${siteConfig.url}${i}`),
+    image: product.images.map(absoluteUrl),
     brand: { "@type": "Brand", name: siteConfig.name },
     aggregateRating: { "@type": "AggregateRating", ratingValue: product.rating, reviewCount: product.reviewCount },
     offers: {

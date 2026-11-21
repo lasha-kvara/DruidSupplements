@@ -3,6 +3,11 @@ import { siteConfig } from "@/config/site";
 
 export const cn = (...inputs: ClassValue[]) => clsx(inputs);
 
+/** "/images/a.jpg" -> "https://<site>/<base>/images/a.jpg" (siteConfig.url already includes the base path) */
+export function absoluteUrl(path: string): string {
+  return `${siteConfig.url.replace(/\/$/, "")}${path}`;
+}
+
 /** 35 -> "35", 12.5 -> "12.50" */
 export function formatAmount(value: number): string {
   return Number.isInteger(value) ? String(value) : value.toFixed(2);

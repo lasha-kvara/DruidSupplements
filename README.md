@@ -8,8 +8,11 @@ Georgian-language storefront with WhatsApp / call-back ordering (no payment gate
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm run build && npm start
+npm run build      # static site in ./out
 ```
+
+Live: https://lasha-kvara.github.io/DruidSupplements/ — every push to `main` is built and deployed
+by `.github/workflows/deploy-pages.yml`.
 
 ## Where to change things
 
@@ -28,8 +31,12 @@ npm run build && npm start
 
 - **WhatsApp** — `src/lib/whatsapp.ts` builds
   `https://wa.me/<number>?text=<encodeURIComponent(message)>` from the selected product, weight, quantity and total.
-- **Quick order (call-back)** — the modal posts to `src/app/api/order/route.ts`, which validates the
-  Georgian phone number and forwards the order to Telegram (`TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`)
-  or Formspree (`FORMSPREE_ENDPOINT`). With neither set, orders are written to the server log.
+- **Quick order (call-back)** — GitHub Pages is static, so `src/lib/order.ts` runs in the browser:
+  - if `NEXT_PUBLIC_ORDER_ENDPOINT` is set (e.g. a free https://formspree.io form), the order is POSTed there and arrives by email;
+  - otherwise WhatsApp opens with a pre-filled call-back message.
 
-Because of the API route, deploy to a Node host (Vercel, Railway, a VPS) rather than a static export.
+### Settings for the live site
+
+In GitHub → Settings → Secrets and variables → Actions → **Variables**, add any of:
+`NEXT_PUBLIC_WHATSAPP_NUMBER`, `NEXT_PUBLIC_PHONE_NUMBER`, `NEXT_PUBLIC_ORDER_ENDPOINT`,
+then re-run the "Deploy to GitHub Pages" workflow. These values are public — never put secrets there.

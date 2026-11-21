@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Noto_Sans_Georgian, Noto_Serif_Georgian } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
+import { absoluteUrl } from "@/lib/utils";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingContact } from "@/components/layout/FloatingContact";
@@ -34,9 +35,8 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: [{ url: "/images/forest.jpg", width: 1800, height: 1200 }],
+    images: [{ url: absoluteUrl("/images/forest.jpg"), width: 1800, height: 1200 }],
   },
-  icons: { icon: "/icon.svg" },
 };
 
 export const viewport: Viewport = {

@@ -6,7 +6,9 @@ import { ArrowLeft, Clock, Leaf } from "lucide-react";
 import { getPostBySlug, posts } from "@/data/posts";
 import type { BlogBlock } from "@/data/types";
 import { getProductBySlug } from "@/lib/catalog";
-import { formatDateKa } from "@/lib/utils";
+import { absoluteUrl, formatDateKa } from "@/lib/utils";
+
+export const dynamicParams = false;
 import { siteConfig } from "@/config/site";
 import { ProductCard } from "@/components/product/ProductCard";
 import { PostCard } from "@/components/blog/PostCard";
@@ -26,7 +28,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return {
     title: post.title,
     description: post.excerpt,
-    openGraph: { type: "article", title: post.title, description: post.excerpt, images: [post.cover], publishedTime: post.date },
+    openGraph: { type: "article", title: post.title, description: post.excerpt, images: [absoluteUrl(post.cover)], publishedTime: post.date },
   };
 }
 
@@ -65,7 +67,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: `${siteConfig.url}${post.cover}`,
+    image: absoluteUrl(post.cover),
     datePublished: post.date,
     author: { "@type": "Person", name: post.author },
     publisher: { "@type": "Organization", name: siteConfig.name },

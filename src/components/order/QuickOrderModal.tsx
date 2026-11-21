@@ -5,7 +5,8 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle2, Loader2, Phone, User, X } from "lucide-react";
 import type { QuickOrderContext } from "./QuickOrderProvider";
-import { formatAmount, isValidGeorgianPhone } from "@/lib/utils";
+import { formatAmount } from "@/lib/utils";
+import { submitQuickOrder, validateQuickOrder, type OrderChannel } from "@/lib/order";
 import { buildOrderWhatsAppUrl, buildWhatsAppUrl, lineTotal } from "@/lib/whatsapp";
 import { siteConfig } from "@/config/site";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
@@ -24,6 +25,7 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
   const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [channel, setChannel] = useState<OrderChannel>("form");
   const nameRef = useRef<HTMLInputElement>(null);
 
   const hasProduct = Boolean(order.productName && order.unitPrice);
@@ -48,27 +50,23 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (name.trim().length < 2) return setError("გთხოვთ, მიუთითოთ სახელი");
-    if (!isValidGeorgianPhone(phone)) return setError("გთხოვთ, მიუთითოთ სწორი ნომერი (მაგ. 555 12 34 56)");
+    const invalid = validateQuickOrder({ name, phone });
+    if (invalid) return setError(invalid);
     setError(null);
+    // Honeypot filled → silently pretend success (bots only).
+    if (website) return setStatus("success");
     setStatus("sending");
     try {
-      const res = await fetch("/api/order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          phone,
-          website,
-          product: order.productName,
-          variant: order.variantLabel,
-          quantity: order.quantity,
-          total: hasProduct ? total : undefined,
-          page: window.location.pathname,
-        }),
+      const used = await submitQuickOrder({
+        name: name.trim(),
+        phone: phone.trim(),
+        product: order.productName,
+        variant: order.variantLabel,
+        quantity: order.quantity,
+        total: hasProduct ? total : undefined,
+        page: window.location.href,
       });
-      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
-      if (!res.ok || !data.ok) throw new Error(data.error ?? "შეკვეთის გაგზავნა ვერ მოხერხდა");
+      setChannel(used);
       setStatus("success");
     } catch (err) {
       setStatus("error");
@@ -138,10 +136,18 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
                       <CheckCircle2 className="h-10 w-10" />
                     </motion.div>
                     <h2 className="mt-6 text-2xl font-semibold">მადლობა, {name.split(" ")[0]}!</h2>
-                    <p className="mt-3 text-charcoal-soft">
-                      თქვენი შეკვეთა მიღებულია. ჩვენი კონსულტანტი დაგიკავშირდებათ <b>15 წუთში</b> ნომერზე{" "}
-                      <span className="whitespace-nowrap font-semibold text-forest">{phone}</span>.
-                    </p>
+                    {channel === "whatsapp" ? (
+                      <p className="mt-3 text-charcoal-soft">
+                        WhatsApp-ში მომზადდა შეტყობინება თქვენი მონაცემებით — <b>დააჭირეთ „გაგზავნას“</b>, და
+                        კონსულტანტი დაგირეკავთ ნომერზე{" "}
+                        <span className="whitespace-nowrap font-semibold text-forest">{phone}</span>.
+                      </p>
+                    ) : (
+                      <p className="mt-3 text-charcoal-soft">
+                        თქვენი შეკვეთა მიღებულია. ჩვენი კონსულტანტი დაგიკავშირდებათ <b>15 წუთში</b> ნომერზე{" "}
+                        <span className="whitespace-nowrap font-semibold text-forest">{phone}</span>.
+                      </p>
+                    )}
                     <p className="mt-2 text-sm text-charcoal-muted">სამუშაო საათები: {siteConfig.workingHours}</p>
                     <button type="button" onClick={onClose} className="btn-forest mt-7 w-full">
                       კარგი

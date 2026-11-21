@@ -7,12 +7,12 @@ export const siteConfig = {
   tagline: "სამკურნალო სოკოები და მცენარეები",
   description:
     "სამკურნალო სოკოები, მცენარეები და ექსტრაქტები საქართველოს ტყეებიდან და სანდო მწარმოებლებისგან. ლაბორატორიულად შემოწმებული ხარისხი, სწრაფი მიწოდება მთელ საქართველოში.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://druid.ge",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://druid.ge",
 
   /** Digits only, with country code, no "+" — used for https://wa.me/<number> */
-  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "995555123456",
+  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "995555123456",
   /** Used for tel: links */
-  phoneNumber: process.env.NEXT_PUBLIC_PHONE_NUMBER ?? "+995555123456",
+  phoneNumber: process.env.NEXT_PUBLIC_PHONE_NUMBER || "+995555123456",
   /** Human-readable phone */
   phoneDisplay: "+995 555 12 34 56",
   email: "info@druid.ge",
