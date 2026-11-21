@@ -6,8 +6,8 @@
         "en": "How does delivery work in Tbilisi?"
       },
       "answer": {
-        "ka": "თბილისში კურიერი შეკვეთას იმავე ან მომდევნო დღეს მოგიტანთ. მიწოდების ღირებულებაა 5 ₾, ხოლო 100 ₾-ზე მეტი შეკვეთისას — უფასოა.",
-        "en": "A courier delivers your order the same or next day. Delivery costs 5 ₾ and is free for orders over 100 ₾."
+        "ka": "თბილისში კურიერი შეკვეთას იმავე ან მომდევნო დღეს მოგიტანთ. მიწოდების ღირებულებაა {tbilisiPrice} ₾, ხოლო {freeFrom} ₾-ზე მეტი შეკვეთისას — უფასოა.",
+        "en": "A courier delivers your order the same or next day. Delivery costs {tbilisiPrice} ₾ and is free for orders over {freeFrom} ₾."
       }
     },
     {
@@ -16,8 +16,8 @@
         "en": "Do you deliver to the regions?"
       },
       "answer": {
-        "ka": "დიახ, ვაგზავნით საქართველოს ყველა ქალაქსა და სოფელში. რეგიონებში მიწოდებას სჭირდება 1–3 სამუშაო დღეში, ღირებულება — 8 ₾ (100 ₾-დან უფასო).",
-        "en": "Yes, we deliver to every town and village in Georgia. Regional delivery takes 1–3 business days and costs 8 ₾ (free from 100 ₾)."
+        "ka": "დიახ, ვაგზავნით საქართველოს ყველა ქალაქსა და სოფელში. რეგიონებში მიწოდებას სჭირდება 1–3 სამუშაო დღეში, ღირებულება — {regionsPrice} ₾ ({freeFrom} ₾-დან უფასო).",
+        "en": "Yes, we deliver to every town and village in Georgia. Regional delivery takes 1–3 business days and costs {regionsPrice} ₾ (free from {freeFrom} ₾)."
       }
     },
     {

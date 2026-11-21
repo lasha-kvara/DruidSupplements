@@ -23,7 +23,7 @@ const useCloud =
 export const keystaticEnabled = process.env.NODE_ENV !== "production" || useCloud;
 
 /** Georgian + English pair of plain text inputs */
-const bi = (label: string, opts: { multiline?: boolean; required?: boolean } = {}) =>
+const bi = (label: string, opts: { multiline?: boolean; required?: boolean; description?: string } = {}) =>
   fields.object(
     {
       ka: fields.text({
@@ -33,7 +33,7 @@ const bi = (label: string, opts: { multiline?: boolean; required?: boolean } = {
       }),
       en: fields.text({ label: `${label} (English)`, multiline: opts.multiline }),
     },
-    { label, layout: [6, 6] },
+    { label, description: opts.description, layout: [6, 6] },
   );
 
 const textList = (label: string, itemLabel: string) =>
@@ -247,7 +247,11 @@ export default config({
         items: fields.array(
           fields.object({
             question: bi("კითხვა"),
-            answer: bi("პასუხი", { multiline: true }),
+            answer: bi("პასუხი", {
+              multiline: true,
+              description:
+                "მიწოდების ფასები ტექსტში ციფრით ნუ ჩაწერეთ — გამოიყენეთ {tbilisiPrice}, {regionsPrice}, {freeFrom}. საიტი მათ ავტომატურად ჩაანაცვლებს „საკონტაქტო და მიწოდება“-ში მითითებული ფასებით.",
+            }),
           }),
           { label: "კითხვები", itemLabel: (p) => p.fields.question.fields.ka.value },
         ),
