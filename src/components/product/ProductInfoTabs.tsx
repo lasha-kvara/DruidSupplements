@@ -6,6 +6,8 @@ import { AlertTriangle, Check, Leaf, MapPin, Pill, Sparkles } from "lucide-react
 import type { ProductDetails } from "@/data/types";
 import { Accordion } from "@/components/ui/Accordion";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/i18n/I18nProvider";
+import type { Dictionary } from "@/i18n";
 
 interface Section {
   id: string;
@@ -14,11 +16,11 @@ interface Section {
   content: React.ReactNode;
 }
 
-function buildSections(d: ProductDetails): Section[] {
+function buildSections(d: ProductDetails, t: Dictionary["product"]): Section[] {
   return [
     {
       id: "benefits",
-      title: "სასარგებლო თვისებები",
+      title: t.tabs.benefits,
       icon: <Sparkles className="h-5 w-5" />,
       content: (
         <ul className="space-y-3">
@@ -35,13 +37,13 @@ function buildSections(d: ProductDetails): Section[] {
     },
     {
       id: "usage",
-      title: "მიღების წესი და დოზირება",
+      title: t.tabs.usage,
       icon: <Pill className="h-5 w-5" />,
       content: (
         <div className="space-y-5">
           <p>{d.usage}</p>
           <div className="rounded-2xl bg-parchment p-4">
-            <p className="mb-2 text-sm font-semibold text-forest">რეკომენდებული დოზა</p>
+            <p className="mb-2 text-sm font-semibold text-forest">{t.dose}</p>
             <ul className="space-y-2 text-[15px]">
               {d.dosage.map((x) => (
                 <li key={x} className="flex gap-2">
@@ -56,12 +58,12 @@ function buildSections(d: ProductDetails): Section[] {
     },
     {
       id: "origin",
-      title: "შემადგენლობა და წარმომავლობა",
+      title: t.tabs.origin,
       icon: <Leaf className="h-5 w-5" />,
       content: (
         <div className="space-y-4">
           <div>
-            <p className="mb-1 text-sm font-semibold text-forest">შემადგენლობა</p>
+            <p className="mb-1 text-sm font-semibold text-forest">{t.ingredients}</p>
             <p>{d.ingredients}</p>
           </div>
           <div className="flex gap-3 rounded-2xl bg-forest-50 p-4">
@@ -73,7 +75,7 @@ function buildSections(d: ProductDetails): Section[] {
     },
     {
       id: "safety",
-      title: "უკუჩვენებები",
+      title: t.tabs.safety,
       icon: <AlertTriangle className="h-5 w-5" />,
       content: (
         <div className="space-y-4">
@@ -85,10 +87,7 @@ function buildSections(d: ProductDetails): Section[] {
               </li>
             ))}
           </ul>
-          <p className="rounded-2xl border border-terracotta/30 bg-terracotta-50 p-4 text-sm">
-            ბიოლოგიურად აქტიური დანამატი არ არის მედიკამენტი. გამოყენებამდე, განსაკუთრებით ქრონიკული დაავადებისა
-            ან მედიკამენტების მიღების შემთხვევაში, გაიარეთ კონსულტაცია ექიმთან.
-          </p>
+          <p className="rounded-2xl border border-terracotta/30 bg-terracotta-50 p-4 text-sm">{t.safetyNote}</p>
         </div>
       ),
     },
@@ -97,7 +96,8 @@ function buildSections(d: ProductDetails): Section[] {
 
 /** Tabs on desktop, accordion on mobile (better for thumbs and small screens). */
 export function ProductInfoTabs({ details }: { details: ProductDetails }) {
-  const sections = buildSections(details);
+  const { t } = useI18n();
+  const sections = buildSections(details, t.product);
   const [active, setActive] = useState(sections[0].id);
   const current = sections.find((s) => s.id === active) ?? sections[0];
 

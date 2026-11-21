@@ -40,10 +40,3 @@ export const siteConfig = {
 
   currency: "₾",
 } as const;
-
-export const navLinks = [
-  { href: "/", label: "მთავარი" },
-  { href: "/catalog", label: "კატალოგი" },
-  { href: "/blog", label: "ბლოგი" },
-  { href: "/#faq", label: "კითხვები" },
-] as const;

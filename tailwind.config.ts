@@ -41,7 +41,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        serif: ["var(--font-serif)", "Georgia", "serif"],
+        // Headings use the same family (FiraGO) at heavier weights; kept as a separate token so a display font can be swapped in.
+        serif: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         "4xl": "2rem",

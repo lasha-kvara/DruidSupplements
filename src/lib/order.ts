@@ -1,6 +1,7 @@
 import { buildWhatsAppUrl } from "./whatsapp";
 import { formatAmount, isValidGeorgianPhone } from "./utils";
 import { siteConfig } from "@/config/site";
+import { getDictionary, type Locale } from "@/i18n";
 
 /**
  * Quick-order ("დამირეკეთ") client.
@@ -17,37 +18,55 @@ export interface QuickOrderPayload {
   quantity?: number;
   total?: number;
   page?: string;
+  lang?: Locale;
 }
 
 /** "server" = delivered to Telegram/Formspree; "whatsapp" = customer must send the WhatsApp message */
 export type OrderChannel = "server" | "whatsapp";
 
-export function validateQuickOrder({ name, phone }: Pick<QuickOrderPayload, "name" | "phone">): string | null {
-  if (name.trim().length < 2) return "გთხოვთ, მიუთითოთ სახელი";
-  if (!isValidGeorgianPhone(phone)) return "გთხოვთ, მიუთითოთ სწორი ნომერი (მაგ. 555 12 34 56)";
+export function validateQuickOrder(
+  { name, phone }: Pick<QuickOrderPayload, "name" | "phone">,
+  lang: Locale,
+): string | null {
+  const t = getDictionary(lang).quickOrder;
+  if (name.trim().length < 2) return t.errorName;
+  if (!isValidGeorgianPhone(phone)) return t.errorPhone;
   return null;
 }
 
-export function buildCallbackMessage(o: QuickOrderPayload): string {
+export function buildCallbackMessage(o: QuickOrderPayload, lang: Locale): string {
+  const total = o.total ? `${formatAmount(o.total)} ${siteConfig.currency}` : "";
+  if (lang === "en") {
+    const parts = [`Hello! Please call me back. Name: ${o.name.trim()}, phone: ${o.phone.trim()}.`];
+    if (o.product) {
+      parts.push(
+        `I'd like to order: ${o.product}${o.variant ? `, size: ${o.variant}` : ""}${o.quantity ? `, quantity: ${o.quantity}` : ""}${total ? `, total: ${total}` : ""}.`,
+      );
+    }
+    return parts.join(" ");
+  }
   const parts = [`გამარჯობა! გთხოვთ დამირეკოთ. სახელი: ${o.name.trim()}, ტელეფონი: ${o.phone.trim()}.`];
   if (o.product) {
     parts.push(
-      `მსურს შევუკვეთო: ${o.product}${o.variant ? `, მოცულობა: ${o.variant}` : ""}${o.quantity ? `, რაოდენობა: ${o.quantity}` : ""}${o.total ? `, ჯამური ფასი: ${formatAmount(o.total)} ${siteConfig.currency}` : ""}.`,
+      `მსურს შევუკვეთო: ${o.product}${o.variant ? `, მოცულობა: ${o.variant}` : ""}${o.quantity ? `, რაოდენობა: ${o.quantity}` : ""}${total ? `, ჯამური ფასი: ${total}` : ""}.`,
     );
   }
   return parts.join(" ");
 }
 
-export const callbackWhatsAppUrl = (o: QuickOrderPayload) => buildWhatsAppUrl(buildCallbackMessage(o));
+export const callbackWhatsAppUrl = (o: QuickOrderPayload, lang: Locale) =>
+  buildWhatsAppUrl(buildCallbackMessage(o, lang));
 
-export async function submitQuickOrder(order: QuickOrderPayload): Promise<OrderChannel> {
+export async function submitQuickOrder(order: QuickOrderPayload, lang: Locale): Promise<OrderChannel> {
+  const t = getDictionary(lang).quickOrder;
   const res = await fetch("/api/order", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(order),
+    body: JSON.stringify({ ...order, lang }),
   });
-  const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string; notConfigured?: boolean };
+  const data = (await res.json().catch(() => ({}))) as { ok?: boolean; notConfigured?: boolean };
   if (data.notConfigured) return "whatsapp";
-  if (!res.ok || !data.ok) throw new Error(data.error ?? "შეკვეთის გაგზავნა ვერ მოხერხდა. გთხოვთ, მოგვწეროთ WhatsApp-ით.");
+  if (res.status === 422) throw new Error(t.errorPhone);
+  if (!res.ok || !data.ok) throw new Error(t.errorFailed);
   return "server";
 }

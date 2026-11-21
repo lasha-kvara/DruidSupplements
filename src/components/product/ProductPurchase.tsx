@@ -9,6 +9,7 @@ import { cn, formatAmount } from "@/lib/utils";
 import { buildOrderWhatsAppUrl, lineTotal } from "@/lib/whatsapp";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { useQuickOrder } from "@/components/order/QuickOrderProvider";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const MAX_QTY = 20;
 
@@ -36,6 +37,8 @@ export function ProductPurchase({ product }: { product: Product }) {
   const [variantId, setVariantId] = useState(product.variants[0].id);
   const [qty, setQty] = useState(1);
   const { openQuickOrder } = useQuickOrder();
+  const { lang, t: dict } = useI18n();
+  const t = dict.product;
 
   const variant = product.variants.find((v) => v.id === variantId) ?? product.variants[0];
   const total = lineTotal({ unitPrice: variant.price, quantity: qty });
@@ -44,13 +47,13 @@ export function ProductPurchase({ product }: { product: Product }) {
   const remaining = siteConfig.delivery.freeFrom - total;
 
   const line = { productName: product.name, variantLabel: variant.label, quantity: qty, unitPrice: variant.price };
-  const whatsappUrl = buildOrderWhatsAppUrl(line);
+  const whatsappUrl = buildOrderWhatsAppUrl(line, lang);
 
   return (
     <div>
       {/* Variant selector */}
       <fieldset>
-        <legend className="text-sm font-semibold text-forest">აირჩიეთ მოცულობა</legend>
+        <legend className="text-sm font-semibold text-forest">{t.chooseSize}</legend>
         <LayoutGroup id="variants">
           <div className="mt-3 grid grid-cols-3 gap-2" role="radiogroup">
             {product.variants.map((v) => {
@@ -97,7 +100,7 @@ export function ProductPurchase({ product }: { product: Product }) {
             type="button"
             onClick={() => setQty((q) => Math.max(1, q - 1))}
             disabled={qty <= 1}
-            aria-label="რაოდენობის შემცირება"
+            aria-label={t.decrease}
             className="flex h-11 w-11 items-center justify-center rounded-full text-forest transition hover:bg-white disabled:opacity-30"
           >
             <Minus className="h-4 w-4" />
@@ -109,14 +112,14 @@ export function ProductPurchase({ product }: { product: Product }) {
             type="button"
             onClick={() => setQty((q) => Math.min(MAX_QTY, q + 1))}
             disabled={qty >= MAX_QTY}
-            aria-label="რაოდენობის გაზრდა"
+            aria-label={t.increase}
             className="flex h-11 w-11 items-center justify-center rounded-full text-forest transition hover:bg-white disabled:opacity-30"
           >
             <Plus className="h-4 w-4" />
           </button>
         </div>
         <div className="text-right">
-          <p className="text-xs text-charcoal-muted">ჯამური ფასი</p>
+          <p className="text-xs text-charcoal-muted">{t.total}</p>
           <div className="flex items-baseline justify-end gap-2">
             {oldTotal && (
               <span className="text-sm text-charcoal-muted line-through">
@@ -140,10 +143,14 @@ export function ProductPurchase({ product }: { product: Product }) {
         </div>
         <p className="mt-2 text-xs text-charcoal-soft">
           {freeDelivery ? (
-            <span className="font-semibold text-forest-400">🎉 მიწოდება უფასოა!</span>
+            <span className="font-semibold text-forest-400">{t.freeDelivery}</span>
           ) : (
             <>
-              დაამატეთ კიდევ <b>{formatAmount(remaining)} {siteConfig.currency}</b> უფასო მიწოდებისთვის
+              {t.addMoreBefore}
+              <b>
+                {formatAmount(remaining)} {siteConfig.currency}
+              </b>
+              {t.addMoreAfter}
             </>
           )}
         </p>
@@ -159,7 +166,7 @@ export function ProductPurchase({ product }: { product: Product }) {
             rel="noopener noreferrer"
             className="btn-whatsapp w-full text-base"
           >
-            <WhatsAppIcon /> შეკვეთა WhatsApp-ით
+            <WhatsAppIcon /> {t.orderWhatsapp}
           </motion.a>
           <motion.button
             whileTap={{ scale: 0.97 }}
@@ -167,29 +174,29 @@ export function ProductPurchase({ product }: { product: Product }) {
             onClick={() => openQuickOrder({ ...line, image: product.images[0] })}
             className="btn-forest w-full text-base"
           >
-            <PhoneCall className="h-5 w-5" /> სწრაფი შეკვეთა ზარით
+            <PhoneCall className="h-5 w-5" /> {t.quickOrder}
           </motion.button>
         </div>
       ) : (
         <div className="mt-6 grid gap-3">
           <p className="rounded-2xl bg-charcoal/5 px-4 py-3 text-sm text-charcoal-soft">
-            პროდუქტი დროებით ამოიწურა. დაგვიტოვეთ ნომერი და შეგატყობინებთ მარაგის შევსებისთანავე.
+            {t.outOfStockNote}
           </p>
           <button type="button" onClick={() => openQuickOrder({ ...line, image: product.images[0] })} className="btn-forest w-full">
-            <PhoneCall className="h-5 w-5" /> შემატყობინეთ შემოსვლისას
+            <PhoneCall className="h-5 w-5" /> {t.notifyMe}
           </button>
         </div>
       )}
 
       <ul className="mt-6 grid gap-3 text-sm text-charcoal-soft sm:grid-cols-3">
         <li className="flex items-center gap-2">
-          <Truck className="h-5 w-5 shrink-0 text-terracotta" /> თბილისში 24 სთ-ში
+          <Truck className="h-5 w-5 shrink-0 text-terracotta" /> {t.perks[0]}
         </li>
         <li className="flex items-center gap-2">
-          <Banknote className="h-5 w-5 shrink-0 text-terracotta" /> გადახდა კურიერთან
+          <Banknote className="h-5 w-5 shrink-0 text-terracotta" /> {t.perks[1]}
         </li>
         <li className="flex items-center gap-2">
-          <ShieldCheck className="h-5 w-5 shrink-0 text-terracotta" /> ლაბ. შემოწმებული
+          <ShieldCheck className="h-5 w-5 shrink-0 text-terracotta" /> {t.perks[2]}
         </li>
       </ul>
     </div>

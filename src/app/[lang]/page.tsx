@@ -8,14 +8,21 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { Faq } from "@/components/home/Faq";
 import { PostCard } from "@/components/blog/PostCard";
 import { Reveal, SectionHeading } from "@/components/ui/Reveal";
-import { posts } from "@/data/posts";
-import { faqs } from "@/data/content";
+import { getFaqs, getPosts } from "@/data";
+import { getDictionary, isLocale, localizePath } from "@/i18n";
 
-export default function HomePage() {
+type Params = Promise<{ lang: string }>;
+
+export default async function HomePage({ params }: { params: Params }) {
+  const { lang: raw } = await params;
+  const lang = isLocale(raw) ? raw : "ka";
+  const t = getDictionary(lang);
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
+    inLanguage: lang,
+    mainEntity: getFaqs(lang).map((f) => ({
       "@type": "Question",
       name: f.question,
       acceptedAnswer: { "@type": "Answer", text: f.answer },
@@ -35,16 +42,16 @@ export default function HomePage() {
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <SectionHeading
               align="left"
-              eyebrow="ბლოგი"
-              title="ისწავლეთ ბუნების ენა"
-              description="სტატიები სამკურნალო სოკოებისა და მცენარეების შესახებ — სწორი მიღება, რეცეპტები და კვლევები."
+              eyebrow={t.blogSection.eyebrow}
+              title={t.blogSection.title}
+              description={t.blogSection.description}
             />
-            <Link href="/blog" className="btn-outline group shrink-0">
-              ყველა სტატია <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <Link href={localizePath(lang, "/blog")} className="btn-outline group shrink-0">
+              {t.common.allArticles} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((p, i) => (
+            {getPosts(lang).map((p, i) => (
               <Reveal key={p.slug} delay={i * 0.08}>
                 <PostCard post={p} />
               </Reveal>

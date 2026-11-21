@@ -1,5 +1,6 @@
 import clsx, { type ClassValue } from "clsx";
 import { siteConfig } from "@/config/site";
+import type { Locale } from "@/i18n/config";
 
 export const cn = (...inputs: ClassValue[]) => clsx(inputs);
 
@@ -33,10 +34,28 @@ const GEORGIAN_MONTHS = [
   "დეკემბერი",
 ];
 
-/** "2026-10-28" -> "28 ოქტომბერი, 2026" (deterministic, no Intl locale dependency) */
-export function formatDateKa(iso: string): string {
+const ENGLISH_MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+/**
+ * "2026-10-28" -> "28 ოქტომბერი, 2026" / "October 28, 2026".
+ * Deterministic (no Intl), so server and client render the same string.
+ */
+export function formatDate(iso: string, lang: Locale): string {
   const [y, m, d] = iso.split("-").map(Number);
-  return `${d} ${GEORGIAN_MONTHS[m - 1]}, ${y}`;
+  return lang === "en" ? `${ENGLISH_MONTHS[m - 1]} ${d}, ${y}` : `${d} ${GEORGIAN_MONTHS[m - 1]}, ${y}`;
 }
 
 /** Lowercase + trim for search; Georgian Mkhedruli has no case, Latin does. */

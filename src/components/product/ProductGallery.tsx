@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ZoomIn } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/i18n/I18nProvider";
 
 interface Props {
   images: string[];
@@ -14,6 +15,7 @@ interface Props {
 
 /** Main image with cursor-follow zoom on desktop + thumbnail switcher. */
 export function ProductGallery({ images, alt, badges }: Props) {
+  const { t } = useI18n();
   const [active, setActive] = useState(0);
   const [zoom, setZoom] = useState(false);
   const [origin, setOrigin] = useState("50% 50%");
@@ -63,7 +65,7 @@ export function ProductGallery({ images, alt, badges }: Props) {
             zoom && "opacity-0",
           )}
         >
-          <ZoomIn className="h-4 w-4" /> გადიდება
+          <ZoomIn className="h-4 w-4" /> {t.product.zoom}
         </span>
       </div>
 
@@ -74,7 +76,7 @@ export function ProductGallery({ images, alt, badges }: Props) {
               key={src}
               type="button"
               onClick={() => setActive(i)}
-              aria-label={`სურათი ${i + 1}`}
+              aria-label={t.product.imageN(i + 1)}
               aria-current={i === active}
               className={cn(
                 "relative aspect-square w-20 shrink-0 overflow-hidden rounded-2xl border-2 transition-all",

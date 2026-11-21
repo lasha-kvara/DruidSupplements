@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { AlertTriangle, Clock, Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
-import { navLinks, siteConfig } from "@/config/site";
-import { categories } from "@/data/categories";
+import { siteConfig } from "@/config/site";
+import { getCategories } from "@/data";
+import { getDictionary, localizePath, type Locale } from "@/i18n";
+import { generalChatUrl } from "@/lib/whatsapp";
 import { Logo } from "./Logo";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import { buildWhatsAppUrl, generalChatMessage } from "@/lib/whatsapp";
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -14,8 +15,17 @@ function TikTokIcon({ className }: { className?: string }) {
   );
 }
 
-export function Footer() {
+export function Footer({ lang }: { lang: Locale }) {
+  const t = getDictionary(lang);
+  const path = (href: string) => localizePath(lang, href);
   const year = new Date().getFullYear();
+  const navLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/catalog", label: t.nav.catalog },
+    { href: "/blog", label: t.nav.blog },
+    { href: "/#faq", label: t.nav.faq },
+  ];
+
   return (
     <footer className="relative mt-24 overflow-hidden bg-forest text-parchment/80">
       <div className="grain pointer-events-none absolute inset-0 opacity-60" />
@@ -24,18 +34,14 @@ export function Footer() {
         <div className="mb-12 flex gap-4 rounded-3xl border border-terracotta/40 bg-terracotta/10 p-5 md:p-6">
           <AlertTriangle className="mt-0.5 h-6 w-6 shrink-0 text-terracotta-light" aria-hidden />
           <p className="text-sm leading-relaxed text-parchment/90 md:text-[15px]">
-            <strong className="text-parchment">სამედიცინო გაფრთხილება:</strong> პროდუქტი წარმოადგენს ბიოლოგიურად
-            აქტიურ დანამატს და არა მედიკამენტს. ის არ არის განკუთვნილი დაავადების დიაგნოსტიკის, მკურნალობის ან
-            პრევენციისთვის. საიტზე განთავსებული ინფორმაცია საგანმანათლებლო ხასიათისაა და არ ცვლის ექიმის
-            კონსულტაციას. ორსულობის, ძუძუთი კვების, ქრონიკული დაავადების ან მედიკამენტების მიღების შემთხვევაში,
-            გამოყენებამდე მიმართეთ ექიმს.
+            <strong className="text-parchment">{t.footer.disclaimerTitle}</strong> {t.footer.disclaimer}
           </p>
         </div>
 
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Logo light />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-parchment/70">{siteConfig.description}</p>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-parchment/70">{t.site.description}</p>
             <div className="mt-6 flex gap-2">
               {[
                 { href: siteConfig.socials.facebook, label: "Facebook", icon: <Facebook className="h-5 w-5" /> },
@@ -57,11 +63,11 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-sans text-sm font-semibold tracking-wide text-parchment">ნავიგაცია</h3>
+            <h3 className="font-sans text-sm font-semibold tracking-wide text-parchment">{t.footer.navigation}</h3>
             <ul className="mt-4 space-y-1">
               {navLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="inline-flex min-h-[36px] items-center text-sm transition hover:text-terracotta-light">
+                  <Link href={path(l.href)} className="inline-flex min-h-[36px] items-center text-sm transition hover:text-terracotta-light">
                     {l.label}
                   </Link>
                 </li>
@@ -70,12 +76,12 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-sans text-sm font-semibold tracking-wide text-parchment">კატეგორიები</h3>
+            <h3 className="font-sans text-sm font-semibold tracking-wide text-parchment">{t.footer.categories}</h3>
             <ul className="mt-4 space-y-1">
-              {categories.map((c) => (
+              {getCategories(lang).map((c) => (
                 <li key={c.id}>
                   <Link
-                    href={`/catalog?category=${c.id}`}
+                    href={path(`/catalog?category=${c.id}`)}
                     className="inline-flex min-h-[36px] items-center text-sm transition hover:text-terracotta-light"
                   >
                     {c.name}
@@ -86,7 +92,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-sans text-sm font-semibold tracking-wide text-parchment">კონტაქტი</h3>
+            <h3 className="font-sans text-sm font-semibold tracking-wide text-parchment">{t.footer.contact}</h3>
             <ul className="mt-4 space-y-3 text-sm">
               <li>
                 <a href={`tel:${siteConfig.phoneNumber}`} className="flex items-center gap-3 transition hover:text-terracotta-light">
@@ -95,7 +101,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={buildWhatsAppUrl(generalChatMessage)}
+                  href={generalChatUrl(lang)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 transition hover:text-terracotta-light"
@@ -109,10 +115,10 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-terracotta-light" /> {siteConfig.address}
+                <MapPin className="h-4 w-4 text-terracotta-light" /> {t.site.address}
               </li>
               <li className="flex items-center gap-3">
-                <Clock className="h-4 w-4 text-terracotta-light" /> {siteConfig.workingHours}
+                <Clock className="h-4 w-4 text-terracotta-light" /> {t.site.workingHours}
               </li>
             </ul>
           </div>
@@ -120,9 +126,9 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col gap-2 border-t border-parchment/10 pt-6 text-xs text-parchment/50 sm:flex-row sm:justify-between">
           <p>
-            © {year} {siteConfig.name}. ყველა უფლება დაცულია.
+            © {year} {t.site.name}. {t.footer.rights}
           </p>
-          <p>მიწოდება მთელ საქართველოში · გადახდა კურიერთან ან გადარიცხვით</p>
+          <p>{t.footer.bottomLine}</p>
         </div>
       </div>
     </footer>

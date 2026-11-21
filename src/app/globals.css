@@ -21,7 +21,8 @@
   h2,
   h3 {
     @apply font-serif text-forest;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
+    font-feature-settings: "kern", "liga";
   }
 
   ::selection {

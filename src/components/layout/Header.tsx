@@ -5,18 +5,30 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { Menu, Phone, X } from "lucide-react";
-import { navLinks, siteConfig } from "@/config/site";
+import { siteConfig } from "@/config/site";
+import { stripLocale } from "@/i18n";
+import { useI18n } from "@/i18n/I18nProvider";
 import { cn } from "@/lib/utils";
+import { generalChatUrl } from "@/lib/whatsapp";
 import { Logo } from "./Logo";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import { buildWhatsAppUrl, generalChatMessage } from "@/lib/whatsapp";
 
 export function Header() {
-  const pathname = usePathname();
+  const { lang, t, path } = useI18n();
+  // Locale-less path ("/catalog") — identical on server (rewritten "/ka/catalog") and client ("/catalog").
+  const pathname = stripLocale(usePathname());
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/catalog", label: t.nav.catalog },
+    { href: "/blog", label: t.nav.blog },
+    { href: "/#faq", label: t.nav.faq },
+  ];
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const prev = scrollY.getPrevious() ?? 0;
@@ -25,7 +37,7 @@ export function Header() {
     setHidden(y > 400 && y > prev && !menuOpen);
   });
 
-  useEffect(() => setMenuOpen(false), [pathname]);
+  useEffect(() => setMenuOpen(false), [pathname, lang]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -35,7 +47,6 @@ export function Header() {
   }, [menuOpen]);
 
   const overHero = pathname === "/" && !scrolled && !menuOpen;
-
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : !href.includes("#") && pathname.startsWith(href);
 
@@ -51,16 +62,16 @@ export function Header() {
             : "border-b border-forest/5 bg-parchment/85 text-forest shadow-[0_1px_20px_-12px_rgba(27,48,34,0.3)] backdrop-blur-lg",
         )}
       >
-        <div className="container flex h-[68px] items-center justify-between gap-4 md:h-20">
-          <Link href="/" aria-label={`${siteConfig.name} — მთავარი`} className="relative z-10">
+        <div className="container flex h-[68px] items-center justify-between gap-3 md:h-20">
+          <Link href={path("/")} aria-label={`${t.site.name} — ${t.header.homeAria}`} className="relative z-10">
             <Logo light={overHero} />
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex" aria-label="მთავარი ნავიგაცია">
+          <nav className="hidden items-center gap-1 md:flex" aria-label={t.header.mainNav}>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
+                href={path(link.href)}
                 className={cn(
                   "relative rounded-full px-4 py-2 text-[15px] font-medium transition-colors",
                   overHero ? "hover:bg-white/10" : "hover:bg-forest/5",
@@ -81,24 +92,25 @@ export function Header() {
             <a
               href={`tel:${siteConfig.phoneNumber}`}
               className={cn(
-                "hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold lg:flex",
+                "hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold xl:flex",
                 overHero ? "hover:bg-white/10" : "hover:bg-forest/5",
               )}
             >
               <Phone className="h-4 w-4" /> {siteConfig.phoneDisplay}
             </a>
+            <LanguageSwitcher light={overHero} className="relative z-10" />
             <a
-              href={buildWhatsAppUrl(generalChatMessage)}
+              href={generalChatUrl(lang)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary hidden !min-h-[42px] !px-5 !py-2 text-sm sm:inline-flex"
+              className="btn-primary hidden !min-h-[42px] !px-5 !py-2 text-sm lg:inline-flex"
             >
-              <WhatsAppIcon className="h-4 w-4" /> მოგვწერეთ
+              <WhatsAppIcon className="h-4 w-4" /> {t.header.messageUs}
             </a>
             <button
               type="button"
               onClick={() => setMenuOpen((v) => !v)}
-              aria-label={menuOpen ? "მენიუს დახურვა" : "მენიუს გახსნა"}
+              aria-label={menuOpen ? t.header.closeMenu : t.header.openMenu}
               aria-expanded={menuOpen}
               className={cn(
                 "relative z-10 flex h-11 w-11 items-center justify-center rounded-full md:hidden",
@@ -130,7 +142,7 @@ export function Header() {
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-40 flex flex-col bg-parchment px-6 pb-10 pt-28 md:hidden"
           >
-            <nav className="flex flex-col gap-1" aria-label="მობილური ნავიგაცია">
+            <nav className="flex flex-col gap-1" aria-label={t.header.mobileNav}>
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
@@ -139,9 +151,9 @@ export function Header() {
                   transition={{ delay: 0.12 + i * 0.06 }}
                 >
                   <Link
-                    href={link.href}
+                    href={path(link.href)}
                     onClick={() => setMenuOpen(false)}
-                    className="flex min-h-[56px] items-center border-b border-forest/10 font-serif text-3xl text-forest"
+                    className="flex min-h-[56px] items-center border-b border-forest/10 text-3xl font-semibold text-forest"
                   >
                     {link.label}
                   </Link>
@@ -154,8 +166,8 @@ export function Header() {
               transition={{ delay: 0.4 }}
               className="mt-auto grid gap-3"
             >
-              <a href={buildWhatsAppUrl(generalChatMessage)} target="_blank" rel="noopener noreferrer" className="btn-whatsapp w-full">
-                <WhatsAppIcon /> WhatsApp-ით მოწერა
+              <a href={generalChatUrl(lang)} target="_blank" rel="noopener noreferrer" className="btn-whatsapp w-full">
+                <WhatsAppIcon /> {t.header.whatsappMobile}
               </a>
               <a href={`tel:${siteConfig.phoneNumber}`} className="btn-outline w-full">
                 <Phone className="h-5 w-5" /> {siteConfig.phoneDisplay}

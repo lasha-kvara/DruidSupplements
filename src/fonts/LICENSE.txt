@@ -1,0 +1,6 @@
+FiraGO 1.000 by bBox Type GmbH (Carrois Apostrophe / Mozilla Fira),
+licensed under the SIL Open Font License 1.1 — https://openfontlicense.org
+Source: https://github.com/bBoxType/FiraGO
+
+The .woff2 files here are subsets (Basic Latin, Latin-1, Georgian Mkhedruli
+and Mtavruli, general punctuation, ₾/€ signs) generated with fontTools pyftsubset.

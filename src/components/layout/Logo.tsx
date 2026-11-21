@@ -1,7 +1,10 @@
-import { siteConfig } from "@/config/site";
+"use client";
+
+import { useI18n } from "@/i18n/I18nProvider";
 import { cn } from "@/lib/utils";
 
 export function Logo({ light = false, className }: { light?: boolean; className?: string }) {
+  const { t } = useI18n();
   return (
     <span className={cn("flex items-center gap-2.5", className)}>
       <svg viewBox="0 0 40 40" className="h-9 w-9 shrink-0" aria-hidden>
@@ -13,11 +16,14 @@ export function Logo({ light = false, className }: { light?: boolean; className?
         <circle cx="26" cy="19" r="1" fill="#F7F5F0" opacity=".85" />
       </svg>
       <span className="flex flex-col leading-none">
-        <span className={cn("font-serif text-xl font-semibold", light ? "text-parchment" : "text-forest")}>
-          {siteConfig.name}
-        </span>
-        <span className={cn("mt-1 text-[10px] font-medium tracking-wider", light ? "text-parchment/70" : "text-charcoal-muted")}>
-          აფთიაქი ბუნებიდან
+        <span className={cn("text-xl font-bold tracking-tight", light ? "text-parchment" : "text-forest")}>{t.site.name}</span>
+        <span
+          className={cn(
+            "mt-1 hidden text-[10px] font-medium tracking-wide min-[380px]:block",
+            light ? "text-parchment/70" : "text-charcoal-muted",
+          )}
+        >
+          {t.site.slogan}
         </span>
       </span>
     </span>

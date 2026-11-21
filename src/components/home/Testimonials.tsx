@@ -3,12 +3,16 @@
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
-import { testimonials } from "@/data/content";
+import { getTestimonials } from "@/data";
+import { useI18n } from "@/i18n/I18nProvider";
 import { SectionHeading } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
 /** Shows 1 card on mobile, 3 on desktop; auto-advances, pauses on hover, swipeable. */
 export function Testimonials() {
+  const { lang, t: dict } = useI18n();
+  const t = dict.testimonials;
+  const testimonials = getTestimonials(lang);
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [paused, setPaused] = useState(false);
@@ -34,9 +38,9 @@ export function Testimonials() {
     <section className="py-20 md:py-28" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <div className="container">
         <SectionHeading
-          eyebrow="შეფასებები"
-          title="რას ამბობენ ჩვენი მომხმარებლები"
-          description="4.9 საშუალო შეფასება 800-ზე მეტი მიმოხილვიდან"
+          eyebrow={t.eyebrow}
+          title={t.title}
+          description={t.description}
         />
 
         <div className="relative mt-12">
@@ -62,32 +66,32 @@ export function Testimonials() {
               }}
               className="grid cursor-grab gap-5 active:cursor-grabbing md:grid-cols-3"
             >
-              {visible.map((t, i) => (
+              {visible.map((item, i) => (
                 <figure
-                  key={t.id}
+                  key={item.id}
                   className={cn(
                     "relative flex flex-col rounded-3xl border border-forest/10 bg-white p-6 shadow-soft md:p-7",
                     i > 0 && "hidden md:flex",
                   )}
                 >
                   <Quote className="absolute right-6 top-6 h-10 w-10 text-terracotta/15" aria-hidden />
-                  <div className="flex gap-0.5" aria-label={`შეფასება ${t.rating} 5-დან`}>
+                  <div className="flex gap-0.5" aria-label={dict.common.ratingSr(item.rating)}>
                     {Array.from({ length: 5 }).map((_, s) => (
                       <Star
                         key={s}
-                        className={cn("h-4 w-4", s < t.rating ? "fill-amber-400 text-amber-400" : "text-forest/15")}
+                        className={cn("h-4 w-4", s < item.rating ? "fill-amber-400 text-amber-400" : "text-forest/15")}
                       />
                     ))}
                   </div>
-                  <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-charcoal-soft">„{t.text}“</blockquote>
+                  <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-charcoal-soft">{lang === "en" ? `“${item.text}”` : `„${item.text}“`}</blockquote>
                   <figcaption className="mt-6 flex items-center gap-3 border-t border-forest/10 pt-5">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-forest font-serif text-lg text-parchment">
-                      {t.name.charAt(0)}
+                      {item.name.charAt(0)}
                     </span>
                     <span>
-                      <span className="block font-semibold text-forest">{t.name}</span>
+                      <span className="block font-semibold text-forest">{item.name}</span>
                       <span className="block text-xs text-charcoal-muted">
-                        {t.city} · {t.product}
+                        {item.city} · {item.product}
                       </span>
                     </span>
                   </figcaption>
@@ -101,17 +105,17 @@ export function Testimonials() {
           <button
             type="button"
             onClick={() => go(-1)}
-            aria-label="წინა"
+            aria-label={t.prev}
             className="flex h-12 w-12 items-center justify-center rounded-full border border-forest/15 bg-white text-forest transition hover:bg-forest hover:text-parchment"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
           <div className="flex gap-2">
-            {testimonials.map((t, i) => (
+            {testimonials.map((item, i) => (
               <button
-                key={t.id}
+                key={item.id}
                 type="button"
-                aria-label={`შეფასება ${i + 1}`}
+                aria-label={t.item(i + 1)}
                 onClick={() => {
                   setDirection(i > index ? 1 : -1);
                   setIndex(i);
@@ -130,7 +134,7 @@ export function Testimonials() {
           <button
             type="button"
             onClick={() => go(1)}
-            aria-label="შემდეგი"
+            aria-label={t.next}
             className="flex h-12 w-12 items-center justify-center rounded-full border border-forest/15 bg-white text-forest transition hover:bg-forest hover:text-parchment"
           >
             <ChevronRight className="h-5 w-5" />

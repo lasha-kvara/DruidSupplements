@@ -3,31 +3,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Leaf } from "lucide-react";
-import { getPostBySlug, posts } from "@/data/posts";
+import { getPost, getPosts, getProduct, postSlugs } from "@/data";
 import type { BlogBlock } from "@/data/types";
-import { getProductBySlug } from "@/lib/catalog";
-import { absoluteUrl, formatDateKa } from "@/lib/utils";
-
-export const dynamicParams = false;
-import { siteConfig } from "@/config/site";
+import { getDictionary, isLocale, localizePath, type Locale } from "@/i18n";
+import { absoluteUrl, formatDate } from "@/lib/utils";
+import { alternatesFor } from "@/lib/seo";
 import { ProductCard } from "@/components/product/ProductCard";
 import { PostCard } from "@/components/blog/PostCard";
 import { ReadingProgress } from "@/components/blog/ReadingProgress";
 import { Reveal } from "@/components/ui/Reveal";
 
-type Params = Promise<{ slug: string }>;
+export const dynamicParams = false;
+
+type Params = Promise<{ lang: string; slug: string }>;
+
+const toLocale = (v: string): Locale => (isLocale(v) ? v : "ka");
 
 export function generateStaticParams() {
-  return posts.map((p) => ({ slug: p.slug }));
+  return postSlugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
-  if (!post) return { title: "სტატია ვერ მოიძებნა" };
+  const { lang: raw, slug } = await params;
+  const lang = toLocale(raw);
+  const post = getPost(lang, slug);
+  if (!post) return { title: getDictionary(lang).blog.notFound };
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: alternatesFor(lang, `/blog/${slug}`),
     openGraph: { type: "article", title: post.title, description: post.excerpt, images: [absoluteUrl(post.cover)], publishedTime: post.date },
   };
 }
@@ -55,12 +59,14 @@ function Block({ block }: { block: BlogBlock }) {
 }
 
 export default async function BlogPostPage({ params }: { params: Params }) {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const { lang: raw, slug } = await params;
+  const lang = toLocale(raw);
+  const post = getPost(lang, slug);
   if (!post) notFound();
 
-  const related = post.relatedProducts.map(getProductBySlug).filter((p) => p !== undefined);
-  const otherPosts = posts.filter((p) => p.slug !== post.slug).slice(0, 2);
+  const t = getDictionary(lang);
+  const related = post.relatedProducts.map((s) => getProduct(lang, s)).filter((p) => p !== undefined);
+  const otherPosts = getPosts(lang).filter((p) => p.slug !== post.slug).slice(0, 2);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -70,8 +76,8 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     image: absoluteUrl(post.cover),
     datePublished: post.date,
     author: { "@type": "Person", name: post.author },
-    publisher: { "@type": "Organization", name: siteConfig.name },
-    inLanguage: "ka",
+    publisher: { "@type": "Organization", name: t.site.name },
+    inLanguage: lang,
   };
 
   return (
@@ -80,13 +86,13 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       <article>
         <header className="container max-w-4xl pt-28 md:pt-36">
           <Reveal>
-            <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-terracotta hover:underline">
-              <ArrowLeft className="h-4 w-4" /> ყველა სტატია
+            <Link href={localizePath(lang, "/blog")} className="inline-flex items-center gap-2 text-sm font-semibold text-terracotta hover:underline">
+              <ArrowLeft className="h-4 w-4" /> {t.blog.back}
             </Link>
             <div className="mt-6 flex flex-wrap gap-2">
-              {post.tags.map((t) => (
-                <span key={t} className="rounded-full bg-forest-50 px-3 py-1 text-xs font-medium text-forest-500">
-                  #{t}
+              {post.tags.map((tag) => (
+                <span key={tag} className="rounded-full bg-forest-50 px-3 py-1 text-xs font-medium text-forest-500">
+                  #{tag}
                 </span>
               ))}
             </div>
@@ -94,10 +100,10 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-charcoal-muted">
               <span className="font-medium text-charcoal">{post.author}</span>
               <span aria-hidden>·</span>
-              <time dateTime={post.date}>{formatDateKa(post.date)}</time>
+              <time dateTime={post.date}>{formatDate(post.date, lang)}</time>
               <span aria-hidden>·</span>
               <span className="inline-flex items-center gap-1">
-                <Clock className="h-4 w-4" /> {post.readingMinutes} წთ
+                <Clock className="h-4 w-4" /> {t.common.minutesShort(post.readingMinutes)}
               </span>
             </div>
           </Reveal>
@@ -117,15 +123,14 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             ))}
           </div>
           <p className="mt-10 rounded-2xl border border-forest/10 bg-white p-5 text-sm text-charcoal-muted">
-            სტატია საგანმანათლებლო ხასიათისაა და არ წარმოადგენს სამედიცინო რჩევას. ნებისმიერი დანამატის მიღებამდე
-            გაიარეთ კონსულტაცია ექიმთან.
+            {t.blog.disclaimer}
           </p>
         </div>
       </article>
 
       {related.length > 0 && (
         <section className="container mt-20 max-w-5xl">
-          <h2 className="text-2xl font-semibold md:text-3xl">სტატიაში ნახსენები პროდუქტები</h2>
+          <h2 className="text-2xl font-semibold md:text-3xl">{t.blog.mentionedProducts}</h2>
           <div className="mt-8 grid grid-cols-1 gap-5 min-[480px]:grid-cols-2">
             {related.map((p) => (
               <ProductCard key={p.slug} product={p} />
@@ -136,7 +141,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
       {otherPosts.length > 0 && (
         <section className="container mt-20 max-w-5xl">
-          <h2 className="text-2xl font-semibold md:text-3xl">წაიკითხეთ ასევე</h2>
+          <h2 className="text-2xl font-semibold md:text-3xl">{t.blog.readAlso}</h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {otherPosts.map((p) => (
               <PostCard key={p.slug} post={p} />

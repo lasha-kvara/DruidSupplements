@@ -6,7 +6,8 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ChevronDown, Star } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import { buildWhatsAppUrl, generalChatMessage } from "@/lib/whatsapp";
+import { generalChatUrl } from "@/lib/whatsapp";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -46,6 +47,8 @@ function Mushroom({ className }: { className?: string }) {
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const { lang, t: dict, path } = useI18n();
+  const t = dict.hero;
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
   const bgScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.15]);
@@ -58,7 +61,7 @@ export function Hero() {
       <motion.div style={{ y: bgY, scale: bgScale }} className="absolute inset-0 will-change-transform">
         <Image
           src="/images/forest.jpg"
-          alt="ტყე, სადაც იზრდება სამკურნალო სოკოები"
+          alt={t.imageAlt}
           fill
           priority
           sizes="100vw"
@@ -126,11 +129,11 @@ export function Hero() {
                 <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
               ))}
             </span>
-            1 200+ კმაყოფილი მომხმარებელი საქართველოში
+            {t.badge}
           </motion.p>
 
-          <h1 className="mt-6 font-serif text-[40px] font-semibold leading-[1.1] text-parchment sm:text-6xl lg:text-7xl">
-            {["ტყის სიბრძნე", "თქვენს ყოველდღიურ", "რიტუალში"].map((line, i) => (
+          <h1 className="mt-6 font-serif text-[38px] font-bold leading-[1.12] text-parchment sm:text-6xl lg:text-7xl">
+            {t.lines.map((line, i) => (
               <span key={line} className="block overflow-hidden pb-1">
                 <motion.span
                   className={`block ${i === 2 ? "text-terracotta-light" : ""}`}
@@ -150,8 +153,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
             className="mt-6 max-w-xl text-base leading-relaxed text-parchment/80 md:text-xl"
           >
-            სამკურნალო სოკოები და მცენარეები — ლომის ფაფარი, რეიში, ჩაგა, კორდიცეფსი. ველურად შეგროვებული,
-            ლაბორატორიულად შემოწმებული და სწრაფად მიწოდებული თქვენს კარამდე.
+            {t.sub}
           </motion.p>
 
           <motion.div
@@ -160,17 +162,17 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.7, ease: EASE }}
             className="mt-9 flex flex-col gap-3 sm:flex-row"
           >
-            <Link href="/catalog" className="btn-primary group text-base">
-              კატალოგის ნახვა
+            <Link href={path("/catalog")} className="btn-primary group text-base">
+              {dict.common.viewCatalog}
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
             <a
-              href={buildWhatsAppUrl(generalChatMessage)}
+              href={generalChatUrl(lang)}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-ghost-light text-base"
             >
-              <WhatsAppIcon /> უფასო კონსულტაცია
+              <WhatsAppIcon /> {t.consult}
             </a>
           </motion.div>
 
@@ -180,11 +182,7 @@ export function Hero() {
             transition={{ duration: 1, delay: 1 }}
             className="mt-12 grid max-w-lg grid-cols-3 gap-4 border-t border-parchment/15 pt-6"
           >
-            {[
-              ["100%", "ნატურალური"],
-              ["24სთ", "მიწოდება თბილისში"],
-              ["10+", "სახეობა"],
-            ].map(([value, label]) => (
+            {t.stats.map(([value, label]) => (
               <div key={label}>
                 <dt className="sr-only">{label}</dt>
                 <dd className="font-serif text-2xl font-semibold text-parchment md:text-3xl">{value}</dd>
@@ -197,7 +195,7 @@ export function Hero() {
 
       <motion.a
         href="#trust"
-        aria-label="ქვემოთ გადასვლა"
+        aria-label={t.scrollDown}
         className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 text-parchment/60 md:block"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}

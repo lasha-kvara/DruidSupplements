@@ -4,22 +4,28 @@ import { useEffect, useMemo, useState, useDeferredValue } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { PackageX, Search, X } from "lucide-react";
-import { benefits, categories } from "@/data/categories";
+import { getBenefits, getCategories, getProducts } from "@/data";
+import { useI18n } from "@/i18n/I18nProvider";
 import type { BenefitId, CategoryId } from "@/data/types";
-import { filterProducts, getAllProducts } from "@/lib/catalog";
+import { filterProducts } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
 import { BenefitIcon } from "@/components/ui/Badges";
 import { ProductCard } from "@/components/product/ProductCard";
 
-const CATEGORY_TABS: { id: CategoryId | "all"; name: string }[] = [
-  { id: "all", name: "ყველა" },
-  ...categories.map((c) => ({ id: c.id, name: c.name })),
-];
+const CATEGORY_IDS: CategoryId[] = ["mushrooms", "herbs", "extracts"];
+const BENEFIT_IDS: BenefitId[] = ["immunity", "energy", "sleep", "digestion"];
 
-const isCategory = (v: string | null): v is CategoryId => categories.some((c) => c.id === v);
-const isBenefit = (v: string | null): v is BenefitId => benefits.some((b) => b.id === v);
+const isCategory = (v: string | null): v is CategoryId => CATEGORY_IDS.includes(v as CategoryId);
+const isBenefit = (v: string | null): v is BenefitId => BENEFIT_IDS.includes(v as BenefitId);
 
 export function CatalogView() {
+  const { lang, t: dict } = useI18n();
+  const t = dict.catalog;
+  const benefits = getBenefits(lang);
+  const categoryTabs: { id: CategoryId | "all"; name: string }[] = [
+    { id: "all", name: t.all },
+    ...getCategories(lang).map((c) => ({ id: c.id, name: c.name })),
+  ];
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -55,9 +61,9 @@ export function CatalogView() {
   }, []);
 
   const results = useMemo(() => {
-    const list = filterProducts(getAllProducts(), { category, benefit, query: deferredQuery });
+    const list = filterProducts(getProducts(lang), { category, benefit, query: deferredQuery });
     return inStockOnly ? list.filter((p) => p.inStock) : list;
-  }, [category, benefit, deferredQuery, inStockOnly]);
+  }, [lang, category, benefit, deferredQuery, inStockOnly]);
 
   const hasFilters = category !== "all" || benefit !== "all" || query !== "" || inStockOnly;
   const reset = () => {
@@ -74,8 +80,8 @@ export function CatalogView() {
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <LayoutGroup id="category-tabs">
-              <div role="tablist" aria-label="კატეგორიები" className="no-scrollbar -mx-1 flex gap-1 overflow-x-auto px-1">
-                {CATEGORY_TABS.map((tab) => {
+              <div role="tablist" aria-label={t.categoriesAria} className="no-scrollbar -mx-1 flex gap-1 overflow-x-auto px-1">
+                {categoryTabs.map((tab) => {
                   const active = category === tab.id;
                   return (
                     <button
@@ -104,13 +110,13 @@ export function CatalogView() {
             </LayoutGroup>
 
             <label className="relative block w-full lg:max-w-xs">
-              <span className="sr-only">ძიება</span>
+              <span className="sr-only">{t.searchLabel}</span>
               <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-charcoal-muted" />
               <input
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="ძიება: ჩაგა, ძილი, reishi..."
+                placeholder={t.searchPlaceholder}
                 className="input !rounded-full !py-3 pl-12 pr-11"
               />
               <AnimatePresence>
@@ -121,7 +127,7 @@ export function CatalogView() {
                     exit={{ opacity: 0, scale: 0.6 }}
                     type="button"
                     onClick={() => setQuery("")}
-                    aria-label="ძიების გასუფთავება"
+                    aria-label={t.clearSearch}
                     className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-forest/5 text-forest"
                   >
                     <X className="h-4 w-4" />
@@ -163,7 +169,7 @@ export function CatalogView() {
               )}
             >
               <span className={cn("h-2 w-2 rounded-full", inStockOnly ? "bg-emerald-300" : "bg-emerald-500")} />
-              მხოლოდ მარაგში
+              {t.inStockOnly}
             </button>
           </div>
         </div>
@@ -171,11 +177,13 @@ export function CatalogView() {
 
       <div className="mt-6 flex items-center justify-between text-sm text-charcoal-muted" aria-live="polite">
         <span>
-          ნაპოვნია <b className="text-forest">{results.length}</b> პროდუქტი
+          {t.foundBefore}
+          <b className="text-forest">{results.length}</b>
+          {t.foundAfter}
         </span>
         {hasFilters && (
           <button type="button" onClick={reset} className="font-semibold text-terracotta hover:underline">
-            ფილტრების გასუფთავება
+            {t.reset}
           </button>
         )}
       </div>
@@ -206,10 +214,10 @@ export function CatalogView() {
             className="mx-auto mt-6 max-w-md rounded-3xl border border-dashed border-forest/20 bg-white/60 px-6 py-14 text-center"
           >
             <PackageX className="mx-auto h-12 w-12 text-forest/30" />
-            <h2 className="mt-4 text-xl font-semibold">ვერაფერი მოიძებნა</h2>
-            <p className="mt-2 text-sm text-charcoal-soft">სცადეთ სხვა საძიებო სიტყვა ან გაასუფთავეთ ფილტრები.</p>
+            <h2 className="mt-4 text-xl font-semibold">{t.emptyTitle}</h2>
+            <p className="mt-2 text-sm text-charcoal-soft">{t.emptyText}</p>
             <button type="button" onClick={reset} className="btn-forest mt-6">
-              ყველა პროდუქტის ნახვა
+              {t.emptyCta}
             </button>
           </motion.div>
         )}

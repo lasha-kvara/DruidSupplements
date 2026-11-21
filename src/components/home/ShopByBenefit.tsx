@@ -4,12 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { benefits } from "@/data/categories";
-import { products } from "@/data/products";
+import { getBenefits, getProducts } from "@/data";
+import { useI18n } from "@/i18n/I18nProvider";
 import { BenefitIcon } from "@/components/ui/Badges";
 import { SectionHeading, fadeUpItem, staggerContainer } from "@/components/ui/Reveal";
 
 export function ShopByBenefit() {
+  const { lang, t, path } = useI18n();
+  const products = getProducts(lang);
   return (
     <section className="relative overflow-hidden bg-forest py-20 text-parchment md:py-28">
       <div className="grain pointer-events-none absolute inset-0" />
@@ -17,9 +19,9 @@ export function ShopByBenefit() {
       <div className="container relative">
         <SectionHeading
           light
-          eyebrow="დანიშნულების მიხედვით"
-          title="რა გჭირდებათ დღეს?"
-          description="აირჩიეთ თქვენი მიზანი და ჩვენ შემოგთავაზებთ შესაბამის სოკოებსა და მცენარეებს."
+          eyebrow={t.benefitsSection.eyebrow}
+          title={t.benefitsSection.title}
+          description={t.benefitsSection.description}
         />
 
         <motion.div
@@ -29,12 +31,12 @@ export function ShopByBenefit() {
           viewport={{ once: true, margin: "-80px" }}
           className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
-          {benefits.map((b) => {
+          {getBenefits(lang).map((b) => {
             const count = products.filter((p) => p.benefits.includes(b.id)).length;
             return (
               <motion.div key={b.id} variants={fadeUpItem}>
                 <Link
-                  href={`/catalog?benefit=${b.id}`}
+                  href={path(`/catalog?benefit=${b.id}`)}
                   className="group relative block h-72 overflow-hidden rounded-3xl md:h-96"
                 >
                   <Image
@@ -50,13 +52,13 @@ export function ShopByBenefit() {
                       <BenefitIcon icon={b.icon} className="h-6 w-6" />
                     </span>
                     <div className="mt-auto">
-                      <p className="text-xs font-medium text-parchment/60">{count} პროდუქტი</p>
+                      <p className="text-xs font-medium text-parchment/60">{t.common.productsCount(count)}</p>
                       <h3 className="mt-1 text-2xl font-semibold text-parchment">{b.name}</h3>
                       <p className="mt-2 max-h-0 overflow-hidden text-sm leading-relaxed text-parchment/75 opacity-0 transition-all duration-500 group-hover:max-h-24 group-hover:opacity-100 max-md:max-h-24 max-md:opacity-100">
                         {b.description}
                       </p>
                       <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-terracotta-light">
-                        ნახვა
+                        {t.common.view}
                         <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                       </span>
                     </div>

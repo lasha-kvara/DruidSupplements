@@ -7,9 +7,10 @@ import { CheckCircle2, Loader2, Phone, User, X } from "lucide-react";
 import type { QuickOrderContext } from "./QuickOrderProvider";
 import { formatAmount } from "@/lib/utils";
 import { callbackWhatsAppUrl, submitQuickOrder, validateQuickOrder, type OrderChannel } from "@/lib/order";
-import { buildOrderWhatsAppUrl, buildWhatsAppUrl, lineTotal } from "@/lib/whatsapp";
+import { buildOrderWhatsAppUrl, buildWhatsAppUrl, generalChatMessage, lineTotal } from "@/lib/whatsapp";
 import { siteConfig } from "@/config/site";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
+import { useI18n } from "@/i18n/I18nProvider";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -27,6 +28,8 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [channel, setChannel] = useState<OrderChannel>("server");
   const nameRef = useRef<HTMLInputElement>(null);
+  const { lang, t: dict } = useI18n();
+  const t = dict.quickOrder;
 
   const hasProduct = Boolean(order.productName && order.unitPrice);
   const total = hasProduct ? lineTotal({ unitPrice: order.unitPrice!, quantity: order.quantity ?? 1 }) : 0;
@@ -40,17 +43,17 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
-    const t = window.setTimeout(() => nameRef.current?.focus(), 250);
+    const timer = window.setTimeout(() => nameRef.current?.focus(), 250);
     return () => {
       document.body.style.overflow = prevOverflow;
       window.removeEventListener("keydown", onKey);
-      window.clearTimeout(t);
+      window.clearTimeout(timer);
     };
   }, [open, onClose]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const invalid = validateQuickOrder({ name, phone });
+    const invalid = validateQuickOrder({ name, phone }, lang);
     if (invalid) return setError(invalid);
     setError(null);
     setStatus("sending");
@@ -64,12 +67,12 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
         quantity: order.quantity,
         total: hasProduct ? total : undefined,
         page: window.location.href,
-      });
+      }, lang);
       setChannel(used);
       setStatus("success");
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "შეკვეთის გაგზავნა ვერ მოხერხდა");
+      setError(err instanceof Error ? err.message : t.errorFailed);
     }
   }
 
@@ -79,8 +82,8 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
         variantLabel: order.variantLabel ?? "",
         quantity: order.quantity ?? 1,
         unitPrice: order.unitPrice!,
-      })
-    : buildWhatsAppUrl();
+      }, lang)
+    : buildWhatsAppUrl(generalChatMessage(lang));
 
   return (
     <AnimatePresence>
@@ -93,7 +96,7 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
         >
           <motion.button
             type="button"
-            aria-label="დახურვა"
+            aria-label={dict.common.close}
             onClick={onClose}
             className="absolute inset-0 bg-forest-800/60 backdrop-blur-sm"
           />
@@ -111,7 +114,7 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
             <button
               type="button"
               onClick={onClose}
-              aria-label="დახურვა"
+              aria-label={dict.common.close}
               className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-forest shadow-sm transition hover:rotate-90"
             >
               <X className="h-5 w-5" />
@@ -134,11 +137,11 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
                     >
                       <CheckCircle2 className="h-10 w-10" />
                     </motion.div>
-                    <h2 className="mt-6 text-2xl font-semibold">მადლობა, {name.split(" ")[0]}!</h2>
+                    <h2 className="mt-6 text-2xl font-semibold">{t.thanks(name.trim().split(" ")[0])}</h2>
                     {channel === "whatsapp" ? (
                       <>
                         <p className="mt-3 text-charcoal-soft">
-                          კიდევ ერთი ნაბიჯი: გაგზავნეთ მზა შეტყობინება WhatsApp-ში და კონსულტანტი დაგირეკავთ ნომერზე{" "}
+                          {t.whatsappStep}
                           <span className="whitespace-nowrap font-semibold text-forest">{phone}</span>.
                         </p>
                         <a
@@ -149,37 +152,39 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
                             variant: order.variantLabel,
                             quantity: order.quantity,
                             total: hasProduct ? total : undefined,
-                          })}
+                          }, lang)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="btn-whatsapp mt-6 w-full"
                         >
-                          <WhatsAppIcon /> გაგზავნა WhatsApp-ით
+                          <WhatsAppIcon /> {t.sendWhatsapp}
                         </a>
                       </>
                     ) : (
                       <p className="mt-3 text-charcoal-soft">
-                        თქვენი შეკვეთა მიღებულია. ჩვენი კონსულტანტი დაგიკავშირდებათ <b>15 წუთში</b> ნომერზე{" "}
+                        {t.receivedBefore}
+                        <b>{t.receivedBold}</b>
+                        {t.receivedAfter}
                         <span className="whitespace-nowrap font-semibold text-forest">{phone}</span>.
                       </p>
                     )}
-                    <p className="mt-2 text-sm text-charcoal-muted">სამუშაო საათები: {siteConfig.workingHours}</p>
+                    <p className="mt-2 text-sm text-charcoal-muted">{t.hours} {dict.site.workingHours}</p>
                     <button
                       type="button"
                       onClick={onClose}
                       className={channel === "whatsapp" ? "btn-outline mt-3 w-full" : "btn-forest mt-7 w-full"}
                     >
-                      კარგი
+                      {t.ok}
                     </button>
                   </motion.div>
                 ) : (
                   <motion.form key="form" onSubmit={handleSubmit} noValidate initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                    <p className="eyebrow">1 წუთში</p>
+                    <p className="eyebrow">{t.eyebrow}</p>
                     <h2 id="quick-order-title" className="mt-2 pr-10 text-2xl font-semibold">
-                      სწრაფი შეკვეთა ზარით
+                      {t.title}
                     </h2>
                     <p className="mt-2 text-[15px] text-charcoal-soft">
-                      დატოვეთ სახელი და ნომერი — დაგირეკავთ, დავაზუსტებთ დეტალებს და გავაფორმებთ მიწოდებას.
+                      {t.description}
                     </p>
 
                     {hasProduct && (
@@ -203,12 +208,12 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
 
                     <div className="mt-5 space-y-3">
                       <label className="relative block">
-                        <span className="sr-only">სახელი</span>
+                        <span className="sr-only">{t.nameLabel}</span>
                         <User className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-charcoal-muted" />
                         <input
                           ref={nameRef}
                           className="input pl-12"
-                          placeholder="თქვენი სახელი"
+                          placeholder={t.namePlaceholder}
                           autoComplete="name"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
@@ -217,7 +222,7 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
                         />
                       </label>
                       <label className="relative block">
-                        <span className="sr-only">ტელეფონის ნომერი</span>
+                        <span className="sr-only">{t.phoneLabel}</span>
                         <Phone className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-charcoal-muted" />
                         <input
                           className="input pl-12"
@@ -260,11 +265,11 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
                     <button type="submit" className="btn-primary mt-5 w-full" disabled={status === "sending"}>
                       {status === "sending" ? (
                         <>
-                          <Loader2 className="h-5 w-5 animate-spin" /> იგზავნება...
+                          <Loader2 className="h-5 w-5 animate-spin" /> {t.sending}
                         </>
                       ) : (
                         <>
-                          <Phone className="h-5 w-5" /> დამირეკეთ
+                          <Phone className="h-5 w-5" /> {t.submit}
                         </>
                       )}
                     </button>
@@ -275,10 +280,10 @@ export function QuickOrderModal({ open, order, onClose }: Props) {
                       rel="noopener noreferrer"
                       className="mt-3 flex min-h-[44px] items-center justify-center gap-2 text-sm font-semibold text-forest-400 transition hover:text-forest"
                     >
-                      <WhatsAppIcon className="h-4 w-4" /> ან მოგვწერეთ WhatsApp-ზე
+                      <WhatsAppIcon className="h-4 w-4" /> {t.orWhatsapp}
                     </a>
                     <p className="mt-1 text-center text-xs text-charcoal-muted">
-                      გადახდა კურიერთან ნაღდით ან საბანკო გადარიცხვით
+                      {t.payNote}
                     </p>
                   </motion.form>
                 )}

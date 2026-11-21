@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site";
+import type { Locale } from "@/i18n/config";
 import { formatAmount } from "./utils";
 
 export interface OrderLine {
@@ -14,12 +15,15 @@ export function lineTotal(line: Pick<OrderLine, "quantity" | "unitPrice">): numb
 }
 
 /**
- * Builds the pre-filled Georgian order message, exactly:
- * "გამარჯობა! მსურს შევუკვეთო: [Product], მოცულობა: [Weight], რაოდენობა: [Qty], ჯამური ფასი: [Total] ₾."
+ * Pre-filled order message.
+ * ka: "გამარჯობა! მსურს შევუკვეთო: [Product], მოცულობა: [Weight], რაოდენობა: [Qty], ჯამური ფასი: [Total] ₾."
+ * en: "Hello! I'd like to order: [Product], size: [Weight], quantity: [Qty], total: [Total] ₾."
  */
-export function buildOrderMessage(line: OrderLine): string {
-  const total = formatAmount(lineTotal(line));
-  return `გამარჯობა! მსურს შევუკვეთო: ${line.productName}, მოცულობა: ${line.variantLabel}, რაოდენობა: ${line.quantity}, ჯამური ფასი: ${total} ${siteConfig.currency}.`;
+export function buildOrderMessage(line: OrderLine, lang: Locale = "ka"): string {
+  const total = `${formatAmount(lineTotal(line))} ${siteConfig.currency}`;
+  return lang === "en"
+    ? `Hello! I'd like to order: ${line.productName}, size: ${line.variantLabel}, quantity: ${line.quantity}, total: ${total}.`
+    : `გამარჯობა! მსურს შევუკვეთო: ${line.productName}, მოცულობა: ${line.variantLabel}, რაოდენობა: ${line.quantity}, ჯამური ფასი: ${total}.`;
 }
 
 /**
@@ -33,8 +37,14 @@ export function buildWhatsAppUrl(message?: string, phone: string = siteConfig.wh
   return message ? `${base}?text=${encodeURIComponent(message)}` : base;
 }
 
-export function buildOrderWhatsAppUrl(line: OrderLine): string {
-  return buildWhatsAppUrl(buildOrderMessage(line));
+export function buildOrderWhatsAppUrl(line: OrderLine, lang: Locale = "ka"): string {
+  return buildWhatsAppUrl(buildOrderMessage(line, lang));
 }
 
-export const generalChatMessage = "გამარჯობა! მაინტერესებს თქვენი პროდუქცია. შეგიძლიათ დამეხმაროთ არჩევანში?";
+export function generalChatMessage(lang: Locale = "ka"): string {
+  return lang === "en"
+    ? "Hello! I'm interested in your products. Could you help me choose?"
+    : "გამარჯობა! მაინტერესებს თქვენი პროდუქცია. შეგიძლიათ დამეხმაროთ არჩევანში?";
+}
+
+export const generalChatUrl = (lang: Locale = "ka") => buildWhatsAppUrl(generalChatMessage(lang));

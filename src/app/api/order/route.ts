@@ -11,6 +11,7 @@ interface QuickOrderPayload {
   quantity?: number;
   total?: number;
   page?: string;
+  lang?: "ka" | "en";
 }
 
 const clean = (v: unknown, max = 120) => (typeof v === "string" ? v.trim().slice(0, max) : "");
@@ -25,6 +26,7 @@ function formatMessage(o: QuickOrderPayload): string {
   if (o.quantity) lines.push(`🔢 რაოდენობა: ${o.quantity}`);
   if (o.total) lines.push(`💰 ჯამი: ${o.total} ₾`);
   if (o.page) lines.push(`🔗 გვერდი: ${o.page}`);
+  if (o.lang === "en") lines.push("🌐 ენა: English (უცხოელი მომხმარებელი)");
   lines.push(`🕒 ${new Date().toLocaleString("ka-GE", { timeZone: "Asia/Tbilisi" })}`);
   return lines.join("\n");
 }
@@ -66,6 +68,7 @@ export async function POST(request: Request) {
     quantity: typeof body.quantity === "number" && body.quantity > 0 ? Math.min(body.quantity, 99) : undefined,
     total: typeof body.total === "number" && body.total > 0 ? body.total : undefined,
     page: clean(body.page, 200) || undefined,
+    lang: body.lang === "en" ? "en" : "ka",
   };
 
   if (order.name.length < 2) {

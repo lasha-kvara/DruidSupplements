@@ -3,31 +3,12 @@
 import { motion } from "framer-motion";
 import { FlaskConical, Leaf, Mountain, Truck } from "lucide-react";
 import { fadeUpItem, staggerContainer } from "@/components/ui/Reveal";
+import { useI18n } from "@/i18n/I18nProvider";
 
-const ITEMS = [
-  {
-    icon: Leaf,
-    title: "100% ორგანული",
-    text: "ქიმიური სასუქების, შემავსებლებისა და კონსერვანტების გარეშე",
-  },
-  {
-    icon: Mountain,
-    title: "ველურად შეგროვებული",
-    text: "კავკასიის მთებისა და ტყეების ეკოლოგიურად სუფთა ზონებიდან",
-  },
-  {
-    icon: FlaskConical,
-    title: "ლაბორატორიული კონტროლი",
-    text: "ყოველი პარტია მოწმდება მძიმე მეტალებსა და მიკრობიოლოგიაზე",
-  },
-  {
-    icon: Truck,
-    title: "სწრაფი მიწოდება",
-    text: "თბილისში 24 საათში, რეგიონებში 1–3 სამუშაო დღეში",
-  },
-];
+const ICONS = [Leaf, Mountain, FlaskConical, Truck];
 
 export function TrustBar() {
+  const { t } = useI18n();
   return (
     <section id="trust" className="relative z-10 -mt-10 scroll-mt-24 md:-mt-16">
       <div className="container">
@@ -38,7 +19,9 @@ export function TrustBar() {
           viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-2 gap-3 md:gap-5 lg:grid-cols-4"
         >
-          {ITEMS.map(({ icon: Icon, title, text }) => (
+          {t.trust.map(({ title, text }, i) => {
+            const Icon = ICONS[i];
+            return (
             <motion.li
               key={title}
               variants={fadeUpItem}
@@ -51,7 +34,8 @@ export function TrustBar() {
               <h3 className="mt-4 font-sans text-[15px] font-semibold text-forest md:text-lg">{title}</h3>
               <p className="mt-1.5 text-xs leading-relaxed text-charcoal-soft md:text-sm">{text}</p>
             </motion.li>
-          ))}
+            );
+          })}
         </motion.ul>
       </div>
     </section>

@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageCircle, Phone, PhoneCall, X } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { buildWhatsAppUrl, generalChatMessage } from "@/lib/whatsapp";
+import { generalChatUrl } from "@/lib/whatsapp";
+import { useI18n } from "@/i18n/I18nProvider";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { useQuickOrder } from "@/components/order/QuickOrderProvider";
 
@@ -14,6 +15,7 @@ export function FloatingContact() {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const { openQuickOrder } = useQuickOrder();
+  const { lang, t } = useI18n();
 
   useEffect(() => {
     const t = window.setTimeout(() => setVisible(true), 900);
@@ -37,15 +39,15 @@ export function FloatingContact() {
   const actions = [
     {
       key: "wa",
-      label: "WhatsApp",
-      href: buildWhatsAppUrl(generalChatMessage),
+      label: t.fab.whatsapp,
+      href: generalChatUrl(lang),
       external: true,
       className: "bg-[#25D366] text-white",
       icon: <WhatsAppIcon className="h-5 w-5" />,
     },
     {
       key: "tel",
-      label: "დარეკვა",
+      label: t.fab.call,
       href: `tel:${siteConfig.phoneNumber}`,
       external: false,
       className: "bg-forest text-parchment",
@@ -105,7 +107,7 @@ export function FloatingContact() {
                     className="flex items-center gap-3"
                   >
                     <span className="rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-forest shadow-soft">
-                      დამირეკეთ
+                      {t.fab.callback}
                     </span>
                     <span className="flex h-12 w-12 items-center justify-center rounded-full bg-terracotta text-white shadow-lift">
                       <PhoneCall className="h-5 w-5" />
@@ -119,7 +121,7 @@ export function FloatingContact() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "დახურვა" : "დაგვიკავშირდით"}
+            aria-label={open ? t.fab.close : t.fab.open}
             aria-expanded={open}
             className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lift transition-transform active:scale-95 md:h-16 md:w-16"
           >
