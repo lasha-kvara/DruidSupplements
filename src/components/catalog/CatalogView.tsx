@@ -193,7 +193,10 @@ export function CatalogView({ products, categories, benefits }: Props) {
         )}
       </div>
 
-      <motion.div layout className="mt-6 grid grid-cols-1 gap-5 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {/* `relative` is required by popLayout: leaving cards are popped out with position:absolute and must
+          stay anchored to this grid (otherwise they fly off to another ancestor). No `layout` on the grid
+          itself — its scale correction would distort the popped cards. */}
+      <div className="relative mt-6 grid grid-cols-1 gap-5 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <AnimatePresence mode="popLayout">
           {results.map((p, i) => (
             <motion.div
@@ -201,14 +204,14 @@ export function CatalogView({ products, categories, benefits }: Props) {
               layout
               initial={{ opacity: 0, scale: 0.94, y: 12 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.94 }}
+              exit={{ opacity: 0, scale: 0.94, transition: { duration: 0.2 } }}
               transition={{ duration: 0.35, delay: Math.min(i * 0.03, 0.2) }}
             >
               <ProductCard product={p} priority={i < 4} />
             </motion.div>
           ))}
         </AnimatePresence>
-      </motion.div>
+      </div>
 
       <AnimatePresence>
         {results.length === 0 && (
