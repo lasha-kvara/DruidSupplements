@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<title>OG 1200×630</title>
+<style>
+  @font-face{font-family:FiraGO;src:url(../../src/fonts/FiraGO-Bold.woff2) format("woff2");font-weight:700}
+  @font-face{font-family:FiraGO;src:url(../../src/fonts/FiraGO-Medium.woff2) format("woff2");font-weight:500}
+  html,body{margin:0;width:1200px;height:630px;overflow:hidden}
+  .og{position:relative;width:1200px;height:630px;overflow:hidden;font-family:FiraGO,sans-serif;color:#F7F5F0;
+    background:radial-gradient(circle at 26% 50%,#2c4a34 0%,#1B3022 46%,#0f1c14 100%)}
+  .photo .og{background:#0f1c14}
+  .bg{display:none;position:absolute;inset:0;background:url(../../public/images/forest.jpg) center/cover}
+  .photo .bg{display:block}
+  .shade{position:absolute;inset:0;display:none;background:linear-gradient(90deg,rgba(15,28,20,.55) 0%,rgba(17,33,23,.82) 42%,rgba(15,28,20,.94) 100%)}
+  .photo .shade{display:block}
+  .rings{position:absolute;left:330px;top:315px;transform:translate(-50%,-50%)}
+  .rings i{position:absolute;left:50%;top:50%;border-radius:50%;border:2px solid rgba(247,245,240,.14);transform:translate(-50%,-50%)}
+  .rings i:nth-child(2){border-style:dashed;border-color:rgba(247,245,240,.18)}
+  .badge{position:absolute;left:150px;top:135px;width:360px;height:360px;filter:drop-shadow(0 24px 40px rgba(0,0,0,.45))}
+  .txt{position:absolute;left:580px;top:0;bottom:0;right:70px;display:flex;flex-direction:column;justify-content:center}
+  .name{font-size:112px;font-weight:700;line-height:1;letter-spacing:-.01em}
+  .tag{margin-top:22px;font-size:40px;font-weight:500;color:#E09A82;line-height:1.25}
+  .dots{display:flex;gap:14px;margin-top:34px}
+  .dots span{width:22px;height:22px;border-radius:50%;background:#F7F5F0;box-sizing:border-box;border:5px solid;position:relative}
+  .dots span::after{content:"";position:absolute;inset:3px;border-radius:50%;background:currentColor}
+  .url{margin-top:30px;font-size:24px;font-weight:500;color:rgba(247,245,240,.6)}
+  .fl{position:absolute;filter:drop-shadow(0 10px 18px rgba(0,0,0,.35))}
+  .spore{position:absolute;border-radius:50%;background:rgba(247,245,240,.35)}
+</style>
+</head>
+<body>
+<div class="og">
+  <div class="bg"></div><div class="shade"></div>
+  <div class="rings"><i style="width:520px;height:520px"></i><i style="width:450px;height:450px"></i></div>
+  <img class="badge" src="../logo/druid-badge.svg" alt="">
+  <div class="txt">
+    <div class="name" id="n">დრუიდი</div>
+    <div class="tag" id="t">სამკურნალო სოკოები<br>და მცენარეები</div>
+    <div class="dots">
+      <span style="color:#C86D51"></span><span style="color:#D6A23E"></span><span style="color:#6F9A6B"></span>
+      <span style="color:#3E8A8F"></span><span style="color:#8E5872"></span><span style="color:#4E7559"></span>
+    </div>
+    <div class="url">druid-supplements.vercel.app</div>
+  </div>
+  <img class="fl" src="../hero/mushroom-friend.svg" style="right:58px;top:46px;width:84px;transform:rotate(8deg)" alt="">
+  <img class="fl" src="../hero/leaf.svg" style="right:150px;bottom:38px;width:64px;opacity:.9;transform:rotate(-20deg)" alt="">
+  <img class="fl" src="../hero/mushroom-remedy.svg" style="left:70px;bottom:40px;width:56px;opacity:.9;transform:rotate(-8deg)" alt="">
+  <img class="fl" src="../hero/leaf.svg" style="left:96px;top:60px;width:56px;opacity:.8;transform:scaleX(-1) rotate(10deg)" alt="">
+  <span class="spore" style="left:540px;top:90px;width:6px;height:6px"></span>
+  <span class="spore" style="left:1010px;top:250px;width:5px;height:5px"></span>
+  <span class="spore" style="left:520px;top:520px;width:4px;height:4px"></span>
+  <span class="spore" style="left:1120px;top:470px;width:6px;height:6px"></span>
+</div>
+<script>if(location.search.includes("photo"))document.body.className="photo";
+if(location.search.includes("en")){document.documentElement.lang="en";n.textContent="Druid";t.innerHTML="Medicinal mushrooms<br>&amp; herbs";}</script>
+</body>
+</html>

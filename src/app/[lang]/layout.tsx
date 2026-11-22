@@ -49,8 +49,11 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       siteName: t.name,
       title,
       description: t.description,
-      images: [{ url: absoluteUrl("/images/forest.jpg"), width: 1800, height: 1200 }],
+      // Share card in the logo style — sources: brand/og/og.html (render at 1200×630, ?en for English)
+      images: [{ url: absoluteUrl(`/images/og-${l}.png`), width: 1200, height: 630, alt: title }],
     },
+    // card type only — X falls back to each page's og:image (product/post pages keep their own photo)
+    twitter: { card: "summary_large_image" },
   };
 }
 
