@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  /* Search fields bring their own clear button — hide the browser's native one (Chrome/Edge/Safari) */
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
+
   /*
    * Theme tokens as "R G B" (see tailwind.config.ts). Light is the default; dark applies when the
    * theme toggle (dark is the default on <html>; the no-flash script applies a saved choice) sets data-theme="dark".

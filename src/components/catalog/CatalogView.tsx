@@ -121,21 +121,24 @@ export function CatalogView({ products, categories, benefits }: Props) {
                 placeholder={t.searchPlaceholder}
                 className="input !rounded-full !py-3 pl-12 pr-11"
               />
-              <AnimatePresence>
-                {query && (
-                  <motion.button
-                    initial={{ opacity: 0, scale: 0.6 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.6 }}
-                    type="button"
-                    onClick={() => setQuery("")}
-                    aria-label={t.clearSearch}
-                    className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-forest/5 text-forest"
-                  >
-                    <X className="h-4 w-4" />
-                  </motion.button>
-                )}
-              </AnimatePresence>
+              {/* Centering lives on this static wrapper: framer's scale animation would overwrite a translate on the button itself */}
+              <span className="pointer-events-none absolute inset-y-0 right-2 flex items-center">
+                <AnimatePresence>
+                  {query && (
+                    <motion.button
+                      initial={{ opacity: 0, scale: 0.6 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.6 }}
+                      type="button"
+                      onClick={() => setQuery("")}
+                      aria-label={t.clearSearch}
+                      className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-forest/5 text-forest transition-colors hover:bg-forest/10"
+                    >
+                      <X className="h-4 w-4" />
+                    </motion.button>
+                  )}
+                </AnimatePresence>
+              </span>
             </label>
           </div>
 
